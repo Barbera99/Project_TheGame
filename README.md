@@ -1,2 +1,2 @@
 # Project_TheGame
-@authors Josep Barbera Kevin Costes Aleix Esteve Joan Guarner
+**Authors:** Josep Barbera Kevin Costes Aleix Esteve Joan Guarner
