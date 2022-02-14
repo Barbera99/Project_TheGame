@@ -1,0 +1,1 @@
+L'estratègia que nosaltres seguirem, serà la creació d'una branca per a cada nova funcionalitat, de manera que podem realitzar les modificacions i proves adients de forma independent a la branca principal i un cop estigui implementada i testejada correctament, farem un merge amb la principal.
