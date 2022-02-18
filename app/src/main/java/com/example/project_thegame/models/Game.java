@@ -1,7 +1,9 @@
 package com.example.project_thegame.models;
 
 public class Game {
-    /* Attributes */
+    /**
+     * Declaració dels atributs de classe.
+     */
     private Map map1;
     private Map map2;
     private Map map3;
@@ -10,9 +12,57 @@ public class Game {
     private Player player1;
     private Player player2;
     private int score;
+    private Map []already_played;
+    private int score_player1;
+    private int score_player2;
 
-    /* Getters & Setters */
+    /**
+     * Comprovem la puntuació.
+     */
+    public void check_score(){
+        //TODO
+    }
+    /**
+     * Passem a la següent ronda.
+     */
+    public void next_round(){
+        //TODO
+    }
+    /**
+     * Finalitzem la partida
+     */
+    public void end_game(){
+        //TODO
+    }
+    /**
+     * Començem la partida.
+     */
+    public void start_game(){
+        //TODO
+    }
+    /**
+     * Escollim el guanyador.
+     */
+    public void check_winner(){
+        //TODO
+    }
+    /**
+     * Comprovarem el guanyador de la ronda.
+     */
+    public void check_round(){
+        //TODO
+    }
+    /**
+     * Escollirem un dels diferents mapes per cada ronda.
+     */
+    public void choose_map(){
+        //TODO
+    }
 
+    /**
+     * Declaració getters i setters dels atributs de la classe.
+     *
+     */
     public Map getMap1() {
         return map1;
     }
@@ -75,5 +125,29 @@ public class Game {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public Map[] getAlready_played() {
+        return already_played;
+    }
+
+    public void setAlready_played(Map[] already_played) {
+        this.already_played = already_played;
+    }
+
+    public int getScore_player1() {
+        return score_player1;
+    }
+
+    public void setScore_player1(int score_player1) {
+        this.score_player1 = score_player1;
+    }
+
+    public int getScore_player2() {
+        return score_player2;
+    }
+
+    public void setScore_player2(int score_player2) {
+        this.score_player2 = score_player2;
     }
 }

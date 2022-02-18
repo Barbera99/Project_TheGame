@@ -1,7 +1,9 @@
 package com.example.project_thegame.models;
 
 public class Deck {
-    /* Attributes */
+    /**
+     * Declaració dels atributs de classe.
+     */
     final int SIZE = 5;
     private Card card1;
     private Card card2;
@@ -9,8 +11,29 @@ public class Deck {
     private Card card4;
     private Card card5;
 
-    /* Getters & Setters */
+    /**
+     * Llevarem la carta seleccionada de la baralla.
+     */
+    public void remove(){
+        //TODO
+    }
+    /**
+     * Afegirem la carta seleccionada a la baralla.
+     */
+    public void add(){
+        //TODO
+    }
+    /**
+     * Comprovem si la carta a afegir ja forma part de la baralla.
+     */
+    public void check(){
+        //TODO
+    }
 
+    /**
+     * Declaració getters i setters dels atributs de la classe.
+     *
+     */
     public int getSIZE() {
         return SIZE;
     }

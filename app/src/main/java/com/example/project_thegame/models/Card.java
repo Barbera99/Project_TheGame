@@ -1,7 +1,9 @@
 package com.example.project_thegame.models;
 
 public class Card {
-    /* Attributes */
+    /**
+     * Declaració dels atributs de classe.
+     */
     private int id;
     private String name;
     private int strenght;
@@ -12,7 +14,9 @@ public class Card {
     private boolean locked;
     private Category category;
 
-    /* Diferent card Category*/
+    /**
+     * Diferents categories de cartes.
+     */
     enum Category{
         Common,
         Rare,
@@ -20,7 +24,10 @@ public class Card {
         Legendary
     }
 
-    /* Getters & Setters */
+    /**
+     * Declaració getters i setters dels atributs de la classe.
+     *
+     */
     public int getId() {
         return id;
     }

@@ -1,7 +1,9 @@
 package com.example.project_thegame.models;
 
 public class Player {
-    /* Atributes */
+    /**
+     * Declaració dels atributs de classe.
+     */
     private String name;
     private int games_played;
     private int wins;
@@ -9,7 +11,10 @@ public class Player {
     private int achivements;
     private int owned_cards;
 
-    /* Getters & Setters */
+    /**
+     * Declaració dels getters i setters.
+     *
+     */
     public String getName() {
         return name;
     }

@@ -1,14 +1,19 @@
 package com.example.project_thegame.models;
 
 public class Map {
-    /* Attributes */
+    /**
+     * Declaració dels atributs de classe.
+     */
     private String name;
     private int id;
     private int attribute;
     private int extra_attribute;
     private Type type;
 
-    /* Diferent map types */
+    /**
+     * LListat dels diferents tipus de proves que hi han.
+     *
+     */
     enum Type{
         Marathon,
         Sprint,
@@ -18,6 +23,10 @@ public class Map {
         Climbing
     }
 
+    /**
+     * Declaració dels getters i setters.
+     *
+     */
     public String getName() {
         return name;
     }
