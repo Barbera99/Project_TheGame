@@ -1,2 +1,3 @@
 Per a la creació del nostre projecte android, hem utilitzat la versió 7.0 (Nougat), ja que és recomana escollir sempre una versió la qual al voltant del 90% dels usuaris puguin utilitzar i a més a més sigui de les més noves, la qual aquesta compta amb un  89%.
 També teniem que escollir entre la versió 7 o 8 de Java, la qual hem escollit la 8 degut a que compta amb més funcions que l'anterior, com per exemple javatime i es compatible amb les versions dels sistemes operatius més utilitzats actualment.
+![ModelDesign](https://user-images.githubusercontent.com/99675044/154867962-fc77039c-1ce4-4543-bb2e-854fc405fdb3.JPG)
