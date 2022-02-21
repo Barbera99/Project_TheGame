@@ -1,34 +1,31 @@
 package com.example.project_thegame;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class SplashScreenActivity extends AppCompatActivity {
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class SplashScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_splashscreenactivity);
 
-        Thread splashScreenStarter = new Thread() {
+        TimerTask task = new TimerTask() {
+            @Override
             public void run() {
-                try {
-                    int delay = 0;
-                    while (delay < 2000) {
-                        sleep(150);
-                        delay = delay + 100;
-                    }
-                    startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    finish();
-                }
+                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
-
         };
-        splashScreenStarter.start();
+
+        Timer temps = new Timer();
+        temps.schedule(task, 5000);
+
     }
 }
