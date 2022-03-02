@@ -6,11 +6,11 @@ public class Card {
      */
     private int id;
     private String name;
-    private int strenght;
+    private int strength;
     private int speed;
     private int agility;
     private int endurance;
-    private int intelligencie;
+    private int intelligence;
     private boolean locked;
     private Category category;
 
@@ -18,10 +18,26 @@ public class Card {
      * Diferents categories de cartes.
      */
     enum Category{
-        Common,
-        Rare,
-        Epic,
-        Legendary
+        Common, //0
+        Rare, //1
+        Epic, //2
+        Legendary //3
+    }
+
+    /**
+     * Constructor
+     *
+     */
+    public Card(int id, String name, int strength, int speed, int agility, int endurance, int intelligence, boolean locked, int category) {
+        this.id = id;
+        this.name = name;
+        this.strength = strength;
+        this.speed = speed;
+        this.agility = agility;
+        this.endurance = endurance;
+        this.intelligence = intelligence;
+        this.locked = locked;
+        this.category = Category.values()[category];
     }
 
     /**
@@ -45,11 +61,11 @@ public class Card {
     }
 
     public int getStrenght() {
-        return strenght;
+        return strength;
     }
 
     public void setStrenght(int strenght) {
-        this.strenght = strenght;
+        this.strength = strenght;
     }
 
     public int getSpeed() {
@@ -77,11 +93,11 @@ public class Card {
     }
 
     public int getIntelligencie() {
-        return intelligencie;
+        return intelligence;
     }
 
     public void setIntelligencie(int intelligencie) {
-        this.intelligencie = intelligencie;
+        this.intelligence = intelligencie;
     }
 
     public boolean isLocked() {
