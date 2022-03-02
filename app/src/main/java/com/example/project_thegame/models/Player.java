@@ -4,12 +4,29 @@ public class Player {
     /**
      * Declaració dels atributs de classe.
      */
+    private int id;
     private String name;
     private int games_played;
     private int wins;
     private int defeats;
-    private int achivements;
+    private int achievements;
     private int owned_cards;
+    private Deck playerDeck;
+
+    /**
+     * CONSTRUCTOR
+     *
+     */
+    public Player(int id, String name, int games_played, int wins, int defeats, int achievements, int owned_cards, Deck playerDeck) {
+        this.id = id;
+        this.name = name;
+        this.games_played = games_played;
+        this.wins = wins;
+        this.defeats = defeats;
+        this.achievements = achievements;
+        this.owned_cards = owned_cards;
+        this.playerDeck = playerDeck;
+    }
 
     /**
      * Declaració dels getters i setters.
@@ -48,11 +65,11 @@ public class Player {
     }
 
     public int getAchivements() {
-        return achivements;
+        return achievements;
     }
 
     public void setAchivements(int achivements) {
-        this.achivements = achivements;
+        this.achievements = achivements;
     }
 
     public int getOwned_cards() {
@@ -62,4 +79,23 @@ public class Player {
     public void setOwned_cards(int owned_cards) {
         this.owned_cards = owned_cards;
     }
+
+    public Deck getPlayerDeck() {
+        return playerDeck;
+    }
+
+    public void setPlayerDeck(Deck playerDeck) {
+        this.playerDeck = playerDeck;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    //altres
+    // public static Player getPlayerById(int id) {}
 }

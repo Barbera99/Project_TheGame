@@ -25,7 +25,7 @@ public class SplashScreenActivity extends Activity {
         };
 
         Timer temps = new Timer();
-        temps.schedule(task, 5000);
+        temps.schedule(task, 1000);
 
     }
 }
