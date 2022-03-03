@@ -11,52 +11,15 @@ public class Game {
     private Map map5;
     private Player player1;
     private Player player2;
-    private int score;
     private Map []already_played;
     private int score_player1;
     private int score_player2;
 
-    /**
-     * Comprovem la puntuació.
-     */
-    public void check_score(){
-        //TODO
-    }
-    /**
-     * Passem a la següent ronda.
-     */
-    public void next_round(){
-        //TODO
-    }
-    /**
-     * Finalitzem la partida
-     */
-    public void end_game(){
-        //TODO
-    }
-    /**
-     * Començem la partida.
-     */
-    public void start_game(){
-        //TODO
-    }
-    /**
-     * Escollim el guanyador.
-     */
-    public void check_winner(){
-        //TODO
-    }
-    /**
-     * Comprovarem el guanyador de la ronda.
-     */
-    public void check_round(){
-        //TODO
-    }
-    /**
-     * Escollirem un dels diferents mapes per cada ronda.
-     */
-    public void choose_map(){
-        //TODO
+    public Game(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.score_player1 = 0;
+        this.score_player2 = 0;
     }
 
     /**
@@ -117,14 +80,6 @@ public class Game {
 
     public void setPlayer2(Player player2) {
         this.player2 = player2;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public Map[] getAlready_played() {

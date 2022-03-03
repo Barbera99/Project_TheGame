@@ -1,5 +1,7 @@
 package com.example.project_thegame.models;
 
+import java.util.ArrayList;
+
 public class Player {
     /**
      * Declaració dels atributs de classe.
@@ -9,23 +11,21 @@ public class Player {
     private int games_played;
     private int wins;
     private int defeats;
-    private int achievements;
-    private int owned_cards;
     private Deck playerDeck;
+    private ArrayList<Card> listOfCardsOwned;
 
     /**
      * CONSTRUCTOR
      *
      */
-    public Player(int id, String name, int games_played, int wins, int defeats, int achievements, int owned_cards, Deck playerDeck) {
+    public Player(int id, String name, int games_played, int wins, int defeats, Deck playerDeck) {
         this.id = id;
         this.name = name;
         this.games_played = games_played;
         this.wins = wins;
         this.defeats = defeats;
-        this.achievements = achievements;
-        this.owned_cards = owned_cards;
         this.playerDeck = playerDeck;
+        this.listOfCardsOwned = new ArrayList<>();
     }
 
     /**
@@ -62,22 +62,6 @@ public class Player {
 
     public void setDefeats(int defeats) {
         this.defeats = defeats;
-    }
-
-    public int getAchivements() {
-        return achievements;
-    }
-
-    public void setAchivements(int achivements) {
-        this.achievements = achivements;
-    }
-
-    public int getOwned_cards() {
-        return owned_cards;
-    }
-
-    public void setOwned_cards(int owned_cards) {
-        this.owned_cards = owned_cards;
     }
 
     public Deck getPlayerDeck() {

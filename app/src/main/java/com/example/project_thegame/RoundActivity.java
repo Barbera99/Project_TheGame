@@ -9,11 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.project_thegame.controllers.GameController;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
-import com.example.project_thegame.models.Player;
 
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class RoundActivity extends AppCompatActivity {
-
+    GameController gameController;
     int roundNumber;
     //player1
     int player1score;
@@ -73,19 +72,13 @@ public class RoundActivity extends AppCompatActivity {
 
                 //Comprovar qui ha guanyat
                 //Mes avan s'ha de fer un metode fen servir la classe(mechanics)
-                if(player1card.getSpeed() > player2card.getSpeed()) {
-                    System.out.println("Ha guanyat el jugador 1");
-                    player1score++;
-                } else if(player1card.getSpeed() < player2card.getSpeed()) {
-                    System.out.println("Ha guanyat el jugador 2");
-                    player2score++;
-                }
 
-                //Comprovar si ha acabat la partida i cridem al mètode que acaba la partida
-                if(player1score >= 3) {
-                    //endMatch(WINNER GIUSEPPE); TODO
-                } else  if(player2score >= 3) {
-                    //endMatch(WINNER GIUSEPPE); TODO
+
+                // Metode per comprovar si algun jugador ha guanyat 3 partides i mostrar el guanyador.
+                if(gameController.check_winner()){
+                    Intent showWinner = new Intent(getApplicationContext(), showWinner.class);
+                    startActivity(showWinner);
+                    finish();
                 }
 
                 //Seguent ronda

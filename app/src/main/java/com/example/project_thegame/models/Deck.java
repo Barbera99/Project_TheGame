@@ -15,6 +15,9 @@ public class Deck {
      * Constructor
      *
      */
+    public Deck(){
+
+    }
     public Deck(Card card1, Card card2, Card card3, Card card4, Card card5) {
         this.card1 = card1;
         this.card2 = card2;
