@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
         <activity
-            android:name=".AboutPageActivity"
+            android:name=".showWinner"
             android:exported="false" />
         <activity
-            android:name=".TermConditionActivity"
+            android:name=".RoundActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

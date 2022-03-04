@@ -54,19 +54,8 @@ public class SplashScreenActivity extends Activity {
         temps.schedule(task, 5000);*/
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            boolean flag = data.getBooleanExtra("datBol",false);
-            if(flag){
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                System.exit(0);
-            }
-        }
+        Timer temps = new Timer();
+        temps.schedule(task, 1000);
 
     }
 }
