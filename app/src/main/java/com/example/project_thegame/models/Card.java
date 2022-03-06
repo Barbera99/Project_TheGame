@@ -1,6 +1,9 @@
 package com.example.project_thegame.models;
 
-public class Card {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Card implements Parcelable {
     /**
      * Declaració dels atributs de classe.
      */
@@ -115,4 +118,65 @@ public class Card {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeInt(this.strength);
+        dest.writeInt(this.speed);
+        dest.writeInt(this.agility);
+        dest.writeInt(this.endurance);
+        dest.writeInt(this.intelligence);
+        dest.writeByte(this.locked ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.category == null ? -1 : this.category.ordinal());
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.id = source.readInt();
+        this.name = source.readString();
+        this.strength = source.readInt();
+        this.speed = source.readInt();
+        this.agility = source.readInt();
+        this.endurance = source.readInt();
+        this.intelligence = source.readInt();
+        this.locked = source.readByte() != 0;
+        int tmpCategory = source.readInt();
+        this.category = tmpCategory == -1 ? null : Category.values()[tmpCategory];
+    }
+
+    protected Card(Parcel in) {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.strength = in.readInt();
+        this.speed = in.readInt();
+        this.agility = in.readInt();
+        this.endurance = in.readInt();
+        this.intelligence = in.readInt();
+        this.locked = in.readByte() != 0;
+        int tmpCategory = in.readInt();
+        this.category = tmpCategory == -1 ? null : Category.values()[tmpCategory];
+    }
+
+    public static final Creator<Card> CREATOR = new Creator<Card>() {
+        @Override
+        public Card createFromParcel(Parcel source) {
+            return new Card(source);
+        }
+
+        @Override
+        public Card[] newArray(int size) {
+            return new Card[size];
+        }
+    };
 }
