@@ -1,30 +1,49 @@
 package com.example.project_thegame.models;
 
-public class Deck {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
+
+public class Deck implements Parcelable {
     /**
      * Declaració dels atributs de classe.
      */
-    final int SIZE = 5;
-    private Card card1;
-    private Card card2;
-    private Card card3;
-    private Card card4;
-    private Card card5;
+    int SIZE = 5;
+    private ArrayList<Card> arrayDeck;
 
     /**
      * Constructor
      *
      */
-    public Deck(){
+    public Deck() {
+        arrayDeck = new ArrayList<>();
+    }
 
+    protected Deck(Parcel in) {
+        SIZE = in.readInt();
     }
-    public Deck(Card card1, Card card2, Card card3, Card card4, Card card5) {
-        this.card1 = card1;
-        this.card2 = card2;
-        this.card3 = card3;
-        this.card4 = card4;
-        this.card5 = card5;
+
+    public static final Creator<Deck> CREATOR = new Creator<Deck>() {
+        @Override
+        public Deck createFromParcel(Parcel in) {
+            return new Deck(in);
+        }
+
+        @Override
+        public Deck[] newArray(int size) {
+            return new Deck[size];
+        }
+    };
+
+
+
+    public ArrayList<Card> getArrayDeck() {
+        return arrayDeck;
     }
+
+
+
 
     /**
      * Llevarem la carta seleccionada de la baralla.
@@ -35,7 +54,12 @@ public class Deck {
     /**
      * Afegirem la carta seleccionada a la baralla.
      */
-    public void add(){
+    public void add(Card c){
+        for(int i = 0; i < SIZE;i++){
+            if(SIZE>this.arrayDeck.size()){
+                arrayDeck.add(c);
+            }
+        }
         //TODO
     }
     /**
@@ -53,43 +77,15 @@ public class Deck {
         return SIZE;
     }
 
-    public Card getCard1() {
-        return card1;
+
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setCard1(Card card1) {
-        this.card1 = card1;
-    }
-
-    public Card getCard2() {
-        return card2;
-    }
-
-    public void setCard2(Card card2) {
-        this.card2 = card2;
-    }
-
-    public Card getCard3() {
-        return card3;
-    }
-
-    public void setCard3(Card card3) {
-        this.card3 = card3;
-    }
-
-    public Card getCard4() {
-        return card4;
-    }
-
-    public void setCard4(Card card4) {
-        this.card4 = card4;
-    }
-
-    public Card getCard5() {
-        return card5;
-    }
-
-    public void setCard5(Card card5) {
-        this.card5 = card5;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(SIZE);
     }
 }

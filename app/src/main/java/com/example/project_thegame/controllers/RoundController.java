@@ -16,14 +16,14 @@ public class RoundController {
      */
     public void check_round_score(){
 
-        round.getPlayer1()
+        /*round.getPlayer1();
         if(player1card.getSpeed() > player2card.getSpeed()) {
             System.out.println("Ha guanyat el jugador 1");
             player1score++;
         } else if(player1card.getSpeed() < player2card.getSpeed()) {
             System.out.println("Ha guanyat el jugador 2");
             player2score++;
-        }
+        }*/
     }
 
 }

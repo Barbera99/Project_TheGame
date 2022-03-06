@@ -76,7 +76,7 @@ public class RoundActivity extends AppCompatActivity {
 
                 // Metode per comprovar si algun jugador ha guanyat 3 partides i mostrar el guanyador.
                 if(gameController.check_winner()){
-                    Intent showWinner = new Intent(getApplicationContext(), showWinner.class);
+                    Intent showWinner = new Intent(getApplicationContext(), ShowWinnerActivity.class);
                     startActivity(showWinner);
                     finish();
                 }

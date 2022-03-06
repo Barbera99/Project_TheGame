@@ -64,13 +64,13 @@
 
     <Button
         android:text="@string/accept"
-        android:id="@+id/btnAccept"
+        android:id="@+id/asd"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <Button
-        android:id="@+id/btnDeny"
+        android:id="@+id/asdf"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
