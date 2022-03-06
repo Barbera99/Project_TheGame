@@ -9,8 +9,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.project_thegame.controllers.PlayerController;
 import com.example.project_thegame.models.Card;
@@ -27,7 +32,6 @@ import java.util.Observer;
 public class MainActivity extends AppCompatActivity implements Observer {
 
     Button playButton;
-    Button bTerms;
     Button selectDeck;
     /**
      * Cartes,baralles i players per fer proves!
@@ -50,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements Observer {
     Player player1;
     Player player2;
     Game game;
+    Spinner lvlList;
+    String diffSelected;
+    final int REQ_CODE = 1;
+    final int REQ_ROUND = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,55 +73,74 @@ public class MainActivity extends AppCompatActivity implements Observer {
         lCard.add(carta8);
         lCard.add(carta9);
         lCard.add(carta10);
+        lvlList = findViewById(R.id.sLvl);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Easy");
+        arrayList.add("Medium");
+        arrayList.add("Hard");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
+        lvlList.setAdapter(arrayAdapter);
+        lvlList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                diffSelected = (String) adapterView.getSelectedItem();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
         player1 = new Player(1, "Test 1", 0, 0, 0, lCard);
         player2 = new Player(1, "Test 2", 0, 0, 0, lCard);
         game = new Game(player1,player2);
         playButton = findViewById(R.id.playButton);
-        bTerms = findViewById(R.id.terms);
         selectDeck = findViewById(R.id.btnDeck);
-        bTerms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent termsCond = new Intent(MainActivity.this, TestActivity.class);
-                startActivity(termsCond);
-            }
-        });
         selectDeck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, DeckActivity.class);
-                System.out.println(player1.getPlayerDeck().getArrayDeck());
-                System.out.println(player1.getListOfCardsOwned().get(0).getCategory());
                 intent.putExtra("PlayerObject", player1);
-                startActivity(intent);
+                startActivityForResult(intent,REQ_CODE);
             }
         });
         playButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                System.out.println("BOTO APRETAT");
+                System.out.println(player1.getPlayerDeck().getArrayDeck().size() + "-------------");
 
+                if(player1.getPlayerDeck().getArrayDeck().size() != 5){
+                    showToast("Necesitas seleccionar cartas que dispones para crear tu mazo antes de la partida");
+                } else {
+                    Intent roundActivity = new Intent(getApplicationContext(), RoundActivity.class);
+                    roundActivity.putExtra("DiffS",diffSelected);
 
-                Intent roundActivity = new Intent(getApplicationContext(), RoundActivity.class);
+                    roundActivity.putExtra("PlayerObject",player1);
 
-                //Dades
-                Bundle b = new Bundle();
-                b.putInt("roundNumber", 1);
-                b.putInt("player1Id", 1);
-                b.putInt("player2Id", 0);
-                b.putInt("player1Score", 0);
-                b.putInt("player2Score", 0);
-
-                roundActivity.putExtras(b);
-
-                startActivity(roundActivity);
+                    startActivity(roundActivity);
+                }
                 //finish();
             }
 
         });
     }
 
+    protected void showToast(String msg){
+        Toast myToast = Toast.makeText(this,msg,Toast.LENGTH_LONG);
+        myToast.setGravity(Gravity.CENTER,0,0);
+        myToast.show();
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQ_CODE) {
+            player1 = (Player)data.getExtras().getParcelable("PlayerResult");
+            System.out.println(player1.getName());
+            System.out.println(player1.getPlayerDeck().getArrayDeck().get(0));
+        } else if(requestCode == REQ_ROUND){
+
+        }
+    }
 
     @Override
     public void update(Observable observable, Object o) {

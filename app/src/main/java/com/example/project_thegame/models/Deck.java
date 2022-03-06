@@ -10,32 +10,15 @@ public class Deck implements Parcelable {
      * Declaració dels atributs de classe.
      */
     int SIZE = 5;
-    private ArrayList<Card> arrayDeck;
+    private ArrayList<Card> arrayDeck = new ArrayList<>();
 
     /**
      * Constructor
      *
      */
     public Deck() {
-        arrayDeck = new ArrayList<>();
+
     }
-
-    protected Deck(Parcel in) {
-        SIZE = in.readInt();
-    }
-
-    public static final Creator<Deck> CREATOR = new Creator<Deck>() {
-        @Override
-        public Deck createFromParcel(Parcel in) {
-            return new Deck(in);
-        }
-
-        @Override
-        public Deck[] newArray(int size) {
-            return new Deck[size];
-        }
-    };
-
 
 
     public ArrayList<Card> getArrayDeck() {
@@ -54,11 +37,12 @@ public class Deck implements Parcelable {
     /**
      * Afegirem la carta seleccionada a la baralla.
      */
-    public void add(Card c){
-        for(int i = 0; i < SIZE;i++){
-            if(SIZE>this.arrayDeck.size()){
-                arrayDeck.add(c);
-            }
+    public void add(Card c,int i){
+
+        if(SIZE>this.arrayDeck.size()){
+            arrayDeck.add(c);
+        } else {
+            arrayDeck.set(i-1,c);
         }
         //TODO
     }
@@ -78,14 +62,36 @@ public class Deck implements Parcelable {
     }
 
 
-
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(SIZE);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.SIZE);
+        dest.writeTypedList(this.arrayDeck);
     }
+
+    public void readFromParcel(Parcel source) {
+        this.SIZE = source.readInt();
+        this.arrayDeck = source.createTypedArrayList(Card.CREATOR);
+    }
+
+    protected Deck(Parcel in) {
+        this.SIZE = in.readInt();
+        this.arrayDeck = in.createTypedArrayList(Card.CREATOR);
+    }
+
+    public static final Creator<Deck> CREATOR = new Creator<Deck>() {
+        @Override
+        public Deck createFromParcel(Parcel source) {
+            return new Deck(source);
+        }
+
+        @Override
+        public Deck[] newArray(int size) {
+            return new Deck[size];
+        }
+    };
 }

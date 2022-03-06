@@ -2,6 +2,7 @@ package com.example.project_thegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +30,6 @@ public class DeckActivity extends AppCompatActivity {
     ListView listCard5;
     Player player;
     Button btnSave;
-    Deck newDeck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +52,11 @@ public class DeckActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int resultCode = 1;
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("PlayerResult",player);
+                System.out.println(player.getPlayerDeck().getArrayDeck().get(0));
+                setResult(resultCode,resultIntent);
                 finish();
             }
         });
@@ -123,17 +128,18 @@ public class DeckActivity extends AppCompatActivity {
     }
     public void getSelectedCard(View v){
         Card c1 = (Card) spDeck1.getSelectedItem();
-        player.getPlayerDeck().add(c1);
     }
-    public void displayCardList(Card c1,int i){
+    public void displayCardList(Card c,int i){
+        player.getPlayerDeck().add(c,i);
+        System.out.println("--------"+player.getPlayerDeck().getArrayDeck().get(0) + "--------");
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add(c1.getName());
-        arrayList.add(String.valueOf(c1.getStrenght()));
-        arrayList.add(String.valueOf(c1.getSpeed()));
-        arrayList.add(String.valueOf(c1.getAgility()));
-        arrayList.add(String.valueOf(c1.getEndurance()));
-        arrayList.add(String.valueOf(c1.getIntelligencie()));
-        arrayList.add(String.valueOf(c1.getCategory()));
+        arrayList.add("Nombre:"+c.getName());
+        arrayList.add("Fuerza:"+c.getStrenght());
+        arrayList.add("Velocidad:"+c.getSpeed());
+        arrayList.add("Agilidad:"+c.getAgility());
+        arrayList.add("Aguante:"+c.getEndurance());
+        arrayList.add("Inteligencia:"+c.getIntelligencie());
+        arrayList.add("Categoria:"+c.getCategory());
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
         if(i == 1){listCard1.setAdapter(arrayAdapter);
         } else if(i == 2){listCard2.setAdapter(arrayAdapter);
