@@ -1,4 +1,4 @@
-![Diagrama_Base_de_Dades drawio (2)](https://user-images.githubusercontent.com/99675044/158834366-c2b95f44-06a3-43cc-9b36-919065334232.png)
+![Diagrama_Base_de_Dades drawio (3)](https://user-images.githubusercontent.com/99675044/158844347-8d4259ce-bae0-40a9-b3e6-2161cb7ef820.png)
 
 
 El nostre model compta amb les següents classes:
@@ -7,7 +7,7 @@ El nostre model compta amb les següents classes:
   - UserToken: Aquesta classe conté el token i la id de l'usuari al qual pertany aquest.
   - Game: Aquesta classe conté els usuaris que juguen la partida, la seva puntuació, la ronda en la qual estan i la data d'aquesta.
   - Round: Aquesta classe conté el mapa de la ronda actual, les cartes utilitzades pels usuaris en aquesta i el número de ronda total de la partida.
-  - Map: Aquesta classe conté el nom del mapa, l'atribut, l'extra i el tipus.
+  - Map: Aquesta classe conté el nom del mapa, l'atribut, l'extra i la seva imatge.
   - Rank: Aquesta classe conté l'usuari del qual és el rank, el seu tier, lliga, grup i posició.
   - Stats: Aquesta classe conté les partides jugades, victòries i derrotes de partides no classificatòries i classificatòries i l'usuari del qual són aquestes.
   - Card: Aquesta classe conté els atributs necessaris d'una carta.
