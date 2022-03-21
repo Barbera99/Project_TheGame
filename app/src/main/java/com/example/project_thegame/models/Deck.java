@@ -4,12 +4,18 @@ public class Deck {
     /**
      * Declaració dels atributs de classe.
      */
+<<<<<<< Updated upstream
     final int SIZE = 5;
     private Card card1;
     private Card card2;
     private Card card3;
     private Card card4;
     private Card card5;
+=======
+    private int SIZE = 5;
+    private ArrayList<Card> arrayDeck = new ArrayList<>();
+>>>>>>> Stashed changes
+
 
     /**
      * Constructor
