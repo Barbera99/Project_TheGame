@@ -1,11 +1,15 @@
 #USER
-##PUT 
-Per a poder modificar les dades de l'usuari /users/modify/{id}
-##DELETE
-Per a poder eliminar el compte de l'usuari /users/delete
+## POST
+  - Registrar un usuari. /user/register/
+## PUT 
+  - Per a poder modificar les dades de l'usuari. /profile/{username}/update
+  - Per a poder modificar les dades de l'usuari. /profile/{username}/update
+  - 
+## DELETE
+  - Per a poder donar de baixa un usuari. /{username}/delete
 
 #GAME
-##POST
+## POST
 Per a quan l'usuari busqui partida, crear-la /game/start
 ##PUT
 Quan acabi la ronda, per si hi ha guanyat l'usuari o el contrincant per sumar el marcador corresponen /game/nextround
