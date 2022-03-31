@@ -9,13 +9,13 @@ import android.graphics.Paint;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameViewModel {
-    private Player player;
+    private User user;
     private Game game;
     private int roundNumber;
     private int playerScore;
@@ -48,8 +48,8 @@ public class GameViewModel {
         this.iACard = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayer(User user) {
+        this.user = user;
     }
 
     public Deck setIADifficult(String diffSelected){
@@ -82,7 +82,7 @@ public class GameViewModel {
     }
 
     public Card getCardSelected(int i) {
-        return player.getPlayerDeck().getArrayDeck().get(i);
+        return user.getPlayerDeck().getArrayDeck().get(i);
     }
 
     public ArrayList<String> arrayListText(Card c, int i){

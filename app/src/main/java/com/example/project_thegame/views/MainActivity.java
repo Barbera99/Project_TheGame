@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.project_thegame.R;
 import com.example.project_thegame.models.Card;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 import com.example.project_thegame.viewModels.MainViewModel;
 
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQ_CODE) {
-            mContr.setPlayer((Player)data.getExtras().getParcelable("PlayerResult"));
+            mContr.setPlayer((User)data.getExtras().getParcelable("PlayerResult"));
         } else if(requestCode == REQ_ROUND){
 
         }

@@ -1,9 +1,6 @@
 package com.example.project_thegame.models;
 
 public class Stats {
-    /**
-     * Declaració dels atributs de classe.
-     */
     private int id;
     private int games_Played;
     private int ranked_Wins;
@@ -14,9 +11,6 @@ public class Stats {
     private int medals;
     private int user_id;
 
-    /**
-     * Diferents categories de cartes.
-     */
     public int getId() {
         return id;
     }

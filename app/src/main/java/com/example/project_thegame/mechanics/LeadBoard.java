@@ -1,6 +1,6 @@
 package com.example.project_thegame.mechanics;
 
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class LeadBoard {
 
     private int id;
     private String typeOfLeadBoard;
-    private ArrayList<Player> listPlayers;
+    private ArrayList<User> listUsers;
 
     private ArrayList<Integer> topScores;
 
@@ -16,9 +16,9 @@ public class LeadBoard {
 
     public LeadBoard(int i){
         id = i;
-        listPlayers = new ArrayList<>();
+        listUsers = new ArrayList<>();
     }
-    public Player getMaxLeader(){
-        return listPlayers.get(0);
+    public User getMaxLeader(){
+        return listUsers.get(0);
     }
 }
