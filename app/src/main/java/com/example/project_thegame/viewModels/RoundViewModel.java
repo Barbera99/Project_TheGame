@@ -1,13 +1,9 @@
-package com.example.project_thegame.controllers;
+package com.example.project_thegame.viewModels;
 
-import com.example.project_thegame.models.Card;
-import com.example.project_thegame.models.Player;
-import com.example.project_thegame.models.Round;
-
-public class RoundController {
+public class RoundViewModel {
     public Round round;
 
-    public RoundController(Round r){
+    public RoundViewModel(Round r){
         round = r;
     }
 

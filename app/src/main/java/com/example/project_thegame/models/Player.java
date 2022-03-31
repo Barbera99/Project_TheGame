@@ -31,13 +31,7 @@ public class Player implements Parcelable {
     }
 
 
-    public ArrayList<Card> getListOfCardsOwned() {
-        return listOfCardsOwned;
-    }
 
-    public void setListOfCardsOwned(ArrayList<Card> listOfCardsOwned) {
-        this.listOfCardsOwned = listOfCardsOwned;
-    }
 
 
     /**
@@ -89,6 +83,14 @@ public class Player implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ArrayList<Card> getListOfCardsOwned() {
+        return listOfCardsOwned;
+    }
+
+    public void setListOfCardsOwned(ArrayList<Card> listOfCardsOwned) {
+        this.listOfCardsOwned = listOfCardsOwned;
     }
 
 
