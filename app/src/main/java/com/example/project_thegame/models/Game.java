@@ -1,93 +1,45 @@
 package com.example.project_thegame.models;
 
+import java.util.Date;
+
 public class Game {
     /**
      * Declaració dels atributs de classe.
      */
-    private Map map1;
-    private Map map2;
-    private Map map3;
-    private Map map4;
-    private Map map5;
-    private User user1;
-    private User user2;
-    private Map []already_played;
+    private int id;
+    private int player_id_1;
+    private int player_id_2;
     private int score_player1;
     private int score_player2;
+    private Date date;
 
-    public Game(User user1, User user2) {
-        this.user1 = user1;
-        this.user2 = user2;
-        this.score_player1 = 0;
-        this.score_player2 = 0;
-    }
 
     /**
      * Declaració getters i setters dels atributs de la classe.
      *
      */
-    public Map getMap1() {
-        return map1;
+    public int getId() {
+        return id;
     }
 
-    public void setMap1(Map map1) {
-        this.map1 = map1;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Map getMap2() {
-        return map2;
+    public int getPlayer_id_1() {
+        return player_id_1;
     }
 
-    public void setMap2(Map map2) {
-        this.map2 = map2;
+    public void setPlayer_id_1(int player_id_1) {
+        this.player_id_1 = player_id_1;
     }
 
-    public Map getMap3() {
-        return map3;
+    public int getPlayer_id_2() {
+        return player_id_2;
     }
 
-    public void setMap3(Map map3) {
-        this.map3 = map3;
-    }
-
-    public Map getMap4() {
-        return map4;
-    }
-
-    public void setMap4(Map map4) {
-        this.map4 = map4;
-    }
-
-    public Map getMap5() {
-        return map5;
-    }
-
-    public void setMap5(Map map5) {
-        this.map5 = map5;
-    }
-
-    public User getPlayer1() {
-        return user1;
-    }
-
-    public void setPlayer1(User user1) {
-        this.user1 = user1;
-    }
-
-    public User getPlayer2() {
-        return user2;
-    }
-
-    public void setPlayer2(User user2) {
-        this.user2 = user2;
-    }
-
-    public Map[] getAlready_played() {
-        return already_played;
-    }
-
-    public void setAlready_played(Map[] already_played) {
-        this.already_played = already_played;
+    public void setPlayer_id_2(int player_id_2) {
+        this.player_id_2 = player_id_2;
     }
 
     public int getScore_player1() {
@@ -104,5 +56,13 @@ public class Game {
 
     public void setScore_player2(int score_player2) {
         this.score_player2 = score_player2;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
