@@ -7,4 +7,6 @@
     <string name="accept" translatable="false">Aceptar</string>
     <string name="deny" translatable="false">Rechazar</string>
     <string name="pref_previously_started" translatable="false">false</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

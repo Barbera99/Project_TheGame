@@ -68,6 +68,9 @@ public class User {
         this.id_rank = id_rank;
     }
 
+    public User() {
+    }
+
     /* Setters and getters */
     public int getId() {
         return id;

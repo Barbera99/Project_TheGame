@@ -38,17 +38,4 @@ public class MainViewModel {
         lCard.add(carta10);
     }
 
-    public ArrayList<Card> getlCard() {
-        return lCard;
-    }
-    public int checkIfDeck(){
-        int result = getPlayer().getPlayerDeck().getArrayDeck().size();
-        return result;
-    }
-    public User getPlayer() {
-        return user;
-    }
-    public void setPlayer(User p){
-        this.user = p;
-    }
 }
