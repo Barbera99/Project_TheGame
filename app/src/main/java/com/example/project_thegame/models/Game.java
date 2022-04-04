@@ -1,8 +1,5 @@
 package com.example.project_thegame.models;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-
 import java.util.Calendar;
 import java.util.Date;
 
