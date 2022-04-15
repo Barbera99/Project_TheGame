@@ -2,7 +2,7 @@
 ## POST
   - Registrar un usuari. /user/register/
 ## PUT 
-  - Per a poder modificar les dades de l'usuari. /profile/{username}/update
+  - Per a poder modificar les dades de l'usuari. /{username}/profile/update
   - Per a donar de baixa un usuari. /{username}/unsubscribe
  
 ## DELETE
