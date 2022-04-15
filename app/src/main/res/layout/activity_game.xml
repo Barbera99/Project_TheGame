@@ -6,6 +6,10 @@
     <variable
             name="gameviewModel"
             type="com.example.project_thegame.viewModels.GameViewModel" />
+    <variable
+            name="deckViewModel"
+            type="com.example.project_thegame.viewModels.DeckViewModel"
+        />
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
