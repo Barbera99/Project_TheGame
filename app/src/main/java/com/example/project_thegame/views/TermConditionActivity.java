@@ -20,8 +20,8 @@ public class TermConditionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_condition);
         resultInt = new Intent();
-        btnAccept = findViewById(R.id.asd);
-        btnDeny = findViewById(R.id.asdf);
+        btnAccept = findViewById(R.id.accept);
+        btnDeny = findViewById(R.id.deny);
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

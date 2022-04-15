@@ -46,7 +46,7 @@ dependencies {
     implementation 'io.github.medyo:android-about-page:2.0.0'
     implementation 'androidx.activity:activity:1.4.0'
     implementation 'androidx.databinding:databinding-runtime:7.1.2'
-
+    implementation 'androidx.lifecycle:lifecycle-livedata:X.Y.Z'
     testImplementation 'junit:junit:4.13.2'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
