@@ -12,7 +12,7 @@
 ## POST
   - Per a quan l'usuari busqui partida, crear-la /game/start
 ## PUT
-  - Quan acabi la partida, guardar el resultat. /game/end
+  - Quan acabi la partida, guardar el resultat. /{game_id}/end
 
 ## GET
   - Per a poder veure les dades d'una partida jugada anteriorment /{game_id}/show
