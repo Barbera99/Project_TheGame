@@ -2,26 +2,26 @@ package com.example.project_thegame.viewModels;
 
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
 
 public class DeckViewModel {
 
-    Player player;
+    User user;
     Deck deck;
     public DeckViewModel(){
         deck = new Deck();
     }
     public ArrayList<Card> getCards(){
-        return this.player.getListOfCardsOwned();
+        return this.user.getListOfCardsOwned();
     }
-    public Player getPlayer() {
-        return player;
+    public User getPlayer() {
+        return user;
     }
 
-    public void setPlayer(Player p){
-        this.player = p;
+    public void setPlayer(User p){
+        this.user = p;
     }
 
     public ArrayList<String> updateList(Card c){
@@ -37,6 +37,6 @@ public class DeckViewModel {
     }
     public void updateDeck(Card[] vectCard){
         deck.setArrayDeck(vectCard);
-        player.setPlayerDeck(deck);
+        user.setPlayerDeck(deck);
     }
 }

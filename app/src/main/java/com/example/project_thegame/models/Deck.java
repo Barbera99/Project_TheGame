@@ -9,6 +9,7 @@ public class Deck implements Parcelable {
     /**
      * Declaració dels atributs de classe.
      */
+    int id;
     int SIZE;
     private ArrayList<Card> arrayDeck;
 

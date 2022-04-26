@@ -1,31 +1,37 @@
 package com.example.project_thegame.models;
 
+import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Player implements Parcelable {
+public class User implements Parcelable {
     /**
      * Declaració dels atributs de classe.
      */
     private int id;
+    private String username;
+    private Date created_at;
+    private String email;
     private String name;
-    private int games_played;
-    private int wins;
-    private int defeats;
+    private String surname;
+    private Date birthdate;
+    private String genere;
+    private int phone;
+    private String photo;
+    private int rank_id;
+    private String status;
     private Deck playerDeck;
     private ArrayList<Card> listOfCardsOwned;
 
     /**
      * CONSTRUCTOR
      */
-    public Player(int id, String name, int games_played, int wins, int defeats, ArrayList<Card> lCard) {
+    public User(int id, String username, ArrayList<Card> lCard) {
         this.id = id;
-        this.name = name;
-        this.games_played = games_played;
-        this.wins = wins;
-        this.defeats = defeats;
+        this.username = username;
         this.playerDeck = new Deck();
         this.listOfCardsOwned = lCard;
     }
@@ -37,37 +43,14 @@ public class Player implements Parcelable {
     /**
      * Declaració dels getters i setters.
      */
-    public String getName() {
-        return name;
+    public String getusername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setusername(String username) {
+        this.username = username;
     }
 
-    public int getGames_played() {
-        return games_played;
-    }
-
-    public void setGames_played(int games_played) {
-        this.games_played = games_played;
-    }
-
-    public int getWins() {
-        return wins;
-    }
-
-    public void setWins(int wins) {
-        this.wins = wins;
-    }
-
-    public int getDefeats() {
-        return defeats;
-    }
-
-    public void setDefeats(int defeats) {
-        this.defeats = defeats;
-    }
 
     public Deck getPlayerDeck() {
         return playerDeck;
@@ -105,45 +88,36 @@ public class Player implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeString(this.name);
-        dest.writeInt(this.games_played);
-        dest.writeInt(this.wins);
-        dest.writeInt(this.defeats);
+        dest.writeString(this.username);
         dest.writeParcelable(this.playerDeck, flags);
         dest.writeList(this.listOfCardsOwned);
     }
 
     public void readFromParcel(Parcel source) {
         this.id = source.readInt();
-        this.name = source.readString();
-        this.games_played = source.readInt();
-        this.wins = source.readInt();
-        this.defeats = source.readInt();
+        this.username = source.readString();
         this.playerDeck = source.readParcelable(Deck.class.getClassLoader());
         this.listOfCardsOwned = new ArrayList<Card>();
         source.readList(this.listOfCardsOwned, Card.class.getClassLoader());
     }
 
-    protected Player(Parcel in) {
+    protected User(Parcel in) {
         this.id = in.readInt();
-        this.name = in.readString();
-        this.games_played = in.readInt();
-        this.wins = in.readInt();
-        this.defeats = in.readInt();
+        this.username = in.readString();
         this.playerDeck = in.readParcelable(Deck.class.getClassLoader());
         this.listOfCardsOwned = new ArrayList<Card>();
         in.readList(this.listOfCardsOwned, Card.class.getClassLoader());
     }
 
-    public static final Creator<Player> CREATOR = new Creator<Player>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
-        public Player createFromParcel(Parcel source) {
-            return new Player(source);
+        public User createFromParcel(Parcel source) {
+            return new User(source);
         }
 
         @Override
-        public Player[] newArray(int size) {
-            return new Player[size];
+        public User[] newArray(int size) {
+            return new User[size];
         }
     };
 

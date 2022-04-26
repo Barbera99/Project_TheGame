@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -47,8 +47,8 @@ public class GameViewModel {
         this.iACard = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
     }
 
-    public void setPlayer(Player player) {
-        this.game.setPlayer1(player);
+    public void setPlayer(User user) {
+        this.game.setPlayer1(user);
     }
 
     public void setIADifficult(String diffSelected){

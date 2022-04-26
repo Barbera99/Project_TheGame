@@ -2,7 +2,7 @@ package com.example.project_thegame.viewModels;
 
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Game;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
 
@@ -19,12 +19,12 @@ public class MainViewModel {
     public static Card carta9 = new Card(1, "Jon", 5, 53, 24, 83, 16, false, 2);
     public static Card carta10 = new Card(2, "Carlos", 16, 32, 51, 14, 94, false, 2);
     ArrayList<Card> lCard = new ArrayList<Card>();
-    Player player;
-    Player IAplayer;
+    User user;
+    User IAplayer;
     Game game;
     public MainViewModel(){
 
-        player = new Player(1, "User", 0, 0, 0, lCard);
+        user = new User(1, "User", lCard);
     }
 
     public void setListCard(){
@@ -47,11 +47,11 @@ public class MainViewModel {
         int result = getPlayer().getPlayerDeck().getArrayDeck().size();
         return result;
     }
-    public Player getPlayer() {
-        return player;
+    public User getPlayer() {
+        return user;
     }
-    public void setPlayer(Player p){
-        this.player = p;
+    public void setPlayer(User p){
+        this.user = p;
     }
 
 
