@@ -11,7 +11,7 @@ public class DeckViewModel {
     Player player;
     Deck deck;
     public DeckViewModel(){
-
+        deck = new Deck();
     }
     public ArrayList<Card> getCards(){
         return this.player.getListOfCardsOwned();

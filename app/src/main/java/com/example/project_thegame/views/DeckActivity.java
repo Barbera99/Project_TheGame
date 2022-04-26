@@ -56,8 +56,8 @@ public class DeckActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println(dContr);
                 dContr.updateDeck(vectorCard);
-                int resultCode = 1;
                 Intent resultIntent = new Intent();
+                int resultCode = 3;
                 System.out.println(dContr.getPlayer() + "Joan");
                 resultIntent.putExtra("PlayerResult",dContr.getPlayer());
 

@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     Spinner lvlList;
     String diffSelected;
-    final int REQ_CODE = 1;
-    final int REQ_ROUND = 2;
+    final int REQ_CODE = 3;
+    final int REQ_ROUND = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity implements Observer {
                 if(mContr.checkIfDeck() != 5){
                     showToast("Necesitas seleccionar cartas que dispones para crear tu mazo antes de la partida");
                 } else {
-                    Intent roundActivity = new Intent(getApplicationContext(), GameActivity.class);
-                    roundActivity.putExtra("DiffS",diffSelected);
-                    roundActivity.putExtra("PlayerObject",mContr.getPlayer());
-                    startActivity(roundActivity);
+                    Intent gameActivity = new Intent(getApplicationContext(), GameActivity.class);
+                    gameActivity.putExtra("DiffS",diffSelected);
+                    gameActivity.putExtra("PlayerObject",mContr.getPlayer());
+                    startActivity(gameActivity);
                 }
             }
 

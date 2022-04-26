@@ -1,5 +1,7 @@
 package com.example.project_thegame.models;
 
+import java.util.ArrayList;
+
 public class Game {
     /**
      * Declaració dels atributs de classe.
@@ -15,6 +17,9 @@ public class Game {
     private int score_player1;
     private int score_player2;
 
+    public Game(){
+        this.player2 = new Player(-1,"IA", 0,0,0, new ArrayList<Card>());
+    }
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;

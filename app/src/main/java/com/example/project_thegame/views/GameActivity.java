@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_thegame.R;
+import com.example.project_thegame.models.Game;
 import com.example.project_thegame.viewModels.GameViewModel;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
@@ -42,15 +43,10 @@ public class GameActivity extends AppCompatActivity {
     ArrayList<ImageView> imgList = new ArrayList<>();
     CountDownTimer mCountD;
     String diffSelected;
-    String attributeActualRound;
 
-    Card iACard;
-    Card cardSelected;
-    Deck deckForIA = new Deck();
     int positionCard;
 
     //player2
-    int iAScore = 0;
 
     //Hem d'implementar algo per controlar les cartes ja usades (un array)
 
@@ -75,6 +71,7 @@ public class GameActivity extends AppCompatActivity {
         txtViewRounds = findViewById(R.id.roundNumber);
         textV = (TextView) findViewById( R.id.textTimer );
         Button selectCard = findViewById(R.id.btnSelect);
+        gContr = new GameViewModel(new Game());
 
         //------gettingInfo------
         gContr.setPlayer(getIntent().getParcelableExtra("PlayerObject"));
@@ -82,11 +79,10 @@ public class GameActivity extends AppCompatActivity {
         diffSelected = extras.getString("DiffS");
 
         //------settingInfo------
-        iACard = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
         gContr.setIADifficult(diffSelected);
         txtViewRounds.setText("Round " + gContr.getRoundNumber());
         gContr.randomAttribute();
-        Bitmap p = returnPaint(attributeActualRound,400);
+        Bitmap p = returnPaint(gContr.getAttributeActualRound(),400);
         imgBlank.setImageBitmap(p);
 
         //------OnClickListener------
@@ -172,7 +168,7 @@ public class GameActivity extends AppCompatActivity {
         if(gContr.getRoundNumber() < 5){
             imgList.get(positionCard-1).setImageResource(R.drawable.border_white);
             mCountD.cancel();
-            Bitmap p = returnPaint(attributeActualRound,400);
+            Bitmap p = returnPaint(gContr.getAttributeActualRound(),400);
             imgBlank.setImageBitmap(p);
             txtViewRounds.setText("Round " + gContr.getRoundNumber());
             ArrayList<String> result = gContr.nextRound();
@@ -194,11 +190,6 @@ public class GameActivity extends AppCompatActivity {
             finish();
         }
     }
-
-
-
-
-
     protected void showToast(String msg){
         Toast myToast = Toast.makeText(this,msg ,Toast.LENGTH_LONG);
         myToast.setGravity(Gravity.CENTER,0,0);

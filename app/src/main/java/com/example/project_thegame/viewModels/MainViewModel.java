@@ -20,9 +20,11 @@ public class MainViewModel {
     public static Card carta10 = new Card(2, "Carlos", 16, 32, 51, 14, 94, false, 2);
     ArrayList<Card> lCard = new ArrayList<Card>();
     Player player;
+    Player IAplayer;
     Game game;
     public MainViewModel(){
-        player = new Player(1, "Test 1", 0, 0, 0, lCard);
+
+        player = new Player(1, "User", 0, 0, 0, lCard);
     }
 
     public void setListCard(){
@@ -51,4 +53,6 @@ public class MainViewModel {
     public void setPlayer(Player p){
         this.player = p;
     }
+
+
 }

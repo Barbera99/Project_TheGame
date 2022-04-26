@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameViewModel {
-    private Player player;
     private Game game;
     private int roundNumber;
     private int playerScore;
@@ -49,10 +48,10 @@ public class GameViewModel {
     }
 
     public void setPlayer(Player player) {
-        this.player = player;
+        this.game.setPlayer1(player);
     }
 
-    public Deck setIADifficult(String diffSelected){
+    public void setIADifficult(String diffSelected){
         Card[] newC = new Card[5];
         if(diffSelected.equals("Easy")){
             newC[0] = easy1;
@@ -74,15 +73,19 @@ public class GameViewModel {
             newC[4] = hard3;
         }
         deckForIA.setArrayDeck(newC);
-        return deckForIA;
+        game.getPlayer2().setPlayerDeck(deckForIA);
     }
 
     public int getRoundNumber() {
         return roundNumber;
     }
 
+    public String getAttributeActualRound() {
+        return attributeActualRound;
+    }
+
     public Card getCardSelected(int i) {
-        return player.getPlayerDeck().getArrayDeck().get(i);
+        return game.getPlayer1().getPlayerDeck().getArrayDeck().get(i);
     }
 
     public ArrayList<String> arrayListText(Card c, int i){
