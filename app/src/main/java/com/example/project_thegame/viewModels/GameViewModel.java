@@ -39,12 +39,15 @@ public class GameViewModel {
     public static Card hard3 = new Card(9, "Hard3", 80, 70, 60, 90, 80, false, 2);
 
     public GameViewModel(Game game) {
+        Card c = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
         this.game = game;
         this.easyDeck = new Deck();
         this.mediumDeck = new Deck();
         this.hardDeck = new Deck();
         this.roundNumber = 1;
-        this.iACard = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
+        this.positionCard = -1;
+        this.cardSelected = c;
+        this.iACard = c;
     }
 
     public void setPlayer(User user) {
@@ -75,10 +78,12 @@ public class GameViewModel {
         deckForIA.setArrayDeck(newC);
         game.getPlayer2().setPlayerDeck(deckForIA);
     }
-
+    public int getPositionCard(){return positionCard;}
+    public void setPositionCard(int pC){this.positionCard = pC;}
     public int getRoundNumber() {
         return roundNumber;
     }
+    public void setRoundNumber(int rN){this.roundNumber = rN;}
 
     public String getAttributeActualRound() {
         return attributeActualRound;
@@ -193,7 +198,6 @@ public class GameViewModel {
     }
 
     public ArrayList<String> nextRound(){
-        randomAttribute();
         roundNumber++;
         IAIntell();
         ArrayList<String> result = null;
@@ -213,6 +217,7 @@ public class GameViewModel {
             result = checkWinner(cardSelected.getIntelligencie(),iACard.getIntelligencie());
             result.add("Inteligencia");
         }
+        randomAttribute();
         return result;
     }
 

@@ -44,7 +44,6 @@ public class GameActivity extends AppCompatActivity {
     CountDownTimer mCountD;
     String diffSelected;
 
-    int positionCard;
 
     //player2
 
@@ -166,12 +165,15 @@ public class GameActivity extends AppCompatActivity {
 
     public void nextRound(){
         if(gContr.getRoundNumber() < 5){
-            imgList.get(positionCard-1).setImageResource(R.drawable.border_white);
+            if(gContr.getPositionCard() != -1){
+                imgList.get(gContr.getPositionCard()-1).setImageResource(R.drawable.border_white);
+            }
+            gContr.setPositionCard(-1);
             mCountD.cancel();
-            Bitmap p = returnPaint(gContr.getAttributeActualRound(),400);
-            imgBlank.setImageBitmap(p);
             txtViewRounds.setText("Round " + gContr.getRoundNumber());
             ArrayList<String> result = gContr.nextRound();
+            Bitmap p = returnPaint(gContr.getAttributeActualRound(),400);
+            imgBlank.setImageBitmap(p);
             if(result.get(0).equals("empate")){
                 showToast("Ha quedado en empate con el valor" + result.get(1));
             } else {
