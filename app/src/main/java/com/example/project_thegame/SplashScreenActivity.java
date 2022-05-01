@@ -13,11 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/project_thegame/SplashScreenActivity.java
 import com.example.project_thegame.databinding.ActivityMainBinding;
-=======
-import com.example.project_thegame.R;
->>>>>>> Stashed changes:app/src/main/java/com/example/project_thegame/views/SplashScreenActivity.java
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,11 +23,13 @@ public class SplashScreenActivity extends Activity {
     public static int SPLASH_TIME_OUT = 2000;
     public final int REQUEST_CODE_B = 1;
     public final int REQUEST_CODE_C = 2;
+    ActivityMainBinding binding;
     ActivityResultLauncher<String> result;
     SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_splashscreenactivity);
 
 

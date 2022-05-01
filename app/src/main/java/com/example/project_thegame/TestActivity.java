@@ -1,11 +1,16 @@
 package com.example.project_thegame;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.ComponentActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import com.example.project_thegame.R;
+import com.example.project_thegame.databinding.ActivityMainBinding;
 
 public class TestActivity extends AppCompatActivity {
     Button btnAccept;
