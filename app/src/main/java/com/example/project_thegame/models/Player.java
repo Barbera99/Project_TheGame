@@ -3,17 +3,47 @@ package com.example.project_thegame.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Player implements Parcelable {
     /**
      * Declaració dels atributs de classe.
      */
+    @SerializedName("id")
     private int id;
+<<<<<<< Updated upstream:app/src/main/java/com/example/project_thegame/models/Player.java
     private String name;
     private int games_played;
     private int wins;
     private int defeats;
+=======
+    @SerializedName("username")
+    private String username;
+    @SerializedName("created_at")
+    private Date created_at;
+    @SerializedName("email")
+    private String email;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("surname")
+    private String surname;
+    @SerializedName("birthdate")
+    private Date birthdate;
+    @SerializedName("genere")
+    private String genere;
+    @SerializedName("phone")
+    private int phone;
+    @SerializedName("photo")
+    private String photo;
+    @SerializedName("rank_id")
+    private int rank_id;
+    @SerializedName("status")
+    private String status;
+
+
+>>>>>>> Stashed changes:app/src/main/java/com/example/project_thegame/models/User.java
     private Deck playerDeck;
     private ArrayList<Card> listOfCardsOwned;
 
@@ -30,6 +60,7 @@ public class Player implements Parcelable {
         this.listOfCardsOwned = lCard;
     }
 
+<<<<<<< Updated upstream:app/src/main/java/com/example/project_thegame/models/Player.java
 
     public ArrayList<Card> getListOfCardsOwned() {
         return listOfCardsOwned;
@@ -40,12 +71,15 @@ public class Player implements Parcelable {
     }
 
 
+=======
+>>>>>>> Stashed changes:app/src/main/java/com/example/project_thegame/models/User.java
     /**
      * Declaració dels getters i setters.
      */
     public String getName() {
         return name;
     }
+<<<<<<< Updated upstream:app/src/main/java/com/example/project_thegame/models/Player.java
 
     public void setName(String name) {
         this.name = name;
@@ -75,25 +109,36 @@ public class Player implements Parcelable {
         this.defeats = defeats;
     }
 
+=======
+    public void setusername(String username) {
+        this.username = username;
+    }
+>>>>>>> Stashed changes:app/src/main/java/com/example/project_thegame/models/User.java
     public Deck getPlayerDeck() {
         return playerDeck;
     }
-
     public void setPlayerDeck(Deck playerDeck) {
         this.playerDeck = playerDeck;
     }
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
+<<<<<<< Updated upstream:app/src/main/java/com/example/project_thegame/models/Player.java
 
 
     //altres
     // public static Player getPlayerById(int id) {}
+=======
+    public ArrayList<Card> getListOfCardsOwned() {
+        return listOfCardsOwned;
+    }
+    public void setListOfCardsOwned(ArrayList<Card> listOfCardsOwned) {
+        this.listOfCardsOwned = listOfCardsOwned;
+    }
+>>>>>>> Stashed changes:app/src/main/java/com/example/project_thegame/models/User.java
 
     @Override
     public int describeContents() {
