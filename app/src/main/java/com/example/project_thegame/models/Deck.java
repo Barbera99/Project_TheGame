@@ -9,17 +9,15 @@ public class Deck implements Parcelable {
     /**
      * Declaració dels atributs de classe.
      */
-    int id;
-    int SIZE;
-    private ArrayList<Card> arrayDeck;
+    int SIZE = 5;
+    private ArrayList<Card> arrayDeck = new ArrayList<>();
 
     /**
      * Constructor
      *
      */
     public Deck() {
-        arrayDeck = new ArrayList<>();
-        SIZE = 5;
+
     }
 
 
@@ -27,13 +25,6 @@ public class Deck implements Parcelable {
         return arrayDeck;
     }
 
-
-    public void setArrayDeck(Card[] vectCard){
-        arrayDeck = new ArrayList<>();
-        for (int i = 0; i < 5; i++){
-            arrayDeck.add(vectCard[i]);
-        }
-    }
 
 
 
@@ -46,7 +37,15 @@ public class Deck implements Parcelable {
     /**
      * Afegirem la carta seleccionada a la baralla.
      */
+    public void add(Card c,int i){
 
+        if(SIZE>this.arrayDeck.size()){
+            arrayDeck.add(c);
+        } else {
+            arrayDeck.set(i-1,c);
+        }
+        //TODO
+    }
     /**
      * Comprovem si la carta a afegir ja forma part de la baralla.
      */

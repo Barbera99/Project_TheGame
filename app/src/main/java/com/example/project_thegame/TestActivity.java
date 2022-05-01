@@ -1,4 +1,4 @@
-package com.example.project_thegame.views;
+package com.example.project_thegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;

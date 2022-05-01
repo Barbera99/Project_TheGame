@@ -1,11 +1,9 @@
-package com.example.project_thegame.views;
+package com.example.project_thegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
-
-import com.example.project_thegame.R;
 
 public class ShowWinnerActivity extends AppCompatActivity {
 

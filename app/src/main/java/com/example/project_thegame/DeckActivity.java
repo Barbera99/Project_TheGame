@@ -1,4 +1,4 @@
-package com.example.project_thegame.views;
+package com.example.project_thegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.example.project_thegame.R;
-import com.example.project_thegame.viewModels.DeckViewModel;
 import com.example.project_thegame.models.Card;
+import com.example.project_thegame.models.Deck;
+import com.example.project_thegame.models.Player;
 
 import java.util.ArrayList;
 
@@ -28,16 +28,14 @@ public class DeckActivity extends AppCompatActivity {
     ListView listCard3;
     ListView listCard4;
     ListView listCard5;
+    Player player;
     Button btnSave;
-    ArrayList<String> arrayList;
-    Card[] vectorCard = new Card[5];
-    DeckViewModel dContr = new DeckViewModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck);
-        dContr.setPlayer(getIntent().getParcelableExtra("PlayerObject"));
-        ArrayList<Card> cList = dContr.getCards();
+        player = getIntent().getParcelableExtra("PlayerObject");
+        ArrayList<Card> cList = player.getListOfCardsOwned();
         ArrayAdapter<Card> adapter = new ArrayAdapter<Card>(this, android.R.layout.simple_spinner_item, cList);
 
         btnSave = findViewById(R.id.bSave);
@@ -54,13 +52,10 @@ public class DeckActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(dContr);
-                dContr.updateDeck(vectorCard);
+                int resultCode = 1;
                 Intent resultIntent = new Intent();
-                int resultCode = 3;
-                System.out.println(dContr.getPlayer() + "Joan");
-                resultIntent.putExtra("PlayerResult",dContr.getPlayer());
-
+                resultIntent.putExtra("PlayerResult",player);
+                System.out.println(player.getPlayerDeck().getArrayDeck().get(0));
                 setResult(resultCode,resultIntent);
                 finish();
             }
@@ -70,9 +65,7 @@ public class DeckActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Card card = (Card) adapterView.getSelectedItem();
-                vectorCard[0] = card;
-                arrayList = dContr.updateList(card);
-                displayList(arrayList,1);
+                displayCardList(card,1);
             }
 
             @Override
@@ -85,9 +78,7 @@ public class DeckActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Card card = (Card) adapterView.getSelectedItem();
-                vectorCard[1] = card;
-                arrayList = dContr.updateList(card);
-                displayList(arrayList,2);
+                displayCardList(card,2);
             }
 
             @Override
@@ -100,9 +91,7 @@ public class DeckActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Card card = (Card) adapterView.getSelectedItem();
-                vectorCard[2] = card;
-                arrayList = dContr.updateList(card);
-                displayList(arrayList,3);
+                displayCardList(card,3);
             }
 
             @Override
@@ -115,9 +104,7 @@ public class DeckActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Card card = (Card) adapterView.getSelectedItem();
-                vectorCard[3] = card;
-                arrayList = dContr.updateList(card);
-                displayList(arrayList,4);
+                displayCardList(card,4);
             }
 
             @Override
@@ -130,9 +117,7 @@ public class DeckActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Card card = (Card) adapterView.getSelectedItem();
-                vectorCard[4] = card;
-                arrayList = dContr.updateList(card);
-                displayList(arrayList,5);
+                displayCardList(card,5);
             }
 
             @Override
@@ -141,7 +126,20 @@ public class DeckActivity extends AppCompatActivity {
             }
         });
     }
-    public void displayList(ArrayList<String> arrayList,int i){
+    public void getSelectedCard(View v){
+        Card c1 = (Card) spDeck1.getSelectedItem();
+    }
+    public void displayCardList(Card c,int i){
+        player.getPlayerDeck().add(c,i);
+        System.out.println("--------"+player.getPlayerDeck().getArrayDeck().get(0) + "--------");
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Nombre:"+c.getName());
+        arrayList.add("Fuerza:"+c.getStrenght());
+        arrayList.add("Velocidad:"+c.getSpeed());
+        arrayList.add("Agilidad:"+c.getAgility());
+        arrayList.add("Aguante:"+c.getEndurance());
+        arrayList.add("Inteligencia:"+c.getIntelligencie());
+        arrayList.add("Categoria:"+c.getCategory());
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
         if(i == 1){listCard1.setAdapter(arrayAdapter);
         } else if(i == 2){listCard2.setAdapter(arrayAdapter);
@@ -149,5 +147,4 @@ public class DeckActivity extends AppCompatActivity {
         } else if(i == 4){listCard4.setAdapter(arrayAdapter);
         } else if(i == 5){listCard5.setAdapter(arrayAdapter);}
     }
-
 }

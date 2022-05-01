@@ -1,5 +1,7 @@
 package com.example.project_thegame.mechanics;
 
+import com.example.project_thegame.models.Player;
+
 public class Points {
 
     private int points;

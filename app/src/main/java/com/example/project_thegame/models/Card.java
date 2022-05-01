@@ -17,7 +17,6 @@ public class Card implements Parcelable {
     private boolean locked;
     private Category category;
 
-
     /**
      * Diferents categories de cartes.
      */
@@ -40,6 +39,7 @@ public class Card implements Parcelable {
         this.agility = agility;
         this.endurance = endurance;
         this.intelligence = intelligence;
+        this.locked = locked;
         this.category = Category.values()[category];
     }
 
