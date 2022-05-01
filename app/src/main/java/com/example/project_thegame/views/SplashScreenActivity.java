@@ -1,22 +1,15 @@
-package com.example.project_thegame;
-import androidx.activity.result.ActivityResult;
+package com.example.project_thegame.views;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 
+import com.example.project_thegame.R;
 import com.example.project_thegame.databinding.ActivityMainBinding;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class SplashScreenActivity extends Activity {
     public static final int FIRST_REQUEST = 1;

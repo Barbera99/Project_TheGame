@@ -1,9 +1,5 @@
 package com.example.project_thegame.mechanics;
 
-import com.example.project_thegame.models.Player;
-
-import java.util.ArrayList;
-
 public class Quests {
 
     private String questName;

@@ -1,23 +1,24 @@
 package com.example.project_thegame.models;
 
+import java.util.ArrayList;
+
 public class Game {
     /**
      * Declaració dels atributs de classe.
      */
-    private Map map1;
-    private Map map2;
-    private Map map3;
-    private Map map4;
-    private Map map5;
-    private Player player1;
-    private Player player2;
+
+    private User user1;
+    private User user2;
     private Map []already_played;
     private int score_player1;
     private int score_player2;
 
-    public Game(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Game(){
+        this.user2 = new User(-1,"IA", new ArrayList<Card>());
+    }
+    public Game(User user1, User user2) {
+        this.user1 = user1;
+        this.user2 = user2;
         this.score_player1 = 0;
         this.score_player2 = 0;
     }
@@ -26,60 +27,21 @@ public class Game {
      * Declaració getters i setters dels atributs de la classe.
      *
      */
-    public Map getMap1() {
-        return map1;
+
+    public User getPlayer1() {
+        return user1;
     }
 
-    public void setMap1(Map map1) {
-        this.map1 = map1;
+    public void setPlayer1(User user1) {
+        this.user1 = user1;
     }
 
-    public Map getMap2() {
-        return map2;
+    public User getPlayer2() {
+        return user2;
     }
 
-    public void setMap2(Map map2) {
-        this.map2 = map2;
-    }
-
-    public Map getMap3() {
-        return map3;
-    }
-
-    public void setMap3(Map map3) {
-        this.map3 = map3;
-    }
-
-    public Map getMap4() {
-        return map4;
-    }
-
-    public void setMap4(Map map4) {
-        this.map4 = map4;
-    }
-
-    public Map getMap5() {
-        return map5;
-    }
-
-    public void setMap5(Map map5) {
-        this.map5 = map5;
-    }
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
+    public void setPlayer2(User user2) {
+        this.user2 = user2;
     }
 
     public Map[] getAlready_played() {
