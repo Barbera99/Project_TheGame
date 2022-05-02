@@ -13,7 +13,7 @@ import android.widget.Spinner;
 
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class DeckActivity extends AppCompatActivity {
     ListView listCard3;
     ListView listCard4;
     ListView listCard5;
-    Player player;
+    User player;
     Button btnSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.example.project_thegame.controllers.GameController;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,7 +36,7 @@ public class RoundActivity extends AppCompatActivity {
     int roundNumber = 0;
     //player1
     int playerScore = 0;
-    Player player1;
+    User player1;
 
     TextView txtViewRounds;
     TextView scorePlayerText;

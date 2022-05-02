@@ -1,7 +1,7 @@
 package com.example.project_thegame.controllers;
 
 import com.example.project_thegame.models.Card;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 import com.example.project_thegame.models.Round;
 
 public class RoundController {

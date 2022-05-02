@@ -1,6 +1,6 @@
 package com.example.project_thegame.mechanics;
 
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
 
 public class Points {
 

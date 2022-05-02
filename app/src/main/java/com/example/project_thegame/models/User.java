@@ -56,6 +56,7 @@ public class User implements Parcelable {
         this.listOfCardsOwned = listOfCardsOwned;
     }
 
+
     /**
      * CONSTRUCTOR
      */
@@ -175,7 +176,7 @@ public class User implements Parcelable {
     public void setListOfCardsOwned(ArrayList<Card> listOfCardsOwned) {
         this.listOfCardsOwned = listOfCardsOwned;
     }
-    
+
     @Override
     public int describeContents() {
         return 0;

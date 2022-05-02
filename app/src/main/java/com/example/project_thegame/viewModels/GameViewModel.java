@@ -17,6 +17,7 @@ import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.User;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -80,25 +81,25 @@ public class GameViewModel extends ViewModel {
     }
 
     public void setIADifficult(String diffSelected){
-        Card[] newC = new Card[5];
+        ArrayList<Card> newC = new ArrayList<>();
         if(diffSelected.equals("Easy")){
-            newC[0] = easy1;
-            newC[1] = easy2;
-            newC[2] = easy3;
-            newC[3] = easy2;
-            newC[4] = easy1;
+            newC.add(easy1);
+            newC.add(easy2);
+            newC.add(easy3);
+            newC.add(easy3);
+            newC.add(easy2);
         }else if(diffSelected.equals("Medium")){
-            newC[0] = medium1;
-            newC[1] = medium2;
-            newC[2] = medium3;
-            newC[3] = medium1;
-            newC[4] = medium3;
+            newC.add(medium1);
+            newC.add(medium2);
+            newC.add(medium3);
+            newC.add(medium1);
+            newC.add(medium2);
         }else if(diffSelected.equals("Hard")){
-            newC[0] = hard1;
-            newC[1] = hard2;
-            newC[2] = hard3;
-            newC[3] = hard2;
-            newC[4] = hard3;
+            newC.add(hard1);
+            newC.add(hard1);
+            newC.add(hard3);
+            newC.add(hard1);
+            newC.add(hard2);
         }
         deckForIA.setArrayDeck(newC);
         game.getPlayer2().setPlayerDeck(deckForIA);

@@ -9,13 +9,13 @@ public class Game {
     private Map map3;
     private Map map4;
     private Map map5;
-    private Player player1;
-    private Player player2;
+    private User player1;
+    private User player2;
     private Map []already_played;
     private int score_player1;
     private int score_player2;
 
-    public Game(Player player1, Player player2) {
+    public Game(User player1, User player2) {
         this.player1 = player1;
         this.player2 = player2;
         this.score_player1 = 0;
@@ -66,19 +66,19 @@ public class Game {
         this.map5 = map5;
     }
 
-    public Player getPlayer1() {
+    public User getPlayer1() {
         return player1;
     }
 
-    public void setPlayer1(Player player1) {
+    public void setPlayer1(User player1) {
         this.player1 = player1;
     }
 
-    public Player getPlayer2() {
+    public User getPlayer2() {
         return player2;
     }
 
-    public void setPlayer2(Player player2) {
+    public void setPlayer2(User player2) {
         this.player2 = player2;
     }
 

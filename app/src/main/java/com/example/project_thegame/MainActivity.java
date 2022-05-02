@@ -21,7 +21,8 @@ import com.example.project_thegame.controllers.PlayerController;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
-import com.example.project_thegame.models.Player;
+import com.example.project_thegame.models.User;
+import com.example.project_thegame.models.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -51,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     ArrayList<Card> lCard = new ArrayList<Card>();
 
-    Player player1;
-    Player player2;
+    User player1;
+    User player2;
     Game game;
     Spinner lvlList;
     String diffSelected;
@@ -90,8 +91,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
             }
         });
-        player1 = new Player(1, "Test 1", 0, 0, 0, lCard);
-        player2 = new Player(1, "Test 2", 0, 0, 0, lCard);
         game = new Game(player1,player2);
         playButton = findViewById(R.id.playButton);
         selectDeck = findViewById(R.id.btnDeck);
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQ_CODE) {
-            player1 = (Player)data.getExtras().getParcelable("PlayerResult");
+            player1 = (User)data.getExtras().getParcelable("PlayerResult");
             System.out.println(player1.getName());
             System.out.println(player1.getPlayerDeck().getArrayDeck().get(0));
         } else if(requestCode == REQ_ROUND){

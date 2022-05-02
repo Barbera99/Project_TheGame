@@ -61,6 +61,9 @@ public class Deck implements Parcelable {
         return SIZE;
     }
 
+    public void setArrayDeck(ArrayList<Card> arrayDeck) {
+        this.arrayDeck = arrayDeck;
+    }
 
     @Override
     public int describeContents() {

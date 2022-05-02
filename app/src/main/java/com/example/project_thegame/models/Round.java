@@ -6,8 +6,8 @@ public class Round {
      */
     private int number;
     private Map map;
-    private Player player1;
-    private Player player2;
+    private User player1;
+    private User player2;
 
     /**
      * Declaració dels getters i setters.
@@ -23,16 +23,16 @@ public class Round {
     public void setMap(Map map) {
         this.map = map;
     }
-    public Player getPlayer1() {
+    public User getPlayer1() {
         return player1;
     }
-    public void setPlayer1(Player player1) {
+    public void setPlayer1(User player1) {
         this.player1 = player1;
     }
-    public Player getPlayer2() {
+    public User getPlayer2() {
         return player2;
     }
-    public void setPlayer2(Player player2) {
+    public void setPlayer2(User player2) {
         this.player2 = player2;
     }
 }
