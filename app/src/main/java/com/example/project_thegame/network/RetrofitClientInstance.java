@@ -1,4 +1,4 @@
-package com.example.project_thegame.Network;
+package com.example.project_thegame.network;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -8,7 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
     private static final String BASE_URL = "http://127.0.0.1:8000";
-    private static OkHttpClient client = new OkHttpClient.Builder().build();
+    private static OkHttpClient client = new OkHttpClient.Builder()
+            .addInterceptor(new ServiceInterceptor())
+            .build();
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

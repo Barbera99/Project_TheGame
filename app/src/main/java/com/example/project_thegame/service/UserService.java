@@ -1,4 +1,4 @@
-package com.example.project_thegame.Interfaces;
+package com.example.project_thegame.service;
 
 import com.example.project_thegame.models.User;
 

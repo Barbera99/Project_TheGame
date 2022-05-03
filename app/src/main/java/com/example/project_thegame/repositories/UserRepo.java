@@ -1,12 +1,11 @@
-package com.example.project_thegame.Repos;
+package com.example.project_thegame.repositories;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.project_thegame.Implementation.UserServiceImpl;
-import com.example.project_thegame.Interfaces.UserService;
-import com.example.project_thegame.Network.RetrofitClientInstance;
+import com.example.project_thegame.service.UserServiceImpl;
+import com.example.project_thegame.service.UserService;
 import com.example.project_thegame.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;

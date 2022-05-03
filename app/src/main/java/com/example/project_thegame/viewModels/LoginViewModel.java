@@ -1,17 +1,25 @@
 package com.example.project_thegame.viewModels;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.project_thegame.models.Result;
+import com.example.project_thegame.repositories.AccountRepo;
+import com.example.project_thegame.utils.AccountUtils;
 
 public class LoginViewModel {
 
-    private String TAG = "loginViewModel";
-    // Control visual components
+    private String TAG = "LoginViewModel";
+
     private MutableLiveData<String> emailLiveData;
     private MutableLiveData<String> errorEmailLiveData;
     private MutableLiveData<String> passwordLiveData;
     private MutableLiveData<String> errorPasswordLiveData;
 
     public MutableLiveData<Boolean> isLogged;
+
+    private AccountRepo accountRepo;
+
 
     public LoginViewModel(){
         this.emailLiveData = new MutableLiveData<>();
@@ -20,14 +28,10 @@ public class LoginViewModel {
         this.errorPasswordLiveData = new MutableLiveData<>();
 
         this.isLogged = new MutableLiveData<>();
+
+        this.accountRepo = new AccountRepo();
     }
 
-    public void login() {
-
-    }
-
-
-    //Getters i Setters
     public MutableLiveData<String> getEmailLiveData() {
         return emailLiveData;
     }
@@ -58,5 +62,53 @@ public class LoginViewModel {
 
     public void setErrorPasswordLiveData(MutableLiveData<String> errorPasswordLiveData) {
         this.errorPasswordLiveData = errorPasswordLiveData;
+    }
+
+
+    public void login(){
+
+        // Get the data from fields
+        String email = emailLiveData.getValue();
+        String password = passwordLiveData.getValue();
+
+        // Form validator
+        if (isFormValid(email,password)) {
+            // Shows the progress bar, telling the user that we are making the communication with the API
+            isLogged.postValue(true);
+
+            // Call the repo passing the authorization token obtained from email and password
+            this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
+        }
+        // Shows the progress bar, telling the user that we are making the communication with the API
+        isLogged.postValue(true);
+
+        // Call the repo passing the authorization token obtained from email and password
+        this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
+
+    }
+
+    public LiveData<Result<String>> isUserLogged(){
+        if(this.accountRepo.getLoginResult() != null){
+            isLogged.postValue(false);
+        }
+        return this.accountRepo.getLoginResult();
+    }
+
+    private Boolean isFormValid(String email, String password){
+        boolean isValid = true;
+
+        String validEmail= AccountUtils.isEmailValid(email);
+        if ( validEmail != null){
+            isValid = false;
+            errorEmailLiveData.postValue(validEmail);
+        };
+
+        String validPassword= AccountUtils.isPasswordValid(password);
+        if ( validPassword != null){
+            isValid = false;
+            errorPasswordLiveData.postValue(validPassword);
+        };
+
+        return isValid;
     }
 }

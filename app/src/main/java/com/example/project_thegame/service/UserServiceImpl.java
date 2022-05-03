@@ -1,7 +1,6 @@
-package com.example.project_thegame.Implementation;
+package com.example.project_thegame.service;
 
-import com.example.project_thegame.Interfaces.UserService;
-import com.example.project_thegame.Network.RetrofitClientInstance;
+import com.example.project_thegame.network.RetrofitClientInstance;
 import com.example.project_thegame.models.User;
 
 import retrofit2.Call;
