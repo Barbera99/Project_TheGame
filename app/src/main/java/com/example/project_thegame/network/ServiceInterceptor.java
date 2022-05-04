@@ -2,16 +2,18 @@ package com.example.project_thegame.network;
 
 import androidx.annotation.NonNull;
 
+import com.example.project_thegame.utils.PreferencesProvider;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ServiceInterceptor {
+public class ServiceInterceptor implements  Interceptor{
     @NonNull
     @Override
-    public Response intercept(Interceptor.Chain chain) throws IOException {
+    public Response intercept(Chain chain) throws IOException {
 
         Request request = chain.request();
         String token = PreferencesProvider.providePreferences().getString("token","");

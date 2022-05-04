@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
         textV = (TextView) findViewById( R.id.textTimer );
         Button selectCard = findViewById(R.id.btnSelect);
 
-        gContr = new GameViewModel(new Game());
+        //gContr = new GameViewModel(new Game());
 
 
         //------gettingInfo------

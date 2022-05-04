@@ -31,7 +31,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class RoundActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
     GameController gameController;
     int roundNumber = 0;
     //player1
@@ -48,10 +48,11 @@ public class RoundActivity extends AppCompatActivity {
     ImageView imgC3;
     ImageView imgC4;
     ImageView imgC5;
+    ArrayList <Card> Deck;
 
-    Deck easyDeck = new Deck();
-    Deck mediumDeck = new Deck();
-    Deck hardDeck = new Deck();
+    Deck easyDeck = new Deck(Deck);
+    Deck mediumDeck = new Deck(Deck);
+    Deck hardDeck = new Deck(Deck);
     public static Card easy1 = new Card(1, "Easy1", 30, 30, 10, 20, 10, false, 3);
     public static Card easy2 = new Card(2, "Easy2", 20, 20, 30, 10, 20, false, 1);
     public static Card easy3 = new Card(3, "Easy3", 10, 10, 20, 30, 30, false, 3);
@@ -71,7 +72,7 @@ public class RoundActivity extends AppCompatActivity {
     String attributeActualRound;
     Card iACard;
     Card cardSelected;
-    Deck deckForIA = new Deck();
+    Deck deckForIA = new Deck(Deck);
     int positionCard;
 
     //player2

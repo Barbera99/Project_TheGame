@@ -16,29 +16,25 @@ public class Deck implements Parcelable {
      * Constructor
      *
      */
-    public Deck() {
-
+    public Deck(ArrayList<Card> Deck) {
+        this.arrayDeck = Deck;
     }
-
 
     public ArrayList<Card> getArrayDeck() {
         return arrayDeck;
     }
 
-
-
-
     /**
      * Llevarem la carta seleccionada de la baralla.
      */
-    public void remove(){
-        //TODO
+    public void remove(Card c){
+        this.arrayDeck.remove(c);
     }
+
     /**
      * Afegirem la carta seleccionada a la baralla.
      */
-    public void add(Card c,int i){
-
+    public void add(Card c, int i){
         if(SIZE>this.arrayDeck.size()){
             arrayDeck.add(c);
         } else {
@@ -49,8 +45,10 @@ public class Deck implements Parcelable {
     /**
      * Comprovem si la carta a afegir ja forma part de la baralla.
      */
-    public void check(){
-        //TODO
+    public void check(Card c){
+        for (int i = 0; i < SIZE; i++){
+
+        }
     }
 
     /**

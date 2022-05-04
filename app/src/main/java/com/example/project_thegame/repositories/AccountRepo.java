@@ -58,9 +58,9 @@ public class AccountRepo {
             }
         });
     }
-
+    /*
     public void login2(String authorizationToken) {
-        this.accountService.createTokenUser(authorizationToken).enqueue(new Callback<Account>() {
+           this.accountService.createTokenUser(authorizationToken).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
 
@@ -71,7 +71,7 @@ public class AccountRepo {
 
             }
         });
-    }
+    } */
 
     // Gets the answer to login query
     public LiveData<Result<String>> getLoginResult(){

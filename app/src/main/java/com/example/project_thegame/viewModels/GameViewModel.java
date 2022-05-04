@@ -40,7 +40,8 @@ public class GameViewModel extends ViewModel {
     private int playerScore;
     Card iACard;
     Card cardSelected;
-    Deck deckForIA = new Deck();
+    ArrayList<Card> Deck;
+    Deck deckForIA = new Deck(Deck);
     int positionCard;
     int iAScore = 0;
     String attributeActualRound;
@@ -62,9 +63,9 @@ public class GameViewModel extends ViewModel {
     public GameViewModel(Game game) {
         Card c = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
         this.game = game;
-        this.easyDeck = new Deck();
-        this.mediumDeck = new Deck();
-        this.hardDeck = new Deck();
+        this.easyDeck = new Deck(Deck);
+        this.mediumDeck = new Deck(Deck);
+        this.hardDeck = new Deck(Deck);
         this.roundNumber = 1;
         this.positionCard = -1;
         this.cardSelected = c;
