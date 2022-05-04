@@ -1,6 +1,6 @@
 package com.example.project_thegame.service;
 
-import android.accounts.Account;
+import com.example.project_thegame.models.Account;
 
 import retrofit2.Call;
 import retrofit2.http.Header;

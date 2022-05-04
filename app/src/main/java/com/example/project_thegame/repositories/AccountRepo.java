@@ -12,7 +12,6 @@ import com.example.project_thegame.service.AccountService;
 import com.example.project_thegame.service.AccountServiceImpl;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AccountRepo {
@@ -40,6 +39,7 @@ public class AccountRepo {
 
             @Override
             public void onResponseSuccess(Call<Account> call, Response<Account> response) {
+                Log.d(TAG, "Int response");
                 Log.d(TAG, "login() -> onResponseSuccess -> " + response.body().toString());
                 String token = response.body().getToken();
                 Log.d(TAG, "login() -> onResponseSuccess -> " + token);
