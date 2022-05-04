@@ -102,12 +102,12 @@ public class LoginViewModel {
             isValid = false;
             errorEmailLiveData.postValue(validEmail);
         };
-
+        /*
         String validPassword= AccountUtils.isPasswordValid(password);
         if ( validPassword != null){
             isValid = false;
             errorPasswordLiveData.postValue(validPassword);
-        };
+        }; */
 
         return isValid;
     }
