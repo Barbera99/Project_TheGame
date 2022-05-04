@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.example.project_thegame.databinding.ActivityLoginBinding;
 import com.example.project_thegame.models.Result;
+import com.example.project_thegame.models.User;
 import com.example.project_thegame.utils.PreferencesProvider;
 import com.example.project_thegame.utils.UIUtils;
 import com.example.project_thegame.viewModels.LoginViewModel;
@@ -42,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
                     PreferencesProvider.providePreferences().edit().putString("token",
                             tokenResult.getResult()).commit();
                     Log.d(TAG,"Login successful, add token to SharedPreferences.");
+
+                    //User player1 = new User();
                     goTo(MainActivity.class);
                 }
                 else{
@@ -85,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             //showLogin();
         } else {
             // If a userToken is stored on sharedPreferences go to MainActivity().
+
             startActivity(new Intent(this, MainActivity.class));
         }
         // Close the activity, the user don't need to enter again with back functionality

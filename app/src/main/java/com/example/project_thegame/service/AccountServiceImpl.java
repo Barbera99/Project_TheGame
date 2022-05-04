@@ -14,4 +14,7 @@ public class AccountServiceImpl implements AccountService {
     public Call<Account> createTokenUser(String authorizationToken) {
         return  retrofit.create(AccountService.class).createTokenUser(authorizationToken);
     }
+    public Call<Account> getUserProfile(int id_user) {
+        return  retrofit.create(AccountService.class).getUserProfile(id_user);
+    }
 }

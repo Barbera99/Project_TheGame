@@ -86,6 +86,7 @@ public class LoginViewModel {
         this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
 
     }
+    public void register() {}
 
     public LiveData<Result<String>> isUserLogged(){
         if(this.accountRepo.getLoginResult() != null){
