@@ -1,7 +1,6 @@
 package com.example.project_thegame.service;
 
-import android.accounts.Account;
-
+import com.example.project_thegame.models.Account;
 import com.example.project_thegame.network.RetrofitClientInstance;
 
 import retrofit2.Call;
