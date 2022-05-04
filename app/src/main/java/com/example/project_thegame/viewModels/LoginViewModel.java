@@ -87,6 +87,9 @@ public class LoginViewModel {
 
     }
 
+    public void goRegister() {
+
+    }
     public LiveData<Result<String>> isUserLogged(){
         if(this.accountRepo.getLoginResult() != null){
             isLogged.postValue(false);

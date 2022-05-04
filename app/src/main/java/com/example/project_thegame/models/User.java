@@ -24,6 +24,8 @@ public class User implements Parcelable {
     private String name;
     @SerializedName("surname")
     private String surname;
+    @SerializedName("password")
+    private String password;
     @SerializedName("birthdate")
     private Date birthdate;
     @SerializedName("genere")
@@ -56,11 +58,13 @@ public class User implements Parcelable {
         this.listOfCardsOwned = listOfCardsOwned;
     }
 
-
-    /**
-     * CONSTRUCTOR
-     */
-
+    public User(String username, String email, String name, String surname, String password) {
+        this.username = username;
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+    }
 
     /**
      * Declaració dels getters i setters.
@@ -111,6 +115,14 @@ public class User implements Parcelable {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getBirthdate() {

@@ -7,15 +7,15 @@
         <import type="android.view.View" />
         <import type="android.text.TextUtils" />
         <variable
-            name="loginViewModel"
-            type="com.example.project_thegame.viewModels.LoginViewModel" />
+            name="registerViewModel"
+            type="com.example.project_thegame.viewModels.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal|center_vertical"
-        tools:context=".LoginActivity">
+        tools:context=".RegisterActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,6 +43,40 @@
                 tools:ignore="ImageContrastCheck" />
 
             <!--  Email Label -->
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="yes"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="@={registerViewModel.nameLiveData}" />
+
+            <EditText
+                android:id="@+id/editTextSurname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="yes"
+                android:ems="10"
+                android:hint="Surname"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="@={registerViewModel.surnameLiveData}" />
+
+            <EditText
+                android:id="@+id/editTextUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="yes"
+                android:ems="10"
+                android:hint="Username"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:text="@={registerViewModel.surnameLiveData}" />
+
             <EditText
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
@@ -51,9 +85,8 @@
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:text="@={loginViewModel.emailLiveData}"
-                android:error="@{loginViewModel.errorEmailLiveData}"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:text="@={registerViewModel.emailLiveData}" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -63,10 +96,8 @@
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:text="@={loginViewModel.passwordLiveData}"
-                android:error="@{loginViewModel.errorPasswordLiveData}"
+                android:text="@={registerViewModel.passwordLiveData}"
                 android:minHeight="48dp" />
-
 
             <Button
                 android:id="@+id/btn_register"
@@ -74,29 +105,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
+                android:enabled="@{!TextUtils.isEmpty(registerViewModel.emailLiveData) &amp;&amp; !TextUtils.isEmpty(registerViewModel.) }"
+                android:onClick="@{() -> registerViewModel.register()}"
                 android:padding="12dp"
-                android:onClick="@{() -> loginViewModel.login()}"
-                android:enabled="@{!TextUtils.isEmpty(loginViewModel.emailLiveData) &amp;&amp; !TextUtils.isEmpty(loginViewModel.passwordLiveData) }"
-                android:text="Login" />
-
-
-            <TextView
-                android:id="@+id/link_signup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:clickable="true"
-                android:text="No account yet? Create one!"
-                android:textSize="16sp"
-                android:focusable="true"
-                android:onClick="@{() -> loginViewModel.goRegister()}"/>
+                android:text="Register" />
 
 
             <include
                 android:id="@+id/linearLayoutProgressBar"
                 layout="@layout/loading"
-                android:visibility="@{loginViewModel.isLogged ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{registerViewModel.isRegisteredLiveData? View.VISIBLE : View.GONE}" />
 
         </LinearLayout>
 

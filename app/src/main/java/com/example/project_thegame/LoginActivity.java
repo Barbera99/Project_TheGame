@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.project_thegame.databinding.ActivityLoginBinding;
 import com.example.project_thegame.models.Result;
@@ -51,8 +53,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        final TextView link_signup = (TextView) findViewById(R.id.link_signup);
 
+        link_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(i);
+            }
+        });
     }
+
 
     private void showLoginError(String errorMessage){
         DialogInterface.OnClickListener positiveAction = (dialogInterface, i) -> dialogInterface.cancel();

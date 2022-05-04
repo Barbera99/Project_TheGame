@@ -39,4 +39,8 @@ public class UserRepo {
                     }
                 });
     }
+
+    public void registerUser(User user) {
+
+    }
 }
