@@ -24,7 +24,6 @@ public class AccountRepo {
     public AccountRepo(){
         this.accountService = new AccountServiceImpl();
         loginResultLiveData = new MutableLiveData<>();
-
     }
 
     // Sends a login query to the backend
@@ -58,6 +57,11 @@ public class AccountRepo {
             }
         });
     }
+
+    public void register(){
+
+    }
+
 
     // Gets the answer to login query
     public LiveData<Result<String>> getLoginResult(){

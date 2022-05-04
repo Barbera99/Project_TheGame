@@ -7,8 +7,8 @@
         <import type="android.view.View" />
         <import type="android.text.TextUtils" />
         <variable
-            name="loginViewModel"
-            type="com.example.project_thegame.viewModels.LoginViewModel" />
+            name="registerViewModel"
+            type="com.example.project_thegame.viewModels.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,8 +51,7 @@
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:text="@={loginViewModel.emailLiveData}"
-                android:error="@{loginViewModel.errorEmailLiveData}"
+
                 android:minHeight="48dp" />
 
             <EditText
@@ -63,21 +62,18 @@
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:text="@={loginViewModel.passwordLiveData}"
-                android:error="@{loginViewModel.errorPasswordLiveData}"
                 android:minHeight="48dp" />
 
 
             <Button
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:padding="12dp"
-                android:onClick="@{() -> loginViewModel.login()}"
-                android:enabled="@{!TextUtils.isEmpty(loginViewModel.emailLiveData) &amp;&amp; !TextUtils.isEmpty(loginViewModel.passwordLiveData) }"
-                android:text="Login" />
+                android:onClick="@{() -> registerViewModel.registerUser()}"
+                android:text="Register" />
 
 
             <TextView
@@ -87,16 +83,12 @@
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
                 android:text="No account yet? Create one!"
-                android:clickable= "true"
-                android:onClick="@{() -> loginViewModel.register()}"
-                android:textSize="16sp"
-                android:focusable="true" />
+                android:textSize="16sp" />
 
 
             <include
                 android:id="@+id/linearLayoutProgressBar"
                 layout="@layout/loading"
-                android:layout_height="191dp"
                 android:visibility="@{loginViewModel.isLogged ? View.VISIBLE : View.GONE}" />
 
         </LinearLayout>
