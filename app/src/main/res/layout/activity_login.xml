@@ -89,8 +89,7 @@
                 android:clickable="true"
                 android:text="No account yet? Create one!"
                 android:textSize="16sp"
-                android:focusable="true"
-                android:onClick="@{() -> loginViewModel.goRegister()}"/>
+                android:focusable="true"/>
 
 
             <include

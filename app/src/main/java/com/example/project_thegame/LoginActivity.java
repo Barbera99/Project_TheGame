@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        final TextView link_signup = (TextView) findViewById(R.id.link_signup);
 
+        final TextView link_signup = (TextView) findViewById(R.id.link_signup);
         link_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
