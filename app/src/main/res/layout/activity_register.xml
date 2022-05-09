@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:enabled="@{!TextUtils.isEmpty(registerViewModel.emailLiveData) &amp;&amp; !TextUtils.isEmpty(registerViewModel.) }"
+                android:enabled="@{!TextUtils.isEmpty(registerViewModel.emailLiveData) &amp;&amp; !TextUtils.isEmpty(registerViewModel.passwordLiveData) }"
                 android:onClick="@{() -> registerViewModel.register()}"
                 android:padding="12dp"
                 android:text="Register" />

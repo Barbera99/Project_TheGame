@@ -2,13 +2,13 @@ package com.example.project_thegame.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import com.example.project_thegame.models.Result;
 import com.example.project_thegame.models.User;
 import com.example.project_thegame.repositories.UserRepo;
 import com.example.project_thegame.utils.AccountUtils;
 
-public class RegisterViewModel {
+public class RegisterViewModel extends ViewModel {
     private String TAG = "RegisterViewModel";
 
     private MutableLiveData<String> nameLiveData;

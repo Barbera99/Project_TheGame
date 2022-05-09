@@ -25,7 +25,6 @@ public abstract class ApiCallBack<T> implements Callback {
             onResponseError(call, new Throwable(error.description));
         }
 
-
     }
 
     /**
