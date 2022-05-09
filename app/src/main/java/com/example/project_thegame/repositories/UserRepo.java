@@ -2,8 +2,11 @@ package com.example.project_thegame.repositories;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.project_thegame.LoginActivity;
+import com.example.project_thegame.RegisterActivity;
 import com.example.project_thegame.helpers.ApiCallBack;
 import com.example.project_thegame.models.Result;
 import com.example.project_thegame.service.UserServiceImpl;
@@ -58,14 +61,8 @@ public class UserRepo {
 
             @Override
             public void onResponseSuccess(Call<User> call, Response<User> response) {
-                Log.d(TAG, "Int response");
-                Log.d(TAG, "register() -> onResponseSuccess -> " + response.body().toString());
-                int id_user = response.body().getId();
-                Log.d(TAG, "register() -> onResponseSuccess -> " + id_user);
-                registerResult = Result.success(id_user);
-                Log.d(TAG, "register() -> onResponseSuccess / getResult-> " + registerResult.getResult());
-                registerResultLiveData.postValue(registerResult);
-                Log.d(TAG, "register() -> onResponseSuccess END");
+                Log.d(TAG, "register() -> codi -> " + response.code());
+                RegisterActivity.goTo(LoginActivity.class);
             }
 
             @Override
@@ -76,4 +73,5 @@ public class UserRepo {
             }
         });
     }
+
 }

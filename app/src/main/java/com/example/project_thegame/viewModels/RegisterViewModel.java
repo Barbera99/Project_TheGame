@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.project_thegame.RegisterActivity;
+import com.example.project_thegame.models.Result;
 import com.example.project_thegame.models.User;
 import com.example.project_thegame.repositories.UserRepo;
 import com.example.project_thegame.utils.AccountUtils;
@@ -39,6 +41,7 @@ public class RegisterViewModel extends ViewModel {
             isRegisteredLiveData.postValue(true);
             User user = new User(username, email, name, surname, password);
             this.userRepo.registerUser(user);
+
         }
 
     }
@@ -62,6 +65,9 @@ public class RegisterViewModel extends ViewModel {
         return isValid;
     }
 
+    /*
+                        SETTERS I GETTERS
+     */
     public MutableLiveData<String> getNameLiveData() {
         return nameLiveData;
     }

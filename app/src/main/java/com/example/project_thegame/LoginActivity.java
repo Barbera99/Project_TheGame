@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginViewModel = new LoginViewModel();
         initDataBinding();
-
         setup();
         data();
 
@@ -63,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void showLoginError(String errorMessage){
         DialogInterface.OnClickListener positiveAction = (dialogInterface, i) -> dialogInterface.cancel();
