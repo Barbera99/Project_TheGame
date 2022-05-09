@@ -8,25 +8,27 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.project_thegame.databinding.ActivityLoginBinding;
+import com.example.project_thegame.databinding.ActivityRegisterBinding;
 import com.example.project_thegame.utils.UIUtils;
 import com.example.project_thegame.viewModels.LoginViewModel;
+import com.example.project_thegame.viewModels.RegisterViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
-    private ActivityLoginBinding activityRegisterBinding;
+    private RegisterViewModel registerViewModel;
+    private ActivityRegisterBinding activityRegisterBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        loginViewModel = new LoginViewModel();
+        registerViewModel = new RegisterViewModel();
         initDataBinding();
     }
 
     private void initDataBinding() {
         activityRegisterBinding =
                 DataBindingUtil.setContentView(this,R.layout.activity_register);
-        activityRegisterBinding.setLoginViewModel(loginViewModel);
+        activityRegisterBinding.setRegisterViewModel(registerViewModel);
         activityRegisterBinding.setLifecycleOwner(this);
     }
 
@@ -36,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         UIUtils.showAlert(this,"Error", errorMessage, "Ok",positiveAction ,null,null, false);
     }
 
-    public static void goTo(Class _class){
+    public void goTo(Class _class){
         Intent intent = new Intent(this, _class);
         startActivity(intent);
     }

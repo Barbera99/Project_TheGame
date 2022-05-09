@@ -75,7 +75,7 @@
                 android:hint="Username"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:text="@={registerViewModel.surnameLiveData}" />
+                android:text="@={registerViewModel.usernameLiveData}" />
 
             <EditText
                 android:id="@+id/editTextEmail"

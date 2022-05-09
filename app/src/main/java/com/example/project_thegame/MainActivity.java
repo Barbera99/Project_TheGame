@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.Map;
 import com.example.project_thegame.models.User;
+import com.example.project_thegame.utils.PreferencesProvider;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -24,6 +26,7 @@ import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity implements Observer {
 
+    private static final String TAG = "MainActivity";
     Button playButton;
     Button selectDeck;
     ArrayList<Card> lCard = new ArrayList<Card>();
@@ -66,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         lCard.add(carta8);
         lCard.add(carta9);
         lCard.add(carta10); */
+        String token = PreferencesProvider.providePreferences().getString("token", "");
+        Log.d(TAG,"token: " + token);
         lvlList = findViewById(R.id.sLvl);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Easy");

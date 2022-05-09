@@ -56,20 +56,20 @@ public class UserRepo {
             public void onFailure(Call call, Throwable t) {
                 registerResult = Result.error(t);
                 registerResultLiveData.postValue(registerResult);
-                Log.d(TAG, "register() -> onResponseError -> " + t.getMessage());
+                Log.d(TAG, "register() -> onFailure -> " + t.getMessage());
             }
 
             @Override
             public void onResponseSuccess(Call<User> call, Response<User> response) {
-                Log.d(TAG, "register() -> codi -> " + response.code());
-                RegisterActivity.goTo(LoginActivity.class);
+                Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
+                //RegisterActivity.goTo(LoginActivity.class);
             }
 
             @Override
             public void onResponseError(Call<User> call, Throwable t) {
                 registerResult = Result.error(t);
                 registerResultLiveData.postValue(registerResult);
-                Log.d(TAG, "register() -> onResponseError -> " + t.getMessage());
+                //Log.d(TAG, "register() -> onResponseError -> " + t.getMessage());
             }
         });
     }
