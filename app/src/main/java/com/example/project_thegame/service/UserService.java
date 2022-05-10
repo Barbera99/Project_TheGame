@@ -1,6 +1,5 @@
 package com.example.project_thegame.service;
 
-import com.example.project_thegame.models.Account;
 import com.example.project_thegame.models.User;
 
 import okhttp3.ResponseBody;

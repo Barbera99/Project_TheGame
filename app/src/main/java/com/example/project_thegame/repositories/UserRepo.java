@@ -50,7 +50,7 @@ public class UserRepo {
     }
 
     public void registerUser(User user) {
-        this.userService.createUser(user).enqueue(new ApiCallBack<User>() {
+        userService.createUser(user).enqueue(new ApiCallBack<User>() {
 
             @Override
             public void onFailure(Call call, Throwable t) {

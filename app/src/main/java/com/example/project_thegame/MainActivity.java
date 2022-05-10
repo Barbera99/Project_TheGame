@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     String diffSelected;
     final int REQ_CODE = 1;
     final int REQ_ROUND = 2;
+
     /**
      * Cartes,baralles i players per fer proves!
      *
