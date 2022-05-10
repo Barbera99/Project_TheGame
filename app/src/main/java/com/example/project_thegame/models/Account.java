@@ -6,6 +6,8 @@ public class Account {
 
     @SerializedName("token")
     private String token;
+    @SerializedName("user_id")
+    private int user_id;
 
 
     public Account(){
@@ -17,10 +19,17 @@ public class Account {
         return token;
     }
 
+    public int getUserId() {
+        return user_id;
+    }
+
     public void setToken(String token) {
         this.token = token;
     }
 
+    public void setUserId() {
+        this.user_id = user_id;
+    }
 
     @Override
     public String toString() {

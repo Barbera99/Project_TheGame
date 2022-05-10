@@ -10,6 +10,7 @@ import com.example.project_thegame.models.Account;
 import com.example.project_thegame.models.Result;
 import com.example.project_thegame.service.AccountService;
 import com.example.project_thegame.service.AccountServiceImpl;
+import com.example.project_thegame.utils.PreferencesProvider;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -43,8 +44,12 @@ public class AccountRepo {
                 Log.d(TAG, "Int response");
                 Log.d(TAG, "login() -> onResponseSuccess -> " + response.body().toString());
                 String token = response.body().getToken();
+                int user_id = response.body().getUserId();
                 Log.d(TAG, "login() -> onResponseSuccess -> " + token);
+                Log.d(TAG, "login() -> onResponseSuccess -> " + user_id);
                 loginResult = Result.success(response.body().getToken());
+                PreferencesProvider.providePreferences().edit().putInt("user_id", user_id).commit();
+                Log.d(TAG,"Login successful, add user_id to SharedPreferences.");
                 Log.d(TAG, "login() -> onResponseSuccess / getResult-> " + loginResult.getResult());
                 loginResultLiveData.postValue(loginResult);
                 Log.d(TAG, "login() -> onResponseSuccess END");

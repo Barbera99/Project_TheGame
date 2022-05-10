@@ -23,7 +23,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<Game> currentGame;
     public MutableLiveData<User> player1;
     public MutableLiveData<User> player2;
-    String localPlayer = "Kevin"; // Per a simular que fem login
+    String localPlayer = ""; // Per a simular que fem login
     String awayPlayer = "IABot"; // Per a simular la IA
     private final UserRepo userRepo;
 
