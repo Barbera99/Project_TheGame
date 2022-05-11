@@ -1,4 +1,5 @@
-package com.example.project_thegame.views;
+
+/*package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -53,10 +54,9 @@ public class GameActivity extends AppCompatActivity {
 
     //Hem d'implementar algo per controlar les cartes ja usades (un array)
 
-    /**
-     * En el onCreate hem de definir variables, valors de textViews i seleccionar carta
-     *
-     */
+    //En el onCreate hem de definir variables, valors de textViews i seleccionar carta
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,3 +208,4 @@ public class GameActivity extends AppCompatActivity {
 
 
 }
+*/

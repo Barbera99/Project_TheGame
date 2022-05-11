@@ -24,8 +24,10 @@ import android.widget.Toast;
 import com.example.project_thegame.controllers.GameController;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
+import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.Map;
 import com.example.project_thegame.models.User;
+import com.example.project_thegame.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,10 +36,13 @@ import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     GameController gameController;
+    Game game;
+    private GameViewModel gameViewModel;
     int roundNumber = 0;
     //player1
     int playerScore = 0;
     User player1;
+    User playerIA;
     Map[] already_played;
     TextView txtViewRounds;
     TextView scorePlayerText;
@@ -89,7 +94,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
-        player1 = getIntent().getParcelableExtra("PlayerObject");
+        //player1 = getIntent().getParcelableExtra("PlayerObject");
+        
+        gameViewModel = new GameViewModel(game);
+
         Bundle extras  = getIntent().getExtras();
         iACard = new Card(9, "test", -1, -1, -1, -1, -1, false, 1);
         diffSelected = extras.getString("DiffS");

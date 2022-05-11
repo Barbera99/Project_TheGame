@@ -11,8 +11,8 @@ public class GameServiceImpl implements GameService{
     private Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
 
     @Override
-    public Call<ResponseBody> createGame(Game game) {
-        return retrofit.create(GameService.class).createGame(game);
+    public Call<ResponseBody> createGame(int user_id, Game game) {
+        return retrofit.create(GameService.class).createGame(user_id, game);
     }
 
     @Override

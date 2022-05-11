@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         lCard.add(carta8);
         lCard.add(carta9);
         lCard.add(carta10); */
-        String token = PreferencesProvider.providePreferences().getString("token", "");
-        Log.d(TAG,"token: " + token);
+
+        // AIXO AQUI NO VA - - - - - - - -
         lvlList = findViewById(R.id.sLvl);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Easy");
@@ -86,18 +86,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
         playButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                System.out.println(player1.getPlayerDeck().getArrayDeck().size() + "-------------");
 
-                if(player1.getPlayerDeck().getArrayDeck().size() != 5){
-                    showToast("Necesitas seleccionar cartas que dispones para crear tu mazo antes de la partida");
-                } else {
                     Intent roundActivity = new Intent(getApplicationContext(), GameActivity.class);
                     roundActivity.putExtra("DiffS",diffSelected);
 
-                    roundActivity.putExtra("PlayerObject",player1);
+                    //roundActivity.putExtra("PlayerObject",player1);
 
                     startActivity(roundActivity);
-                }
                 //finish();
             }
 

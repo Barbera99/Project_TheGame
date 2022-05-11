@@ -25,8 +25,8 @@ public class GameRepo {
 
     }
 
-    public void startGame(Game game){
-        gameService.createGame(game).enqueue(new ApiCallBack<Game>() {
+    public void startGame(int user_id, Game game){
+        gameService.createGame(user_id, game).enqueue(new ApiCallBack<Game>() {
             @Override
             public void onFailure(Call call, Throwable t) {
 

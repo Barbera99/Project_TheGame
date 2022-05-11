@@ -66,6 +66,10 @@ public class User implements Parcelable {
         this.password = password;
     }
 
+    public User(String username) {
+        this.username = username;
+    }
+
     /**
      * Declaració dels getters i setters.
      */

@@ -62,4 +62,5 @@ public class Game {
     public void setScore_player2(int score_player2) {
         this.score_player2 = score_player2;
     }
+
 }
