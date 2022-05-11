@@ -20,10 +20,6 @@ public class Deck implements Parcelable {
         this.arrayDeck = Deck;
     }
 
-    public ArrayList<Card> getArrayDeck() {
-        return arrayDeck;
-    }
-
     /**
      * Llevarem la carta seleccionada de la baralla.
      */
@@ -45,23 +41,30 @@ public class Deck implements Parcelable {
     /**
      * Comprovem si la carta a afegir ja forma part de la baralla.
      */
-    public void check(Card c){
+    public boolean checkCardinDeck(Card c){
         for (int i = 0; i < SIZE; i++){
-
+            if(this.arrayDeck.contains(c)){
+                return false;
+            }
         }
+        return true;
     }
 
     /**
      * Declaració getters i setters dels atributs de la classe.
      *
      */
+    public void setSIZE(int SIZE){ this.SIZE = SIZE; }
     public int getSIZE() {
         return SIZE;
     }
-
+    public ArrayList<Card> getArrayDeck() {
+        return arrayDeck;
+    }
     public void setArrayDeck(ArrayList<Card> arrayDeck) {
         this.arrayDeck = arrayDeck;
     }
+
 
     @Override
     public int describeContents() {

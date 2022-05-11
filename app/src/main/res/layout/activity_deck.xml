@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--
+    <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils" />
+        <variable
+            name="deckViewModel"
+            type="com.example.project_thegame.viewModels.DeckViewModel" />
+    </data> -->
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,12 +40,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/card_1_name"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_weight="0"
                     android:gravity="center"
-                    android:text="Carta 1"
+                    android:text="player1"
                     android:textAlignment="center" />
 
                 <Spinner
@@ -201,3 +211,4 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

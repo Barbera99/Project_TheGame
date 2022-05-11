@@ -1,9 +1,13 @@
 package com.example.project_thegame.viewModels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.project_thegame.LoginActivity;
+import com.example.project_thegame.MainActivity;
 import com.example.project_thegame.RegisterActivity;
 import com.example.project_thegame.models.Result;
 import com.example.project_thegame.models.User;
@@ -20,6 +24,7 @@ public class RegisterViewModel extends ViewModel {
     private MutableLiveData<String> passwordLiveData;
     public MutableLiveData<Boolean> isRegisteredLiveData;
     private UserRepo userRepo;
+    private RegisterActivity registerActivity;
 
     public RegisterViewModel(){
         this.nameLiveData = new MutableLiveData<String>();
@@ -29,6 +34,7 @@ public class RegisterViewModel extends ViewModel {
         this.passwordLiveData = new MutableLiveData<String>();
         this.isRegisteredLiveData = new MutableLiveData<Boolean>();
         this.userRepo = new UserRepo();
+        this.userRepo.setRegisterViewModel(this);
     }
     public void register() {
         String name = nameLiveData.getValue();
@@ -40,10 +46,12 @@ public class RegisterViewModel extends ViewModel {
         if(isFormValid(email, password, name, surname, username)){
             isRegisteredLiveData.postValue(true);
             User user = new User(username, email, name, surname, password);
+            Log.d("RegisterViewModel", "username: " + user.getUsername());
+            Log.d("RegisterViewModel", "email: " + user.getEmail());
+            Log.d("RegisterViewModel", "surname: " + user.getSurname());
+            Log.d("RegisterViewModel", "name: " + user.getName());
             this.userRepo.registerUser(user);
-
         }
-
     }
     private Boolean isFormValid(String email, String password, String name, String surname, String username){
         boolean isValid = true;
@@ -63,6 +71,10 @@ public class RegisterViewModel extends ViewModel {
         }; */
 
         return isValid;
+    }
+
+    public void goTo(){
+        registerActivity.goTo(LoginActivity.class);
     }
 
     /*
@@ -123,4 +135,9 @@ public class RegisterViewModel extends ViewModel {
     public void setUserRepo(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
+
+    public void setRegisterActivity(RegisterActivity registerActivity) {
+        this.registerActivity = registerActivity;
+    }
+
 }

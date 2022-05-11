@@ -32,27 +32,11 @@ public class MainActivity extends AppCompatActivity implements Observer {
     ArrayList<Card> lCard = new ArrayList<Card>();
     User player1;
     User player2;
-    Map[] already_played;
     Game game;
     Spinner lvlList;
     String diffSelected;
     final int REQ_CODE = 1;
     final int REQ_ROUND = 2;
-
-    /**
-     * Cartes,baralles i players per fer proves!
-     *
-     */
-     /* public static Card carta1 = new Card(1, "Benito", 50, 26, 44, 86, 51, false, 2);
-    public static Card carta2 = new Card(2, "Paco", 20, 24, 94, 12, 89, false, 3);
-    public static Card carta3 = new Card(1, "Mariano", 30, 30, 36, 38, 5, false, 1);
-    public static Card carta4 = new Card(2, "Raimundo", 69, 28, 95, 15, 36, false, 3);
-    public static Card carta5 = new Card(1, "Jaime", 10, 98, 72, 11, 10, false, 3);
-    public static Card carta6 = new Card(2, "Jose", 29, 59, 61, 46, 98, false, 3);
-    public static Card carta7 = new Card(1, "Fran", 40, 57, 59, 85, 83, false, 2);
-    public static Card carta8 = new Card(2, "Gonzalo", 19, 29, 39, 23, 9, false, 1);
-    public static Card carta9 = new Card(1, "Jon", 5, 53, 24, 83, 16, false, 2);
-    public static Card carta10 = new Card(2, "Carlos", 16, 32, 51, 14, 94, false, 2); */
 
 
     @Override
@@ -89,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
             }
         });
-        game = new Game(player1,player2,already_played);
         playButton = findViewById(R.id.playButton);
         selectDeck = findViewById(R.id.btnDeck);
         selectDeck.setOnClickListener(new View.OnClickListener() {

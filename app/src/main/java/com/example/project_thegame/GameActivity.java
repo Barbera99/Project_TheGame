@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.project_thegame.controllers.GameController;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
+import com.example.project_thegame.models.Map;
 import com.example.project_thegame.models.User;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
     //player1
     int playerScore = 0;
     User player1;
-
+    Map[] already_played;
     TextView txtViewRounds;
     TextView scorePlayerText;
     TextView scoreIAText;

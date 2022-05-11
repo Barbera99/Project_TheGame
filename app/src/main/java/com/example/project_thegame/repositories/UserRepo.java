@@ -12,6 +12,8 @@ import com.example.project_thegame.models.Result;
 import com.example.project_thegame.service.UserServiceImpl;
 import com.example.project_thegame.service.UserService;
 import com.example.project_thegame.models.User;
+import com.example.project_thegame.viewModels.RegisterViewModel;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,6 +25,7 @@ public class UserRepo {
     private Result<Integer> registerResult;
     private MutableLiveData<Result<Integer>> registerResultLiveData;
     public MutableLiveData<User> mplayer;
+    private RegisterViewModel registerViewModel;
 
     public UserRepo() {
         this.userService = new UserServiceImpl();
@@ -62,7 +65,10 @@ public class UserRepo {
             @Override
             public void onResponseSuccess(Call<User> call, Response<User> response) {
                 Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
-                //RegisterActivity.goTo(LoginActivity.class);
+                int code = response.code();
+                if (code == 200) {
+                    registerViewModel.goTo();
+                }
             }
 
             @Override
@@ -74,4 +80,7 @@ public class UserRepo {
         });
     }
 
+    public void setRegisterViewModel(RegisterViewModel registerViewModel) {
+        this.registerViewModel = registerViewModel;
+    }
 }
