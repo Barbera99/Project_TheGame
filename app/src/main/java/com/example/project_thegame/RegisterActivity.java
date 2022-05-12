@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.project_thegame.databinding.ActivityLoginBinding;
 import com.example.project_thegame.databinding.ActivityRegisterBinding;
@@ -32,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
+                    Toast.makeText(RegisterActivity.this, "T'has registrat correctament", Toast.LENGTH_LONG);
                     Log.d(TAG,"Registre realitzat correctament.");
                     goTo(LoginActivity.class);
                 }
