@@ -46,7 +46,7 @@ public class GameRepo {
                 Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
                 int code = response.code();
                 if (code == 200) {
-                    createGameResult.setIsRegisteredLiveData(new MutableLiveData<Boolean>(true));
+                    //createGameResult.setIsRegisteredLiveData(new MutableLiveData<Boolean>(true));
                 }
             }
 
