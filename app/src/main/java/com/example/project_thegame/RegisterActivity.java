@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.example.project_thegame.databinding.ActivityLoginBinding;
 import com.example.project_thegame.databinding.ActivityRegisterBinding;
+import com.example.project_thegame.models.Result;
 import com.example.project_thegame.utils.UIUtils;
 import com.example.project_thegame.viewModels.LoginViewModel;
 import com.example.project_thegame.viewModels.RegisterViewModel;
@@ -28,17 +29,10 @@ public class RegisterActivity extends AppCompatActivity {
         registerViewModel.setRegisterActivity(this);
         initDataBinding();
 
-        registerViewModel.isRegisteredLiveData.observe(this, new Observer<Boolean>() {
+        registerViewModel.isRegisteredLiveData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
-                    Log.d(TAG,"Registre realitzat correctament.");
-                    goTo(LoginActivity.class);
-                }
-                else{
-                    Log.d(TAG,"Registre no realitzat.");
 
-                }
             }
         });
 

@@ -34,7 +34,6 @@ public class RegisterViewModel extends ViewModel {
         this.passwordLiveData = new MutableLiveData<String>();
         this.isRegisteredLiveData = new MutableLiveData<Boolean>();
         this.userRepo = new UserRepo();
-        this.userRepo.setRegisterViewModel(this);
     }
     public void register() {
         String name = nameLiveData.getValue();
@@ -73,10 +72,11 @@ public class RegisterViewModel extends ViewModel {
         return isValid;
     }
 
-    public void goTo(){
-        registerActivity.goTo(LoginActivity.class);
-    }
+    public LiveData<Result<Integer>> isUserRegistered(){
+        if(this.userRepo.get){
 
+        }
+    }
     /*
                         SETTERS I GETTERS
      */

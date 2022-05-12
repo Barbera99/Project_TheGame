@@ -25,7 +25,6 @@ public class UserRepo {
     private Result<Integer> registerResult;
     private MutableLiveData<Result<Integer>> registerResultLiveData;
     public MutableLiveData<User> mplayer;
-    private RegisterViewModel registerViewModel;
 
     public UserRepo() {
         this.userService = new UserServiceImpl();
@@ -64,10 +63,11 @@ public class UserRepo {
 
             @Override
             public void onResponseSuccess(Call<User> call, Response<User> response) {
+                registerResult = Result.success(response.body().getId());
                 Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
                 int code = response.code();
                 if (code == 200) {
-                    registerViewModel.setIsRegisteredLiveData(new MutableLiveData<Boolean>(true));
+                    registerResultLiveData.postValue(registerResult);
                 }
             }
 
@@ -80,7 +80,7 @@ public class UserRepo {
         });
     }
 
-    public void setRegisterViewModel(RegisterViewModel registerViewModel) {
-        this.registerViewModel = registerViewModel;
+    public LiveData<Result<Integer>> getRegisterResult(){
+        return this.registerResultLiveData;
     }
 }
