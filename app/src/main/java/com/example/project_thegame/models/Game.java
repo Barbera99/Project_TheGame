@@ -18,6 +18,12 @@ public class Game {
         this.score_player2 = 0;
         this.already_played = already_played;
     }
+    public Game(User player1, User player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.score_player1 = 0;
+        this.score_player2 = 0;
+    }
 
     /**
      * Declaració getters i setters dels atributs de la classe.
