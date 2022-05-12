@@ -16,9 +16,7 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<String> errorEmailLiveData;
     private MutableLiveData<String> passwordLiveData;
     private MutableLiveData<String> errorPasswordLiveData;
-
     public MutableLiveData<Boolean> isLogged;
-
     private AccountRepo accountRepo;
 
 
@@ -27,9 +25,7 @@ public class LoginViewModel extends ViewModel {
         this.errorEmailLiveData = new MutableLiveData<>();
         this.passwordLiveData = new MutableLiveData<>();
         this.errorPasswordLiveData = new MutableLiveData<>();
-
         this.isLogged = new MutableLiveData<>();
-
         this.accountRepo = new AccountRepo();
     }
 
@@ -81,10 +77,10 @@ public class LoginViewModel extends ViewModel {
             this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
         }
         // Shows the progress bar, telling the user that we are making the communication with the API
-        //isLogged.postValue(true);
+        isLogged.postValue(true);
 
         // Call the repo passing the authorization token obtained from email and password
-        //this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
+        this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
 
     }
 
