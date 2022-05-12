@@ -75,7 +75,7 @@ public class UserRepo {
             public void onResponseError(Call<User> call, Throwable t) {
                 registerResult = Result.error(t);
                 registerResultLiveData.postValue(registerResult);
-                //Log.d(TAG, "register() -> onResponseError -> " + t.getMessage());
+                Log.d(TAG, "register() -> onResponseError -> " + t.getMessage());
             }
         });
     }
