@@ -22,7 +22,7 @@ import java.util.Random;
 public class GameViewModel extends ViewModel {
     public MutableLiveData<Game> currentGame;
     public MutableLiveData<User> player1;
-    public MutableLiveData<User> player2;
+    public MutableLiveData<User> playerIA;
     String localPlayer = ""; // Per a simular que fem login
     String awayPlayer = "IABot"; // Per a simular la IA
     private final UserRepo userRepo;
@@ -169,7 +169,7 @@ public class GameViewModel extends ViewModel {
      * Començem la partida.
      */
     public void start_game(){
-        //TODO
+        //Game game = new Game(player1, playerIA);
     }
     /**
      * Comprovem si algun dels jugadors a assolit el nombre de victories mínimes per a guanyar la partia.
