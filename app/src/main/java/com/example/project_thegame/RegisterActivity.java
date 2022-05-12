@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.project_thegame.databinding.ActivityLoginBinding;
 import com.example.project_thegame.databinding.ActivityRegisterBinding;
 import com.example.project_thegame.models.Result;
+import com.example.project_thegame.models.User;
+import com.example.project_thegame.utils.PreferencesProvider;
 import com.example.project_thegame.utils.UIUtils;
 import com.example.project_thegame.viewModels.LoginViewModel;
 import com.example.project_thegame.viewModels.RegisterViewModel;
@@ -30,30 +32,28 @@ public class RegisterActivity extends AppCompatActivity {
         registerViewModel.setRegisterActivity(this);
         initDataBinding();
 
-        registerViewModel.isRegisteredLiveData.observe(this, new Observer<Result>() {
+        registerViewModel.isRegisteredLiveData.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-
-
+                if(aBoolean){
+                    Log.d(TAG,"Registre realitzat correctament.");
+                    goTo(LoginActivity.class);
+                }
+                else{
+                    //Display Error
+                    Log.d(TAG,"Usuari no registrat.");
+                }
             }
         });
 
 
     }
 
-
-
     private void initDataBinding() {
         activityRegisterBinding =
                 DataBindingUtil.setContentView(this,R.layout.activity_register);
         activityRegisterBinding.setRegisterViewModel(registerViewModel);
         activityRegisterBinding.setLifecycleOwner(this);
-    }
-
-    
-    private void showRegisterError(String errorMessage){
-        DialogInterface.OnClickListener positiveAction = (dialogInterface, i) -> dialogInterface.cancel();
-        UIUtils.showAlert(this,"Error", errorMessage, "Ok",positiveAction ,null,null, false);
     }
 
     public void goTo(Class _class){

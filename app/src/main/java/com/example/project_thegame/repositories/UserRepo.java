@@ -14,6 +14,7 @@ import com.example.project_thegame.service.UserService;
 import com.example.project_thegame.models.User;
 import com.example.project_thegame.viewModels.RegisterViewModel;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,14 +23,14 @@ import retrofit2.Response;
 public class UserRepo {
     private static String TAG = "UserRepo";
     private UserService userService;
-    private Result<Integer> registerResult;
-    private MutableLiveData<Result<Integer>> registerResultLiveData;
+    private Result<String> registerResult;
     public MutableLiveData<User> mplayer;
+    private RegisterViewModel registerViewModel;
 
     public UserRepo() {
         this.userService = new UserServiceImpl();
         this.mplayer = new MutableLiveData<>();
-        registerResultLiveData = new MutableLiveData<>();
+        this.registerViewModel = registerViewModel;
     }
 
     public void getUserByUsername(String username){
@@ -52,35 +53,21 @@ public class UserRepo {
     }
 
     public void registerUser(User user) {
-        userService.createUser(user).enqueue(new ApiCallBack<User>() {
+        userService.createUser(user).enqueue(new Callback<ResponseBody>() {
 
             @Override
-            public void onFailure(Call call, Throwable t) {
-                registerResult = Result.error(t);
-                registerResultLiveData.postValue(registerResult);
-                Log.d(TAG, "register() -> onFailure -> " + t.getMessage());
-            }
-
-            @Override
-            public void onResponseSuccess(Call<User> call, Response<User> response) {
-                registerResult = Result.success(response.body().getId());
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
                 int code = response.code();
                 if (code == 200) {
-                    registerResultLiveData.postValue(registerResult);
+                    registerViewModel.isRegisteredLiveData.setValue(true);
                 }
             }
-
             @Override
-            public void onResponseError(Call<User> call, Throwable t) {
+            public void onFailure(Call call, Throwable t) {
                 registerResult = Result.error(t);
-                registerResultLiveData.postValue(registerResult);
-                Log.d(TAG, "register() -> onResponseError -> " + t.getMessage());
+                Log.d(TAG, "register() -> onFailure -> " + t.getMessage());
             }
         });
-    }
-
-    public LiveData<Result<Integer>> getRegisterResult(){
-        return this.registerResultLiveData;
     }
 }

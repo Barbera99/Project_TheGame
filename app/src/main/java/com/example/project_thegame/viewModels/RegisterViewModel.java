@@ -45,10 +45,6 @@ public class RegisterViewModel extends ViewModel {
         if(isFormValid(email, password, name, surname, username)){
             isRegisteredLiveData.postValue(true);
             User user = new User(username, email, name, surname, password);
-            //Log.d("RegisterViewModel", "username: " + user.getUsername());
-            //Log.d("RegisterViewModel", "email: " + user.getEmail());
-            //Log.d("RegisterViewModel", "surname: " + user.getSurname());
-            //Log.d("RegisterViewModel", "name: " + user.getName());
             this.userRepo.registerUser(user);
         }
     }
@@ -72,11 +68,6 @@ public class RegisterViewModel extends ViewModel {
         return isValid;
     }
 
-    public LiveData<Result<Integer>> isUserRegistered(){
-        if(this.userRepo.get){
-
-        }
-    }
     /*
                         SETTERS I GETTERS
      */
