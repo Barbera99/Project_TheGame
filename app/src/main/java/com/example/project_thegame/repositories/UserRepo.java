@@ -67,7 +67,7 @@ public class UserRepo {
                 Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
                 int code = response.code();
                 if (code == 200) {
-                    registerViewModel.goTo();
+                    registerViewModel.setIsRegisteredLiveData(new MutableLiveData<Boolean>(true));
                 }
             }
 
