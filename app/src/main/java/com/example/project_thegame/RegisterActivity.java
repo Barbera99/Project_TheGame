@@ -37,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
                     Log.d(TAG,"Registre realitzat correctament.");
-
                     goTo(LoginActivity.class);
                 }
                 else{

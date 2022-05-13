@@ -43,7 +43,6 @@ public class RegisterViewModel extends ViewModel {
         String password = passwordLiveData.getValue();
 
         if(isFormValid(email, password, name, surname, username)){
-            isRegisteredLiveData.postValue(true);
             User user = new User(username, email, name, surname, password);
             this.userRepo.registerUser(user);
         }
