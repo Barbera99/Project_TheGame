@@ -43,19 +43,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*
-        lCard.add(carta1);
-        lCard.add(carta2);
-        lCard.add(carta3);
-        lCard.add(carta4);
-        lCard.add(carta5);
-        lCard.add(carta6);
-        lCard.add(carta7);
-        lCard.add(carta8);
-        lCard.add(carta9);
-        lCard.add(carta10); */
 
-        // AIXO AQUI NO VA - - - - - - - -
         lvlList = findViewById(R.id.sLvl);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Easy");
@@ -73,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
             }
         });
-        playButton = findViewById(R.id.playButton);
+
         selectDeck = findViewById(R.id.btnDeck);
         selectDeck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,15 +71,14 @@ public class MainActivity extends AppCompatActivity implements Observer {
                 startActivityForResult(intent,REQ_CODE);
             }
         });
+
+        playButton = findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-
                     Intent roundActivity = new Intent(getApplicationContext(), GameActivity.class);
                     roundActivity.putExtra("DiffS",diffSelected);
-
                     //roundActivity.putExtra("PlayerObject",player1);
-
                     startActivity(roundActivity);
                 //finish();
             }
