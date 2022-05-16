@@ -10,22 +10,30 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.project_thegame.GameActivity;
+import com.example.project_thegame.repositories.GameRepo;
 import com.example.project_thegame.repositories.UserRepo;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.User;
+import com.example.project_thegame.utils.PreferencesProvider;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameViewModel extends ViewModel {
     public MutableLiveData<Game> currentGame;
-    public int player1 = ;
+    public MutableLiveData<Boolean> isGameStarted;
+    public MutableLiveData<Boolean> isGameEnded;
+    public int player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", ""));
     public int playerIA = 1;
     String localPlayer = ""; // Per a simular que fem login
     String awayPlayer = "IABot"; // Per a simular la IA
+    MutableLiveData<Boolean> endGame;
     private final UserRepo userRepo;
+    private final GameRepo gameRepo;
+    private GameActivity gameActivity;
 
     public void getUserByUsername(String username){
         this.userRepo.getUserByUsername(username);
@@ -72,6 +80,8 @@ public class GameViewModel extends ViewModel {
         this.iACard = c;
         currentGame = new MutableLiveData<>();
         userRepo = new UserRepo();
+        gameRepo = new GameRepo();
+        this.gameRepo.setGameViewModel(this);
     }
 
     public void setPlayer(int user) {

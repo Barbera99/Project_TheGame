@@ -11,6 +11,7 @@ import com.example.project_thegame.models.Result;
 import com.example.project_thegame.service.DeckService;
 import com.example.project_thegame.service.GameService;
 import com.example.project_thegame.service.GameServiceImpl;
+import com.example.project_thegame.viewModels.GameViewModel;
 
 import java.util.List;
 
@@ -20,16 +21,14 @@ import retrofit2.Response;
 public class GameRepo {
     private static String TAG = "GameRepo";
     private GameService gameService;
-    public MutableLiveData<Game> startGame;
-    public MutableLiveData<List> playerDecks;
+    public MutableLiveData<Boolean> gameStarted;
+    public MutableLiveData<Boolean> gameEnded;
     private Result<Integer> createGameResult;
-    private MutableLiveData<Result<Integer>> createGameResultLiveData;
-
+    private Result<Integer> endGameResult;
+    private GameViewModel gameViewModel;
 
     public GameRepo(){
         this.gameService = new GameServiceImpl();
-        createGameResultLiveData = new MutableLiveData<>();
-
     }
 
     public void createGame(int user_id, Game game){
@@ -37,7 +36,7 @@ public class GameRepo {
             @Override
             public void onFailure(Call call, Throwable t) {
                 createGameResult = Result.error(t);
-                createGameResultLiveData.postValue(createGameResult);
+                gameStarted.setValue(false);
                 Log.d(TAG, "createGame() -> onFailure -> " + t.getMessage());
             }
 
@@ -46,16 +45,15 @@ public class GameRepo {
                 Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
                 int code = response.code();
                 if (code == 200) {
-                    //createGameResult.setIsRegisteredLiveData(new MutableLiveData<Boolean>(true));
+                    gameViewModel.isGameStarted.setValue(true);
                 }
             }
 
             @Override
             public void onResponseError(Call<Game> call, Throwable t) {
                 createGameResult = Result.error(t);
-                createGameResultLiveData.postValue(createGameResult);
-                Log.d(TAG, "createGame() -> onResponseError -> " + t.getMessage());
-
+                gameStarted.setValue(false);
+                Log.d(TAG, "createGame() -> onFailure -> " + t.getMessage());
             }
         });
     }
@@ -65,19 +63,29 @@ public class GameRepo {
         gameService.endGame(game_id).enqueue(new ApiCallBack<Game>() {
             @Override
             public void onFailure(Call call, Throwable t) {
-
+                endGameResult = Result.error(t);
+                gameEnded.setValue(false);
+                Log.d(TAG, "createGame() -> onFailure -> " + t.getMessage());
             }
 
             @Override
             public void onResponseSuccess(Call<Game> call, Response<Game> response) {
-
+                Log.d(TAG, "endGame() -> onResponseSusccess -> " + response.code());
+                int code = response.code();
+                if (code == 200) {
+                    gameViewModel.isGameEnded.setValue(true);
+                }
             }
 
             @Override
             public void onResponseError(Call<Game> call, Throwable t) {
-
+                endGameResult = Result.error(t);
+                gameEnded.setValue(false);
+                Log.d(TAG, "createGame() -> onFailure -> " + t.getMessage());
             }
         });
-
     }
+     public void setGameViewModel(GameViewModel gameViewModel){
+        this.gameViewModel = gameViewModel;
+     }
 }
