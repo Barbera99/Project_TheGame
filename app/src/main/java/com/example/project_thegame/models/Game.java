@@ -5,22 +5,23 @@ public class Game {
      * Declaració dels atributs de classe.
      */
 
-    private User player1;
-    private User player2;
+    private int player1_id;
+    private int player2_id;
     private Map []already_played;
     private int score_player1;
     private int score_player2;
 
-    public Game(User player1, User player2, Map [] already_played) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Game(int player1, int player2, Map [] already_played) {
+        this.player1_id = player1;
+        this.player2_id = player2;
         this.score_player1 = 0;
         this.score_player2 = 0;
         this.already_played = already_played;
     }
-    public Game(User player1, User player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+
+    public Game(int player1, int player2) {
+        this.player1_id = player1;
+        this.player2_id = player2;
         this.score_player1 = 0;
         this.score_player2 = 0;
     }
@@ -29,20 +30,20 @@ public class Game {
      * Declaració getters i setters dels atributs de la classe.
      *
      */
-    public User getPlayer1() {
-        return player1;
+    public int getPlayer1Id() {
+        return player1_id;
     }
 
-    public void setPlayer1(User player1) {
-        this.player1 = player1;
+    public void setPlayer1Id(int player1) {
+        this.player1_id = player1;
     }
 
-    public User getPlayer2() {
-        return player2;
+    public int getPlayer2Id() {
+        return player2_id;
     }
 
-    public void setPlayer2(User player2) {
-        this.player2 = player2;
+    public void setPlayer2(int player2) {
+        this.player2_id = player2;
     }
 
     public Map[] getAlready_played() {

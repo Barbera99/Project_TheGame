@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity implements Observer {
         playButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                    Intent roundActivity = new Intent(getApplicationContext(), GameActivity.class);
-                    roundActivity.putExtra("DiffS",diffSelected);
-                    //roundActivity.putExtra("PlayerObject",player1);
-                    startActivity(roundActivity);
+                    Intent gameActivity = new Intent(getApplicationContext(), GameActivity.class);
+                    gameActivity.putExtra("DiffS",diffSelected);
+                    //gameActivity.putExtra("PlayerObject",player1);
+                    startActivity(gameActivity);
                 //finish();
             }
 
