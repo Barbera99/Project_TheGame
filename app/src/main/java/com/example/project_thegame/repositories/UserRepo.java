@@ -30,7 +30,6 @@ public class UserRepo {
     public UserRepo() {
         this.userService = new UserServiceImpl();
         this.mplayer = new MutableLiveData<>();
-        this.registerViewModel = registerViewModel;
     }
 
     public void getUserByUsername(String username){
@@ -69,5 +68,9 @@ public class UserRepo {
                 Log.d(TAG, "register() -> onFailure -> " + t.getMessage());
             }
         });
+    }
+
+    public void setRegisterViewModel(RegisterViewModel registerViewModel){
+     this.registerViewModel = registerViewModel;
     }
 }

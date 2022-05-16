@@ -34,6 +34,7 @@ public class RegisterViewModel extends ViewModel {
         this.passwordLiveData = new MutableLiveData<String>();
         this.isRegisteredLiveData = new MutableLiveData<Boolean>();
         this.userRepo = new UserRepo();
+        this.userRepo.setRegisterViewModel(this);
     }
     public void register() {
         String name = nameLiveData.getValue();
