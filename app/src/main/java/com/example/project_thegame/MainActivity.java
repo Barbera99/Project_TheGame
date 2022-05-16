@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         arrayList.add("Hard");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
         lvlList.setAdapter(arrayAdapter);
+        lvlList.setSelection(0);
         lvlList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
