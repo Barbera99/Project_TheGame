@@ -58,13 +58,6 @@ public class RegisterViewModel extends ViewModel {
         if (name == null || surname == null || username == null) {
             isValid = false;
         }
-        /*
-        String validPassword= AccountUtils.isPasswordValid(password);
-        if ( validPassword != null){
-            isValid = false;
-            errorPasswordLiveData.postValue(validPassword);
-        }; */
-
         return isValid;
     }
 

@@ -26,11 +26,12 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<Game> currentGame;
     public MutableLiveData<Boolean> isGameStarted;
     public MutableLiveData<Boolean> isGameEnded;
+    public MutableLiveData<String> player1_username;
+    public MutableLiveData<String> player2_username;
+    public MutableLiveData<String> player1_score;
+    public MutableLiveData<String> player2_score;
     public int player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", ""));
     public int playerIA = 1;
-    String localPlayer = ""; // Per a simular que fem login
-    String awayPlayer = "IABot"; // Per a simular la IA
-    MutableLiveData<Boolean> endGame;
     private final UserRepo userRepo;
     private final GameRepo gameRepo;
     private GameActivity gameActivity;
