@@ -21,8 +21,8 @@ import java.util.Random;
 
 public class GameViewModel extends ViewModel {
     public MutableLiveData<Game> currentGame;
-    public MutableLiveData<User> player1;
-    public MutableLiveData<User> playerIA;
+    public int player1;
+    public int playerIA;
     String localPlayer = ""; // Per a simular que fem login
     String awayPlayer = "IABot"; // Per a simular la IA
     private final UserRepo userRepo;
@@ -71,12 +71,11 @@ public class GameViewModel extends ViewModel {
         this.cardSelected = c;
         this.iACard = c;
         currentGame = new MutableLiveData<>();
-        player1 = new MutableLiveData<>();
         userRepo = new UserRepo();
     }
 
-    public void setPlayer(User user) {
-        this.game.setPlayer1(user);
+    public void setPlayer(int user) {
+        this.game.setPlayer1Id(user);
     }
 
     public void setIADifficult(String diffSelected){
@@ -101,7 +100,7 @@ public class GameViewModel extends ViewModel {
             newC.add(hard2);
         }
         deckForIA.setArrayDeck(newC);
-        game.getPlayer2().setPlayerDeck(deckForIA);
+        //game.getPlayer2().setPlayerDeck(deckForIA);
     }
     public int getPositionCard(){return positionCard;}
     public void setPositionCard(int pC){this.positionCard = pC;}
@@ -112,7 +111,7 @@ public class GameViewModel extends ViewModel {
     public String getAttributeActualRound() {
         return attributeActualRound;
     }
-    public Card getCardSelected(int i) { return game.getPlayer1().getPlayerDeck().getArrayDeck().get(i); }
+    //public Card getCardSelected(int i) { return game.getPlayer1().getPlayerDeck().getArrayDeck().get(i); }
 
     public ArrayList<String> arrayListText(Card c, int i){
         ArrayList<String> arrayList = new ArrayList<>();
@@ -150,9 +149,11 @@ public class GameViewModel extends ViewModel {
         return this.userRepo.mplayer;
     }
 
+    /*
     public void onClickedAt(User user){
         player1.setValue(user);
     }
+     */
     /**
      * Comprovem la puntuació.
      */
@@ -169,7 +170,8 @@ public class GameViewModel extends ViewModel {
      * Començem la partida.
      */
     public void start_game(){
-        //Game game = new Game(player1, playerIA);
+
+        Game game = new Game(player1, playerIA);
     }
     /**
      * Comprovem si algun dels jugadors a assolit el nombre de victories mínimes per a guanyar la partia.
