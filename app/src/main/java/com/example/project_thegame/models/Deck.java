@@ -15,8 +15,7 @@ public class Deck implements Parcelable {
     /**
      * Constructor
      */
-    public Deck(ArrayList<Card> Deck) {
-        this.arrayDeck = Deck;
+    public Deck() {
     }
 
     /**

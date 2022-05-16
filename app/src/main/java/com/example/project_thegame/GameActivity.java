@@ -56,9 +56,9 @@ public class GameActivity extends AppCompatActivity {
     ImageView imgC5;
     ArrayList <Card> Deck;
 
-    Deck easyDeck = new Deck(Deck);
-    Deck mediumDeck = new Deck(Deck);
-    Deck hardDeck = new Deck(Deck);
+    Deck easyDeck = new Deck();
+    Deck mediumDeck = new Deck();
+    Deck hardDeck = new Deck();
     public static Card easy1 = new Card(1, "Easy1", 30, 30, 10, 20, 10, false, 3);
     public static Card easy2 = new Card(2, "Easy2", 20, 20, 30, 10, 20, false, 1);
     public static Card easy3 = new Card(3, "Easy3", 10, 10, 20, 30, 30, false, 3);
@@ -78,7 +78,7 @@ public class GameActivity extends AppCompatActivity {
     String attributeActualRound;
     Card iACard;
     Card cardSelected;
-    Deck deckForIA = new Deck(Deck);
+    Deck deckForIA = new Deck();
     int positionCard;
 
     //player2

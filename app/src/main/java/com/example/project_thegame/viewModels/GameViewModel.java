@@ -21,8 +21,8 @@ import java.util.Random;
 
 public class GameViewModel extends ViewModel {
     public MutableLiveData<Game> currentGame;
-    public int player1;
-    public int playerIA;
+    public int player1 = ;
+    public int playerIA = 1;
     String localPlayer = ""; // Per a simular que fem login
     String awayPlayer = "IABot"; // Per a simular la IA
     private final UserRepo userRepo;
@@ -41,7 +41,7 @@ public class GameViewModel extends ViewModel {
     Card iACard;
     Card cardSelected;
     ArrayList<Card> Deck;
-    Deck deckForIA = new Deck(Deck);
+    Deck deckForIA = new Deck();
     int positionCard;
     int iAScore = 0;
     String attributeActualRound;
@@ -63,9 +63,9 @@ public class GameViewModel extends ViewModel {
     public GameViewModel(Game game) {
         Card c = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
         this.game = game;
-        this.easyDeck = new Deck(Deck);
-        this.mediumDeck = new Deck(Deck);
-        this.hardDeck = new Deck(Deck);
+        this.easyDeck = new Deck();
+        this.mediumDeck = new Deck();
+        this.hardDeck = new Deck();
         this.roundNumber = 1;
         this.positionCard = -1;
         this.cardSelected = c;
