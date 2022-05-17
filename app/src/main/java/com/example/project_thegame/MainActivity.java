@@ -2,6 +2,7 @@ package com.example.project_thegame;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private static final String TAG = "MainActivity";
     Button playButton;
     Button selectDeck;
+    Button logoutButton;
     ArrayList<Card> lCard = new ArrayList<Card>();
     User player1;
     User player2;
@@ -85,7 +87,17 @@ public class MainActivity extends AppCompatActivity implements Observer {
             }
 
         });
+
+        logoutButton = findViewById(R.id.LogOut);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent loginActivity = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(loginActivity);
+            }
+        });
     }
+
 
     protected void showToast(String msg){
         Toast myToast = Toast.makeText(this,msg,Toast.LENGTH_LONG);
@@ -109,13 +121,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
     public void update(Observable observable, Object o) {
 
     }
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
     }
-
-
-
 
 }

@@ -13,6 +13,7 @@ import com.example.project_thegame.service.AccountServiceImpl;
 import com.example.project_thegame.utils.PreferencesProvider;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AccountRepo {
@@ -63,6 +64,23 @@ public class AccountRepo {
             }
         });
     }
+
+    // Sends a logout query to the backend
+    public void logout(){
+        this.accountService.deleteTokenUser().enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {
+
+            }
+        });
+    }
+
+
 
     // Gets the answer to login query
     public LiveData<Result<String>> getLoginResult(){
