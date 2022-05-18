@@ -1,15 +1,9 @@
 package com.example.project_thegame.viewModels;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.project_thegame.LoginActivity;
-import com.example.project_thegame.MainActivity;
-import com.example.project_thegame.RegisterActivity;
-import com.example.project_thegame.models.Result;
+import com.example.project_thegame.views.RegisterActivity;
 import com.example.project_thegame.models.User;
 import com.example.project_thegame.repositories.UserRepo;
 import com.example.project_thegame.utils.AccountUtils;

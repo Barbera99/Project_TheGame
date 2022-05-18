@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.project_thegame.GameActivity;
+import com.example.project_thegame.views.GameActivity;
 import com.example.project_thegame.repositories.GameRepo;
 import com.example.project_thegame.repositories.UserRepo;
 import com.example.project_thegame.models.Card;

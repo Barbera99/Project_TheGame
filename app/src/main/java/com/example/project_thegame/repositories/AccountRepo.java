@@ -11,7 +11,9 @@ import com.example.project_thegame.models.Result;
 import com.example.project_thegame.service.AccountService;
 import com.example.project_thegame.service.AccountServiceImpl;
 import com.example.project_thegame.utils.PreferencesProvider;
+import com.example.project_thegame.viewModels.LogOutViewModel;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,6 +24,7 @@ public class AccountRepo {
     private AccountService accountService;
     private Result<String> loginResult;
     private MutableLiveData<Result<String>> loginResultLiveData;
+    private LogOutViewModel logOutViewModel;
 
     public AccountRepo(){
         this.accountService = new AccountServiceImpl();
@@ -66,21 +69,29 @@ public class AccountRepo {
     }
 
     // Sends a logout query to the backend
-    public void logout(){
-        this.accountService.deleteTokenUser().enqueue(new Callback<Account>() {
+    public void logout(String deleteToken){
+        this.accountService.deleteTokenUser(deleteToken).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d(TAG, "Deleting TOKEN.....");
+                int code = response.code();
+                Log.d(TAG, "Codi: " + code);
+                if (code == 200) {
+                    logOutViewModel.isLoggedOut.setValue(true);
+                }
             }
 
             @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d(TAG, "logOut() -> onFailure -> " + t.getMessage());
             }
         });
     }
 
 
+    public void setLogOutViewModel(LogOutViewModel logOutViewModel) {
+        this.logOutViewModel = logOutViewModel;
+    }
 
     // Gets the answer to login query
     public LiveData<Result<String>> getLoginResult(){

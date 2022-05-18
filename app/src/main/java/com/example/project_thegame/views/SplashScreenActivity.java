@@ -1,16 +1,14 @@
-package com.example.project_thegame;
-import androidx.activity.result.ActivityResult;
+package com.example.project_thegame.views;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.project_thegame.R;
 
 public class SplashScreenActivity extends Activity {
     public static final int FIRST_REQUEST = 1;

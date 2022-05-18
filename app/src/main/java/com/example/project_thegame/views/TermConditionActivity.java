@@ -1,4 +1,4 @@
-package com.example.project_thegame;
+package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.project_thegame.R;
 
 public class TermConditionActivity extends AppCompatActivity {
     Button btnAccept;

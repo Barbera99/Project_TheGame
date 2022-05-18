@@ -1,8 +1,8 @@
-package com.example.project_thegame;
+package com.example.project_thegame.views;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +15,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.project_thegame.R;
+import com.example.project_thegame.databinding.ActivityMainBinding;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Game;
-import com.example.project_thegame.models.Map;
 import com.example.project_thegame.models.User;
 import com.example.project_thegame.utils.PreferencesProvider;
+import com.example.project_thegame.viewModels.LogOutViewModel;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -28,6 +30,10 @@ import java.util.Observer;
 public class MainActivity extends AppCompatActivity implements Observer {
 
     private static final String TAG = "MainActivity";
+    private LogOutViewModel logOutViewModel;
+    private ActivityMainBinding activityMainBinding;
+
+
     Button playButton;
     Button selectDeck;
     Button logoutButton;
@@ -46,6 +52,23 @@ public class MainActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        logOutViewModel = new LogOutViewModel();
+        logOutViewModel.setMainActivity(this);
+        initDataBinding();
+
+        logOutViewModel.isLoggedOut.observe(this, new androidx.lifecycle.Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    Log.d(TAG,"SignOut correctly done");
+                    goTo(LoginActivity.class);
+                }else{
+                    //Display Error
+                    Log.d(TAG,"SignOut not correctly done.");
+                }
+            }
+        });
+
 
         lvlList = findViewById(R.id.sLvl);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -94,8 +117,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent loginActivity = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(loginActivity);
+                String deleteToken = PreferencesProvider.providePreferences().getString("token","");
+                showToast("Token: " + deleteToken);
+                logOutViewModel.logOut(deleteToken);
             }
         });
     }
@@ -105,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         Toast myToast = Toast.makeText(this,msg,Toast.LENGTH_LONG);
         myToast.setGravity(Gravity.CENTER,0,0);
         myToast.show();
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -128,4 +151,14 @@ public class MainActivity extends AppCompatActivity implements Observer {
         super.onPointerCaptureChanged(hasCapture);
     }
 
+    private void initDataBinding() {
+        activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        activityMainBinding.setLogOutViewModel(logOutViewModel);
+        activityMainBinding.setLifecycleOwner(this);
+    }
+
+    public void goTo(Class _class){
+        Intent intent = new Intent(this, _class);
+        startActivity(intent);
+    }
 }

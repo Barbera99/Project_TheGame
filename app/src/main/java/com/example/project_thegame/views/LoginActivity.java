@@ -1,4 +1,4 @@
-package com.example.project_thegame;
+package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.project_thegame.R;
 import com.example.project_thegame.databinding.ActivityLoginBinding;
 import com.example.project_thegame.models.Result;
 import com.example.project_thegame.utils.PreferencesProvider;

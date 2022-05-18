@@ -14,31 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trivial">
         <activity
-            android:name=".AboutPageActivity"
+            android:name=".views.AboutPageActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".views.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".views.SplashScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".TermConditionActivity"
+            android:name=".views.TermConditionActivity"
             android:exported="false" />
         <activity
-            android:name=".DeckActivity"
+            android:name=".views.DeckActivity"
             android:exported="false" />
         <activity
-            android:name=".TestActivity"
+            android:name=".views.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".ShowWinnerActivity"
+            android:name=".views.ShowWinnerActivity"
             android:exported="false" />
         <activity
-            android:name=".GameActivity"
+            android:name=".views.GameActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".views.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".views.MainActivity"
             android:exported="false" />
     </application>
 

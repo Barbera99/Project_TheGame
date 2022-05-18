@@ -1,4 +1,4 @@
-package com.example.project_thegame;
+package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.example.project_thegame.R;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.User;
