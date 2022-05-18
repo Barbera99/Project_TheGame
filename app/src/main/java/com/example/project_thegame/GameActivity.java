@@ -56,6 +56,7 @@ public class GameActivity extends AppCompatActivity {
     ImageView imgC5;
     ArrayList <Card> Deck;
 
+    //TODO: @Didac La resta d'activitats no cal que siguin ViewModel,tret de les que ja teniu com a tal, pero aquesta si. Ens netejar codi. Dijous comentem.
     Deck easyDeck = new Deck();
     Deck mediumDeck = new Deck();
     Deck hardDeck = new Deck();
@@ -127,6 +128,8 @@ public class GameActivity extends AppCompatActivity {
             System.out.println("entres");
             deckForIA = hardDeck;
         }
+
+
         System.out.println(deckForIA.getArrayDeck().size()+"perque");
         System.out.println(diffSelected);
         listAttributes = findViewById(R.id.listCard);
@@ -165,8 +168,9 @@ public class GameActivity extends AppCompatActivity {
             player1score = b.getInt("player1Score");
             player2score = b.getInt("player2Score");
         }*/
-        
 
+        
+        //TODO: @Didac  Aquests clicks poden ser Mutables. Dijous comentem
         imgC1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
