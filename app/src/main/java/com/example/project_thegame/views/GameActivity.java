@@ -28,6 +28,8 @@ import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.Map;
 import com.example.project_thegame.models.User;
+import com.example.project_thegame.utils.PreferencesProvider;
+import com.example.project_thegame.viewModels.DeckViewModel;
 import com.example.project_thegame.viewModels.GameViewModel;
 
 import java.util.ArrayList;
@@ -36,9 +38,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
+    private static final String TAG = "GameActivity";
+    private DeckViewModel deckViewModel;
     GameController gameController;
     Game game;
-    private GameViewModel gameViewModel;
+
     int roundNumber = 0;
     //player1
     int playerScore = 0;
@@ -96,10 +100,13 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
+        player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
+
+        DeckViewModel.
 
         //player1 = getIntent().getParcelableExtra("PlayerObject");
-        
-        gameViewModel = new GameViewModel(game);
+
+        deckViewModel = new DeckViewModel();
 
         Bundle extras  = getIntent().getExtras();
         iACard = new Card(9, "test", -1, -1, -1, -1, -1, false, 1);
@@ -126,7 +133,6 @@ public class GameActivity extends AppCompatActivity {
         }else if(diffSelected.equals("Hard")){
             deckForIA = hardDeck;
         }
-
 
         listAttributes = findViewById(R.id.listCard);
         imgBlank = findViewById(R.id.idImgBlank);
