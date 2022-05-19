@@ -9,8 +9,8 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface AccountService {
-    @POST("/account/create_token")
+    @POST("account/create_token")
     Call<Account> createTokenUser(@Header("Authorization") String authorizationToken);
-    @POST("/account/delete_token")
+    @POST("account/delete_token")
     Call<ResponseBody> deleteTokenUser(@Body String deleteToken);
 }
