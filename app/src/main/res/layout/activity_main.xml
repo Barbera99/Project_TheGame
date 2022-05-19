@@ -44,8 +44,8 @@
 
     <TextView
         android:id="@+id/textLvl"
-        android:layout_width="94dp"
-        android:layout_height="52dp"
+        android:layout_width="65dp"
+        android:layout_height="25dp"
         android:text="Difficult:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,10 +74,23 @@
         android:id="@+id/LogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="LogOut"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="242dp"
+        android:layout_height="337dp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_cp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
