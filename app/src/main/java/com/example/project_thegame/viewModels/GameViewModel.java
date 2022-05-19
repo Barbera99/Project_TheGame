@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -30,11 +31,12 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> player2_username;
     public MutableLiveData<String> player1_score;
     public MutableLiveData<String> player2_score;
-    public int player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", ""));
+    //public int player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", null));
     public int playerIA = 1;
     private final UserRepo userRepo;
     private final GameRepo gameRepo;
     private GameActivity gameActivity;
+
 
     public void getUserByUsername(String username){
         this.userRepo.getUserByUsername(username);
@@ -70,6 +72,9 @@ public class GameViewModel extends ViewModel {
     public static Card hard3 = new Card(9, "Hard3", 80, 70, 60, 90, 80, false, 2);
 
     public GameViewModel(Game game) {
+        int prova = PreferencesProvider.providePreferences().getInt("user_id", 0);
+
+        Log.d("amsd", String.valueOf(prova));
         Card c = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
         this.game = game;
         this.easyDeck = new Deck();
@@ -182,7 +187,7 @@ public class GameViewModel extends ViewModel {
      */
     public void start_game(){
 
-        Game game = new Game(player1, playerIA);
+       // Game game = new Game(player1, playerIA);
     }
     /**
      * Comprovem si algun dels jugadors a assolit el nombre de victories mínimes per a guanyar la partia.

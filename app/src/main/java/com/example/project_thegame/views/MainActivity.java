@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
                     Log.d(TAG,"SignOut correctly done");
+                    showToast("Sessió tancada correctament.");
+                    PreferencesProvider.providePreferences().edit().putString("token","").commit();
                     goTo(LoginActivity.class);
                 }else{
                     //Display Error
@@ -118,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
             @Override
             public void onClick(View view) {
                 String deleteToken = PreferencesProvider.providePreferences().getString("token","");
-                showToast("Token: " + deleteToken);
                 logOutViewModel.logOut(deleteToken);
             }
         });
@@ -158,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     }
 
     public void goTo(Class _class){
+        Log.d(TAG, "IntGoto; ");
         Intent intent = new Intent(this, _class);
         startActivity(intent);
     }

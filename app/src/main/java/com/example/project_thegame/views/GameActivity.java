@@ -120,19 +120,14 @@ public class GameActivity extends AppCompatActivity {
         hardDeck.add(hard2,4);
         hardDeck.add(hard3,5);
         if(diffSelected.equals("Easy")){
-            System.out.println("entres");
             deckForIA = easyDeck;
         }else if(diffSelected.equals("Medium")){
-            System.out.println("entres");
             deckForIA = mediumDeck;
         }else if(diffSelected.equals("Hard")){
-            System.out.println("entres");
             deckForIA = hardDeck;
         }
 
 
-        System.out.println(deckForIA.getArrayDeck().size()+"perque");
-        System.out.println(diffSelected);
         listAttributes = findViewById(R.id.listCard);
         imgBlank = findViewById(R.id.idImgBlank);
         imgC1 = findViewById(R.id.imgCard1);
