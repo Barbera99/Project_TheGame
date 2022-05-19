@@ -14,9 +14,11 @@ public class LogOutViewModel extends ViewModel {
     public MutableLiveData<Boolean> isLoggedOut;
     private AccountRepo accountRepo;
     private MainActivity mainActivity;
+
     public LogOutViewModel(){
         this.isLoggedOut = new MutableLiveData<Boolean>();
         this.accountRepo = new AccountRepo();
+        this.accountRepo.setLogOutViewModel(this);
     }
 
     public void logOut (String deleteToken){
