@@ -31,6 +31,8 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> player2_username;
     public MutableLiveData<String> player1_score;
     public MutableLiveData<String> player2_score;
+    public MutableLiveData<String> round_number;
+
     //public int player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", null));
     public int playerIA = 1;
     private final UserRepo userRepo;
