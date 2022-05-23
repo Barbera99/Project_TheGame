@@ -70,19 +70,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
+        <ImageButton
             android:id="@+id/LogOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_width="69dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="324dp"
             android:layout_marginTop="16dp"
-            android:text="LogOut"
+            android:background="@drawable/button_gradient"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logout"
             tools:ignore="MissingConstraints" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/logOut"
             android:layout_width="242dp"
             android:layout_height="337dp"
             android:layout_marginTop="88dp"
@@ -90,7 +92,8 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_cp" />
+            app:srcCompat="@drawable/logo_cp"
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="412dp"
@@ -138,7 +141,8 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/home"
                 tools:layout_editor_absoluteX="154dp"
-                tools:layout_editor_absoluteY="0dp" />
+                tools:layout_editor_absoluteY="0dp"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
