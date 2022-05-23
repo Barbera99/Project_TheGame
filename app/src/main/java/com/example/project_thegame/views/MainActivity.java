@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
 
     Button playButton;
-    Button selectDeck;
+    ImageButton selectDeck;
     ImageButton logoutButton;
     ArrayList<Card> lCard = new ArrayList<Card>();
     User player1;
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         });
 
         //TODO @Didac. Perque? Dijous comentem.
-        selectDeck = findViewById(R.id.btnDeck);
+        selectDeck = findViewById(R.id.deck);
         selectDeck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
