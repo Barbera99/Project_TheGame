@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.service.DeckService;
 import com.example.project_thegame.service.DeckServiceImpl;
+import com.example.project_thegame.viewModels.DeckViewModel;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class DeckRepo {
     private DeckService deckService;
     public MutableLiveData<Deck> playerDeck;
     public MutableLiveData<List> playerDecks;
+    private DeckViewModel deckViewModel;
 
     public DeckRepo(){
         this.deckService = new DeckServiceImpl();
@@ -65,4 +67,7 @@ public class DeckRepo {
         );
     }
 
+    public void setDeckViewModel(DeckViewModel deckViewModel){
+        this.deckViewModel = deckViewModel;
+    }
 }

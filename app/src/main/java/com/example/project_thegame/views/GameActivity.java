@@ -1,6 +1,7 @@
 package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.project_thegame.R;
 import com.example.project_thegame.controllers.GameController;
+import com.example.project_thegame.databinding.ActivityGameBinding;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
@@ -40,9 +42,11 @@ import java.util.TimerTask;
 public class GameActivity extends AppCompatActivity {
     private static final String TAG = "GameActivity";
     private DeckViewModel deckViewModel;
+    private GameViewModel gameViewModel;
     GameController gameController;
-    Game game;
 
+    Game game;
+    private ActivityGameBinding activityGameBinding;
     int roundNumber = 0;
     //player1
     int playerScore = 0;
@@ -100,13 +104,12 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
+        deckViewModel = new DeckViewModel();
+        deckViewModel.setGameActivity(this);
+
         player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
-
-        DeckViewModel.
-
         //player1 = getIntent().getParcelableExtra("PlayerObject");
 
-        deckViewModel = new DeckViewModel();
 
         Bundle extras  = getIntent().getExtras();
         iACard = new Card(9, "test", -1, -1, -1, -1, -1, false, 1);
@@ -443,5 +446,12 @@ public class GameActivity extends AppCompatActivity {
         Toast myToast = Toast.makeText(this,msg ,Toast.LENGTH_LONG);
         myToast.setGravity(Gravity.CENTER,0,0);
         myToast.show();
+    }
+
+    private void initDataBinding() {
+        activityGameBinding =
+                DataBindingUtil.setContentView(this,R.layout.activity_register);
+        activityGameBinding.setGameViewModel(gameViewModel);
+        activityGameBinding.setLifecycleOwner(this);
     }
 }

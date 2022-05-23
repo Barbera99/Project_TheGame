@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.repositories.DeckRepo;
+import com.example.project_thegame.views.GameActivity;
 
 public class DeckViewModel extends ViewModel {
     public MutableLiveData<Deck> currentDeck;
@@ -15,10 +16,12 @@ public class DeckViewModel extends ViewModel {
     public MutableLiveData<Card> card3;
     public MutableLiveData<Card> card4;
     public MutableLiveData<Card> card5;
+    private GameActivity gameActivity;
 
     public DeckViewModel(){
         this.currentDeck = new MutableLiveData<Deck>();
         this.deckRepo = new DeckRepo();
+        deckRepo.setDeckViewModel(this);
 
     }
 
@@ -48,5 +51,9 @@ public class DeckViewModel extends ViewModel {
 
     public DeckRepo getDeckRepo() {
         return deckRepo;
+    }
+
+    public void setGameActivity(GameActivity gameActivity){
+        this.gameActivity = gameActivity;
     }
 }
