@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, DeckActivity.class);
                 intent.putExtra("PlayerObject", player1);
-                startActivityForResult(intent,REQ_CODE);
+                startActivity(intent);
             }
         });
 
