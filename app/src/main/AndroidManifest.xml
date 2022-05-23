@@ -14,13 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trivial.NoActionBar">
         <activity
-            android:name=".DeckActivity"
-            android:exported="false" />
-        <activity
             android:name=".views.DeckActivity"
-            android:exported="false"
-            android:label="@string/title_activity_deck"
-            android:theme="@style/Theme.Trivial.NoActionBar.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".views.ShopActivity"
             android:exported="false" />
@@ -35,9 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".views.TermConditionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".views.DeckActivityCopia"
             android:exported="false" />
         <activity
             android:name=".views.TestActivity"
