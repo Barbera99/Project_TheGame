@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private LogOutViewModel logOutViewModel;
     private ActivityMainBinding activityMainBinding;
 
-
+    ImageButton shopButton;
     Button playButton;
-    ImageButton selectDeck;
+    ImageButton deckButton;
     ImageButton logoutButton;
     ArrayList<Card> lCard = new ArrayList<Card>();
     User player1;
@@ -92,14 +92,11 @@ public class MainActivity extends AppCompatActivity implements Observer {
             }
         });
 
-        //TODO @Didac. Perque? Dijous comentem.
-        selectDeck = findViewById(R.id.deck);
-        selectDeck.setOnClickListener(new View.OnClickListener() {
+        deckButton = findViewById(R.id.deck);
+        deckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DeckActivity.class);
-                intent.putExtra("PlayerObject", player1);
-                startActivity(intent);
+                goTo(DeckActivity.class);
             }
         });
 
@@ -122,6 +119,14 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onClick(View view) {
                 String deleteToken = PreferencesProvider.providePreferences().getString("token","");
                 logOutViewModel.logOut(deleteToken);
+            }
+        });
+
+        shopButton = findViewById(R.id.shop);
+        shopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goTo(ShopActivity.class);
             }
         });
     }
