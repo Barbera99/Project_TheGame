@@ -62,6 +62,8 @@ public class User implements Parcelable {
     public User(String username) {
         this.username = username;
     }
+    public User() {
+    }
 
     /**
      * Declaració dels getters i setters.
