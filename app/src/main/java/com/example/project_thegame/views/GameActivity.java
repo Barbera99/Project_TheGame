@@ -106,6 +106,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_round);
         deckViewModel = new DeckViewModel();
         deckViewModel.setGameActivity(this);
+        player1 = new User();
 
         player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
         //player1 = getIntent().getParcelableExtra("PlayerObject");

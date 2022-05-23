@@ -72,11 +72,11 @@
 
         <ImageButton
             android:id="@+id/LogOut"
-            android:layout_width="69dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="324dp"
+            android:layout_width="47dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="348dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/button_gradient"
+            android:background="#00FFFFFF"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -84,7 +84,7 @@
             tools:ignore="MissingConstraints" />
 
         <ImageView
-            android:id="@+id/logOut"
+            android:id="@+id/logo"
             android:layout_width="242dp"
             android:layout_height="337dp"
             android:layout_marginTop="88dp"
