@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -106,11 +107,12 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_round);
         deckViewModel = new DeckViewModel();
         deckViewModel.setGameActivity(this);
+        gameViewModel = new GameViewModel();
+        gameViewModel.setGameActivity(this);
         player1 = new User();
+        initDataBinding();
 
         player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
-        //player1 = getIntent().getParcelableExtra("PlayerObject");
-
 
         Bundle extras  = getIntent().getExtras();
         iACard = new Card(9, "test", -1, -1, -1, -1, -1, false, 1);
@@ -451,8 +453,14 @@ public class GameActivity extends AppCompatActivity {
 
     private void initDataBinding() {
         activityGameBinding =
-                DataBindingUtil.setContentView(this,R.layout.activity_register);
+                DataBindingUtil.setContentView(this,R.layout.activity_game);
         activityGameBinding.setGameViewModel(gameViewModel);
         activityGameBinding.setLifecycleOwner(this);
+    }
+
+    public void goTo(Class _class){
+        Log.d(TAG, "IntGoto; ");
+        Intent intent = new Intent(this, _class);
+        startActivity(intent);
     }
 }

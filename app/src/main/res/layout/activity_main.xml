@@ -9,6 +9,9 @@
         <variable
             name="logOutViewModel"
             type="com.example.project_thegame.viewModels.LogOutViewModel" />
+        <variable
+            name="gameViewModel"
+            type="com.example.project_thegame.viewModels.GameViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

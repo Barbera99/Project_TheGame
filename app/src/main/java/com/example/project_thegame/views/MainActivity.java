@@ -22,6 +22,7 @@ import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.User;
 import com.example.project_thegame.utils.PreferencesProvider;
+import com.example.project_thegame.viewModels.GameViewModel;
 import com.example.project_thegame.viewModels.LogOutViewModel;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     private static final String TAG = "MainActivity";
     private LogOutViewModel logOutViewModel;
+    private GameViewModel gameViewModel;
     private ActivityMainBinding activityMainBinding;
 
     ImageButton shopButton;
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         setContentView(R.layout.activity_main);
         logOutViewModel = new LogOutViewModel();
         logOutViewModel.setMainActivity(this);
+        gameViewModel = new GameViewModel();
+        gameViewModel.setMainActivity(this);
         initDataBinding();
 
         logOutViewModel.isLoggedOut.observe(this, new androidx.lifecycle.Observer<Boolean>() {
@@ -105,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onClick(View v) {
                     Intent gameActivity = new Intent(getApplicationContext(), GameActivity.class);
                     gameActivity.putExtra("DiffS",diffSelected);
-
+                    gameViewModel.start_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
                     startActivity(gameActivity);
             }
 
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private void initDataBinding() {
         activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         activityMainBinding.setLogOutViewModel(logOutViewModel);
+        activityMainBinding.setGameViewModel(gameViewModel);
         activityMainBinding.setLifecycleOwner(this);
     }
 

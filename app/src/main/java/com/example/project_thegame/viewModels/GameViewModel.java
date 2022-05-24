@@ -19,12 +19,12 @@ import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.User;
 import com.example.project_thegame.utils.PreferencesProvider;
+import com.example.project_thegame.views.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameViewModel extends ViewModel {
-    public MutableLiveData<Game> currentGame;
     public MutableLiveData<Boolean> isGameStarted;
     public MutableLiveData<Boolean> isGameEnded;
     public MutableLiveData<String> player1_username;
@@ -34,20 +34,21 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> round_number;
     int player1_score;
     int player2_score;
-    public int id_player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", null));
-    public int id_playerIA = 1;
-    private final UserRepo userRepo;
-    private final GameRepo gameRepo;
+    private  UserRepo userRepo;
+    private  GameRepo gameRepo;
     private GameActivity gameActivity;
-
+    private MainActivity mainActivity;
+    public void setGameActivity(GameActivity gameActivity){
+        this.gameActivity = gameActivity;
+    }
+    public void setMainActivity(MainActivity mainActivity){
+        this.mainActivity = mainActivity;
+    }
 
     public void getUserByUsername(String username){
         this.userRepo.getUserByUsername(username);
     }
 
-    public void setCurrentGame(Game currentGame) {
-        this.currentGame.setValue(currentGame);
-    }
 
     private Game game;
     private int roundNumber;
@@ -58,8 +59,6 @@ public class GameViewModel extends ViewModel {
     Deck deckForIA = new Deck();
     int positionCard;
     String attributeActualRound;
-    private String name_player_1;
-    private String name_player_2;
     Deck easyDeck;
     Deck mediumDeck;
     Deck hardDeck;
@@ -73,25 +72,17 @@ public class GameViewModel extends ViewModel {
     public static Card hard2 = new Card(8, "Hard2", 70, 60, 80, 70, 70, false, 2);
     public static Card hard3 = new Card(9, "Hard3", 80, 70, 60, 90, 80, false, 2);
 
-    public GameViewModel(Game game) {
-        int prova = PreferencesProvider.providePreferences().getInt("user_id", 0);
-
-        Log.d("amsd", String.valueOf(prova));
-        Card c = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
-        this.game = game;
-        this.easyDeck = new Deck();
-        this.mediumDeck = new Deck();
-        this.hardDeck = new Deck();
-        this.roundNumber = 1;
-        this.positionCard = -1;
-        this.cardSelected = c;
-        this.iACard = c;
-        currentGame = new MutableLiveData<>();
-        userRepo = new UserRepo();
-        gameRepo = new GameRepo();
-        this.gameRepo.setGameViewModel(this);
+    public GameViewModel(){
+        this.gameRepo = new GameRepo();
+        this.userRepo = new UserRepo();
+        this.isGameEnded = new MutableLiveData<Boolean>();
+        this.isGameStarted = new MutableLiveData<Boolean>();
+        this.player1_scoreLiveData = new MutableLiveData<String>();
+        this.player2_username = new MutableLiveData<String>();
+        this.player2_scoreLiveData = new MutableLiveData<String>();
+        this.player2_username = new MutableLiveData<String>();
+        this.round_number = new MutableLiveData<String>();
     }
-
     public void setPlayer(int user) {
         this.game.setPlayer1Id(user);
     }
@@ -165,11 +156,6 @@ public class GameViewModel extends ViewModel {
         return this.userRepo.mplayer;
     }
 
-    /*
-    public void onClickedAt(User user){
-        player1.setValue(user);
-    }
-     */
     /**
      * Comprovem la puntuació.
      */
@@ -185,11 +171,8 @@ public class GameViewModel extends ViewModel {
     /**
      * Començem la partida.
      */
-    public void start_game(){
-
-            game = new Game (id_player1, id_playerIA);
-
-
+    public void start_game(int id_player1){
+        this.gameRepo.createGame(id_player1);
     }
 
     /**

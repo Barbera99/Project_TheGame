@@ -31,8 +31,8 @@ public class GameRepo {
         this.gameService = new GameServiceImpl();
     }
 
-    public void createGame(int user_id, Game game){
-        gameService.createGame(user_id, game).enqueue(new ApiCallBack<Game>() {
+    public void createGame(int user_id){
+        gameService.createGame(user_id).enqueue(new ApiCallBack<Game>() {
             @Override
             public void onFailure(Call call, Throwable t) {
                 createGameResult = Result.error(t);
@@ -43,10 +43,6 @@ public class GameRepo {
             @Override
             public void onResponseSuccess(Call<Game> call, Response<Game> response) {
                 Log.d(TAG, "register() -> onResponseSusccess -> " + response.code());
-                int code = response.code();
-                if (code == 200) {
-                    gameViewModel.isGameStarted.setValue(true);
-                }
             }
 
             @Override
