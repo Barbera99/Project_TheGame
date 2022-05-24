@@ -2,6 +2,7 @@ package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -111,6 +112,22 @@ public class GameActivity extends AppCompatActivity {
         gameViewModel.setGameActivity(this);
         player1 = new User();
         initDataBinding();
+
+        gameViewModel.isGameEnded.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    Log.d(TAG,"Partida finalitzada i guardada correctament a la base de dades.");
+                    showToast("Usuari registrat correctament");
+                    goTo(MainActivity.class);
+                }
+                else{
+                    //Display Error
+                    Log.d(TAG,"Partida finalitzada, però no guardada a la base de dades.");
+                }
+            }
+        });
+
 
         player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
 

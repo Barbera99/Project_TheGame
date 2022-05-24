@@ -34,6 +34,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> round_number;
     int player1_score;
     int player2_score;
+    int player1_id;
     private  UserRepo userRepo;
     private  GameRepo gameRepo;
     private GameActivity gameActivity;
@@ -157,12 +158,6 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
-     * Comprovem la puntuació.
-     */
-    public void check_score(){
-        //TODO
-    }
-    /**
      * Passem a la següent ronda.
      */
     public void next_round(){
@@ -172,6 +167,7 @@ public class GameViewModel extends ViewModel {
      * Començem la partida.
      */
     public void start_game(int id_player1){
+        this.player1_id = id_player1;
         this.gameRepo.createGame(id_player1);
     }
 
@@ -179,8 +175,12 @@ public class GameViewModel extends ViewModel {
      * Finalitzem la partida i guardem la puntuació dels jugadors.
      */
     public void endGame(){
-        player1_score = Integer.parseInt(player1_scoreLiveData.getValue());
-        player2_score = Integer.parseInt(player2_scoreLiveData.getValue());
+        if(check_winner()){
+            player1_score = Integer.parseInt(player1_scoreLiveData.getValue());
+            player2_score = Integer.parseInt(player2_scoreLiveData.getValue());
+            this.gameRepo.endGame(this.player1_id);
+        }
+
     }
     /**
      * Comprovem si algun dels jugadors a assolit el nombre de victories mínimes per a guanyar la partia.
