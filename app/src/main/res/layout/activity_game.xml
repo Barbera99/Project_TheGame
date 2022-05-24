@@ -60,7 +60,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@={gameViewModel.player1_score}" />
+                    android:text="@={gameViewModel.player1_scoreLiveData}" />
 
                 <TextView
                     android:id="@+id/textPlayer2"
@@ -76,7 +76,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@={gameViewModel.player2_score}" />
+                    android:text="@={gameViewModel.player2_scoreLiveData}" />
             </LinearLayout>
         </LinearLayout>
 

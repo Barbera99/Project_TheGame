@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface GameService {
 
     @POST("/game/start/{user_id}")
-    Call<ResponseBody> createGame (@Path("user_id") int user_id, @Body Game game);
+    Call<ResponseBody> createGame (@Path("user_id") int user_id, Game game);
 
     @PUT("/game/end/{game_id}")
     Call<ResponseBody> endGame (@Path("game_id") int game_id);

@@ -29,12 +29,13 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<Boolean> isGameEnded;
     public MutableLiveData<String> player1_username;
     public MutableLiveData<String> player2_username;
-    public MutableLiveData<String> player1_score;
-    public MutableLiveData<String> player2_score;
+    public MutableLiveData<String> player1_scoreLiveData;
+    public MutableLiveData<String> player2_scoreLiveData;
     public MutableLiveData<String> round_number;
-
-    //public int player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", null));
-    public int playerIA = 1;
+    int player1_score;
+    int player2_score;
+    public int id_player1 = Integer.parseInt(PreferencesProvider.providePreferences().getString("user_id", null));
+    public int id_playerIA = 1;
     private final UserRepo userRepo;
     private final GameRepo gameRepo;
     private GameActivity gameActivity;
@@ -56,7 +57,6 @@ public class GameViewModel extends ViewModel {
     ArrayList<Card> Deck;
     Deck deckForIA = new Deck();
     int positionCard;
-    int iAScore = 0;
     String attributeActualRound;
     private String name_player_1;
     private String name_player_2;
@@ -118,7 +118,6 @@ public class GameViewModel extends ViewModel {
             newC.add(hard2);
         }
         deckForIA.setArrayDeck(newC);
-        //game.getPlayer2().setPlayerDeck(deckForIA);
     }
     public int getPositionCard(){return positionCard;}
     public void setPositionCard(int pC){this.positionCard = pC;}
@@ -129,7 +128,6 @@ public class GameViewModel extends ViewModel {
     public String getAttributeActualRound() {
         return attributeActualRound;
     }
-    //public Card getCardSelected(int i) { return game.getPlayer1().getPlayerDeck().getArrayDeck().get(i); }
 
     public ArrayList<String> arrayListText(Card c, int i){
         ArrayList<String> arrayList = new ArrayList<>();
@@ -189,7 +187,17 @@ public class GameViewModel extends ViewModel {
      */
     public void start_game(){
 
-       // Game game = new Game(player1, playerIA);
+            game = new Game (id_player1, id_playerIA);
+
+
+    }
+
+    /**
+     * Finalitzem la partida i guardem la puntuació dels jugadors.
+     */
+    public void endGame(){
+        player1_score = Integer.parseInt(player1_scoreLiveData.getValue());
+        player2_score = Integer.parseInt(player2_scoreLiveData.getValue());
     }
     /**
      * Comprovem si algun dels jugadors a assolit el nombre de victories mínimes per a guanyar la partia.
@@ -226,22 +234,19 @@ public class GameViewModel extends ViewModel {
     }
 
     public int getiAScore() {
-        return iAScore;
+        return player2_score;
     }
 
     protected ArrayList<String> checkWinner(int attributePlayer, int attributeIA){
         ArrayList<String> result = new ArrayList<>();
         if(attributeIA > attributePlayer){
-            iAScore++;
+            player2_score++;
             result.add("IA");
             result.add(String.valueOf(attributeIA));
-        } else if(attributeIA < attributePlayer) {
+        } else {
             playerScore++;
             result.add("Player");
             result.add(String.valueOf(attributePlayer));
-        } else {
-            result.add("empate");
-            result.add(String.valueOf(attributeIA));
         }
         return result;
     }

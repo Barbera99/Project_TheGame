@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
     final int REQ_CODE = 1;
     final int REQ_ROUND = 2;
 
-    //TODO: @Didac Aquesta pantalla pot millorar. Una Imatge o el vostre logo quedaria millor i no es veuria un espai tant buit.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +105,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onClick(View v) {
                     Intent gameActivity = new Intent(getApplicationContext(), GameActivity.class);
                     gameActivity.putExtra("DiffS",diffSelected);
-                    //gameActivity.putExtra("PlayerObject",player1);
+
                     startActivity(gameActivity);
-                //finish();
             }
 
         });
