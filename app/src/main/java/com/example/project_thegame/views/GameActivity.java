@@ -49,9 +49,9 @@ public class GameActivity extends AppCompatActivity {
 
     Game game;
     private ActivityGameBinding activityGameBinding;
-    int roundNumber = 0;
+    /*int roundNumber = 0;
     //player1
-    int playerScore = 0;
+    int playerScore = 0;*/
     User player1;
     User playerIA;
     Map[] already_played;
@@ -68,33 +68,20 @@ public class GameActivity extends AppCompatActivity {
     ArrayList <Card> Deck;
 
     //TODO: @Didac La resta d'activitats no cal que siguin ViewModel,tret de les que ja teniu com a tal, pero aquesta si. Ens netejar codi. Dijous comentem.
-    Deck easyDeck = new Deck();
-    Deck mediumDeck = new Deck();
-    Deck hardDeck = new Deck();
-    public static Card easy1 = new Card(1, "Easy1", 30, 30, 10, 20, 10, false, 3);
-    public static Card easy2 = new Card(2, "Easy2", 20, 20, 30, 10, 20, false, 1);
-    public static Card easy3 = new Card(3, "Easy3", 10, 10, 20, 30, 30, false, 3);
-    public static Card medium1 = new Card(4, "Medium1", 50, 40, 40, 60, 50, false, 3);
-    public static Card medium2 = new Card(5, "Medium2", 40, 60, 50, 50, 60, false, 3);
-    public static Card medium3 = new Card(6, "Medium3", 60, 50, 60, 40, 40, false, 2);
-    public static Card hard1 = new Card(7, "Hard1", 80, 90, 60, 70, 70, false, 1);
-    public static Card hard2 = new Card(8, "Hard2", 70, 60, 80, 70, 70, false, 2);
-    public static Card hard3 = new Card(9, "Hard3", 80, 70, 60, 90, 80, false, 2);
-
 
 
     ListView listAttributes;
     ArrayList<ImageView> imgList = new ArrayList<>();
     CountDownTimer mCountD;
     String diffSelected;
-    String attributeActualRound;
+    /*String attributeActualRound;
     Card iACard;
     Card cardSelected;
     Deck deckForIA = new Deck();
     int positionCard;
 
     //player2
-    int iAScore = 0;
+    int iAScore = 0;*/
 
     //Hem d'implementar algo per controlar les cartes ja usades (un array)
 
@@ -106,9 +93,12 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
+        Bundle extras  = getIntent().getExtras();
+        diffSelected = extras.getString("DiffS");
         deckViewModel = new DeckViewModel();
         deckViewModel.setGameActivity(this);
         gameViewModel = new GameViewModel();
+        gameViewModel.setIADifficult(diffSelected);
         gameViewModel.setGameActivity(this);
         player1 = new User();
         initDataBinding();
@@ -131,10 +121,7 @@ public class GameActivity extends AppCompatActivity {
 
         player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
 
-        Bundle extras  = getIntent().getExtras();
-        iACard = new Card(9, "test", -1, -1, -1, -1, -1, false, 1);
-        diffSelected = extras.getString("DiffS");
-        easyDeck.add(easy1,1);
+        /*easyDeck.add(easy1,1);
         easyDeck.add(easy2,2);
         easyDeck.add(easy3,3);
         easyDeck.add(easy2,4);
@@ -155,7 +142,7 @@ public class GameActivity extends AppCompatActivity {
             deckForIA = mediumDeck;
         }else if(diffSelected.equals("Hard")){
             deckForIA = hardDeck;
-        }
+        }*/
 
         listAttributes = findViewById(R.id.listCard);
         imgBlank = findViewById(R.id.idImgBlank);
@@ -167,13 +154,14 @@ public class GameActivity extends AppCompatActivity {
         scorePlayerText = findViewById(R.id.scorePlayer1);
         scoreIAText = findViewById(R.id.scorePlayer2);
         txtViewRounds = findViewById(R.id.roundNumber);
-        roundNumber++;
-        txtViewRounds.setText("Round " + roundNumber);
+        txtViewRounds.setText("Round " + gameViewModel.getRoundNumber());
 
 
-        randomAttribute();
-        Bitmap p = returnPaint(attributeActualRound,400);
-        imgBlank.setImageBitmap(p);
+        gameViewModel.randomAttribute();
+        Bitmap bm = BitmapFactory.decodeResource(getResources(),R.drawable.blank);
+        //Bitmap p = returnPaint(attributeActualRound,400);
+        Bitmap bitP = gameViewModel.getConfPaint(bm,400);
+        imgBlank.setImageBitmap(bitP);
 
         /*Bitmap p1 = returnPaint("1",1000);
         imgC1.setImageBitmap(p1);
@@ -194,7 +182,7 @@ public class GameActivity extends AppCompatActivity {
             player2score = b.getInt("player2Score");
         }*/
 
-        
+
         //TODO: @Didac  Aquests clicks poden ser Mutables. Dijous comentem
         imgC1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,14 +225,14 @@ public class GameActivity extends AppCompatActivity {
         selectCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(roundNumber < 5){
-                    imgList.get(positionCard-1).setImageResource(R.drawable.border_white);
+                if(gameViewModel.getRoundNumber() < 5){
+                    imgList.get(gameViewModel.getPositionCard()-1).setImageResource(R.drawable.border_white);
                     mCountD.cancel();
                     nextRound();
                 } else {
-                    if(playerScore < iAScore){
+                    if(gameViewModel.getPlayerScore() < gameViewModel.getiAScore()){
                         showToast("¡Ha ganado IA!");
-                    } else if(iAScore > playerScore){
+                    } else if(gameViewModel.getiAScore() > gameViewModel.getPlayerScore()){
                         showToast("¡Ha ganado Player!");
                     }
                     finish();
@@ -297,12 +285,12 @@ public class GameActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                if(roundNumber < 5){
+                if(gameViewModel.getRoundNumber() < 5){
                     nextRound();
                 } else {
-                    if(playerScore < iAScore){
+                    if(gameViewModel.getPlayerScore() < gameViewModel.getiAScore()){
                         showToast("¡Ha ganado IA!");
-                    } else if(iAScore > playerScore){
+                    } else if(gameViewModel.getiAScore() > gameViewModel.getPlayerScore()){
                         showToast("¡Ha ganado Player!");
                     }
                     finish();
@@ -324,21 +312,21 @@ public class GameActivity extends AppCompatActivity {
 
         if(imgList.get(i-1).getDrawable().getConstantState() == getResources().getDrawable(R.drawable.blank).getConstantState()){
             ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add(c.getName());
+            /*arrayList.add(c.getName());
             arrayList.add("Fuerza:"+c.getStrenght());
             arrayList.add("Velocidad:"+c.getSpeed());
             arrayList.add("Agilidad:"+c.getAgility());
             arrayList.add("Aguante:"+c.getEndurance());
             arrayList.add("Inteligencia:"+c.getIntelligencie());
-            arrayList.add("Categoria:"+c.getCategory());
+            arrayList.add("Categoria:"+c.getCategory());*/
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
             listAttributes.setAdapter(arrayAdapter);
-            positionCard = i;
-            cardSelected = c;
+            /*positionCard = i;
+            cardSelected = c;*/
         }
     }
 
-    protected Bitmap returnPaint(String s,int size){
+    /*protected Bitmap returnPaint(String s,int size){
         Bitmap bm = BitmapFactory.decodeResource(getResources(),R.drawable.blank);
         Bitmap.Config config = bm.getConfig();
         int width = bm.getWidth();
@@ -371,10 +359,23 @@ public class GameActivity extends AppCompatActivity {
             attributeActualRound = "Inteligencia";
         }
 
-    }
+    }*/
 
     protected void nextRound(){
-        randomAttribute();
+        Bitmap bm = BitmapFactory.decodeResource(getResources(),R.drawable.blank);
+        Bitmap bitP = gameViewModel.getConfPaint(bm,400);
+        imgBlank.setImageBitmap(bitP);
+        ArrayList<String> result = gameViewModel.nextRound();
+        txtViewRounds.setText("Round " + gameViewModel.getRoundNumber());
+
+        if(result.get(0).equals("empate")){
+            showToast("Ha quedado en empate con el valor" + result.get(1));
+        } else {
+            showToast("Ha ganado " + result.get(0) + " con el valor de " + result.get(1) + " en " + result.get(2));
+        }
+
+        mCountD.start();
+        /*randomAttribute();
         Bitmap p = returnPaint(attributeActualRound,400);
         imgBlank.setImageBitmap(p);
         roundNumber++;
@@ -403,9 +404,9 @@ public class GameActivity extends AppCompatActivity {
             showToast("Ha ganado " + result.get(0) + " con el valor de " + result.get(1) + " en " + result.get(2));
         }
 
-        mCountD.start();
+        mCountD.start();*/
     }
-    protected ArrayList<String> checkWinner(int attributePlayer,int attributeIA){
+    /*protected ArrayList<String> checkWinner(int attributePlayer,int attributeIA){
         ArrayList<String> result = new ArrayList<>();
         if(attributeIA > attributePlayer){
             iAScore++;
@@ -422,9 +423,9 @@ public class GameActivity extends AppCompatActivity {
             result.add(String.valueOf(attributeIA));
         }
         return result;
-    }
+    }*/
 
-    protected void IAIntell(){
+    /*protected void IAIntell(){
         if(attributeActualRound == "Fuerza"){
             for (int i = 0; i<deckForIA.getSIZE();i++){
                 System.out.println(i+"Joan");
@@ -461,7 +462,7 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
     protected void showToast(String msg){
         Toast myToast = Toast.makeText(this,msg ,Toast.LENGTH_LONG);
         myToast.setGravity(Gravity.CENTER,0,0);

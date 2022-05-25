@@ -59,7 +59,10 @@ public class GameViewModel extends ViewModel {
     ArrayList<Card> Deck;
     Deck deckForIA = new Deck();
     int positionCard;
+    int iAScore = 0;
     String attributeActualRound;
+    private String name_player_1;
+    private String name_player_2;
     Deck easyDeck;
     Deck mediumDeck;
     Deck hardDeck;
@@ -72,6 +75,7 @@ public class GameViewModel extends ViewModel {
     public static Card hard1 = new Card(7, "Hard1", 80, 90, 60, 70, 70, false, 1);
     public static Card hard2 = new Card(8, "Hard2", 70, 60, 80, 70, 70, false, 2);
     public static Card hard3 = new Card(9, "Hard3", 80, 70, 60, 90, 80, false, 2);
+    public static Card c = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
 
     public GameViewModel(){
         this.gameRepo = new GameRepo();
@@ -135,7 +139,7 @@ public class GameViewModel extends ViewModel {
         return arrayList;
     }
 
-    public Bitmap getConfPaint(Bitmap bm,String s, int size){
+    public Bitmap getConfPaint(Bitmap bm, int size){
         Bitmap.Config config = bm.getConfig();
         int width = bm.getWidth();
         int height = bm.getHeight();
@@ -149,7 +153,7 @@ public class GameViewModel extends ViewModel {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(size);
-        c.drawText(s, width/2, (height/2)-((paint.descent()+paint.ascent())/2), paint);
+        c.drawText(this.attributeActualRound, width/2, (height/2)-((paint.descent()+paint.ascent())/2), paint);
         return newImage;
     }
 
@@ -255,6 +259,7 @@ public class GameViewModel extends ViewModel {
             result.add("Inteligencia");
         }
         randomAttribute();
+        cardSelected = c;
         return result;
     }
 
