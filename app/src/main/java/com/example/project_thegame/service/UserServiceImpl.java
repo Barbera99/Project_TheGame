@@ -10,8 +10,8 @@ import retrofit2.Retrofit;
 public class UserServiceImpl implements UserService{
     private Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
 
-    public Call<User> getUserByUsername(String username) {
-        return retrofit.create(UserService.class).getUserByUsername(username);
+    public Call<User> getUserById(int user_id) {
+        return retrofit.create(UserService.class).getUserById(user_id);
     }
     public Call<ResponseBody> createUser(User user) {
         return retrofit.create(UserService.class).createUser(user);

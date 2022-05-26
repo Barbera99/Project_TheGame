@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface UserService {
     @GET("/user/{username}")
-    Call<User> getUserByUsername(@Query("username") String username);
+    Call<User> getUserById(@Query("user_id") int user_id);
     @POST("/user/register")
     Call<ResponseBody> createUser(@Body User user);
 }

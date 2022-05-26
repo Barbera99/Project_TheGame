@@ -47,6 +47,7 @@ public class GameActivity extends AppCompatActivity {
     private GameViewModel gameViewModel;
     private ActivityGameBinding activityGameBinding;
     User player1;
+    Deck pDeck;
     TextView txtViewRounds;
     TextView scorePlayerText;
     TextView scoreIAText;
@@ -68,8 +69,10 @@ public class GameActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
+        initDataBinding();
         Bundle extras = getIntent().getExtras();
         diffSelected = extras.getString("DiffS");
         deckViewModel = new DeckViewModel();
@@ -78,8 +81,13 @@ public class GameActivity extends AppCompatActivity {
         gameViewModel.setIADifficult(diffSelected);
         gameViewModel.setGameActivity(this);
         player1 = new User();
-        initDataBinding();
+        pDeck = new Deck();
+        pDeck.setArrayDeck(gameViewModel.getUserDeck());
 
+        player1.setPlayerDeck(pDeck);
+
+
+        gameViewModel.play();
 
         gameViewModel.isGameEnded.observe(this, new Observer<Boolean>() {
             @Override
@@ -179,7 +187,7 @@ public class GameActivity extends AppCompatActivity {
                 mCountD = new CountDownTimer(60000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
-                        textV.setText("Elige carta antes de que termine el tiempo: " + millisUntilFinished / 1000);
+                        textV.setText("Tria la carta abans que s'acabi el temps: " + millisUntilFinished / 1000);
                     }
 
                     public void onFinish() {
@@ -193,7 +201,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                             finish();
                         }
-
+                        gameViewModel.save_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
                     }
                 };
                 mCountD.start();
