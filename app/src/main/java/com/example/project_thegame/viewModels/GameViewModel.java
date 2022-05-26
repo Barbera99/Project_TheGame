@@ -49,18 +49,14 @@ public class GameViewModel extends ViewModel {
         this.mainActivity = mainActivity;
     }
 
-    private Game game;
     private int roundNumber;
     private int playerScore;
     Card iACard;
     Card cardSelected;
-    ArrayList<Card> Deck;
     Deck deckForIA = new Deck();
     int positionCard;
-    int iAScore = 0;
     String attributeActualRound;
-    private String name_player_1;
-    private String name_player_2;
+    Game game;
     Deck easyDeck;
     Deck mediumDeck;
     Deck hardDeck;
@@ -82,7 +78,7 @@ public class GameViewModel extends ViewModel {
         this.isGameEnded = new MutableLiveData<>();
         this.isGameStarted = new MutableLiveData<>();
         this.player1_scoreLiveData = new MutableLiveData<>();
-        this.player2_username = new MutableLiveData<>("");
+        this.player1_username = new MutableLiveData<>("");
         this.player2_scoreLiveData = new MutableLiveData<>();
         this.player2_username = new MutableLiveData<>();
         this.round_number = new MutableLiveData<>();
@@ -91,20 +87,11 @@ public class GameViewModel extends ViewModel {
     }
 
     public void play(){
-        Log.d(TAG, this.player1_username.getValue());
         this.player1_username.setValue("IA Bot");
         this.userRepo.getUserById(PreferencesProvider.providePreferences().getInt("user_id", 0));
-        player2_username.postValue(this.userRepo.mplayer.getValue().getUsername());
-        player1_scoreLiveData.setValue("0");
-        player1_scoreLiveData.setValue("0");
-
-    }
-
-
-
-
-    public void setPlayer(int user) {
-        this.game.setPlayer1Id(user);
+        this.player1_scoreLiveData.setValue("0");
+        this.player1_scoreLiveData.setValue("0");
+        Log.d(TAG, player2_username.getValue());
     }
 
     public void setIADifficult(String diffSelected){

@@ -39,7 +39,7 @@ public class UserRepo {
                         if (code == 200) {
                             User u = response.body();
                             assert u != null;
-                            mplayer.postValue(u); // Setting the MUTABLE!!!!!!
+                            gameViewModel.player2_username.setValue(u.getUsername());
                         }
                     }
                     @Override
@@ -72,7 +72,6 @@ public class UserRepo {
      this.registerViewModel = registerViewModel;
     }
 
-    public void setGameViewModel(GameViewModel gameViewModel){
-        this.gameViewModel = gameViewModel;
+    public void setGameViewModel(GameViewModel gameViewModel){this.gameViewModel = gameViewModel;
     }
 }
