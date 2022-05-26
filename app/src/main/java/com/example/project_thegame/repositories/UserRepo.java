@@ -8,6 +8,7 @@ import com.example.project_thegame.models.Result;
 import com.example.project_thegame.service.UserServiceImpl;
 import com.example.project_thegame.service.UserService;
 import com.example.project_thegame.models.User;
+import com.example.project_thegame.viewModels.GameViewModel;
 import com.example.project_thegame.viewModels.RegisterViewModel;
 
 import okhttp3.ResponseBody;
@@ -22,14 +23,15 @@ public class UserRepo {
     private Result<String> registerResult;
     public MutableLiveData<User> mplayer;
     private RegisterViewModel registerViewModel;
+    private GameViewModel gameViewModel;
 
     public UserRepo() {
         this.userService = new UserServiceImpl();
         this.mplayer = new MutableLiveData<>();
     }
 
-    public void getUserByUsername(String username){
-        userService.getUserByUsername(username).enqueue(
+    public void getUserById(int user_id){
+        userService.getUserById(user_id).enqueue(
                 new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
@@ -37,7 +39,7 @@ public class UserRepo {
                         if (code == 200) {
                             User u = response.body();
                             assert u != null;
-                            mplayer.setValue(u); // Setting the MUTABLE!!!!!!
+                            mplayer.postValue(u); // Setting the MUTABLE!!!!!!
                         }
                     }
                     @Override
@@ -68,5 +70,9 @@ public class UserRepo {
 
     public void setRegisterViewModel(RegisterViewModel registerViewModel){
      this.registerViewModel = registerViewModel;
+    }
+
+    public void setGameViewModel(GameViewModel gameViewModel){
+        this.gameViewModel = gameViewModel;
     }
 }

@@ -1,9 +1,13 @@
 package com.example.project_thegame.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Game {
     /**
      * Declaració dels atributs de classe.
      */
+    @SerializedName("game_id")
+    private int game_id;
 
     private int player1_id;
     private int player2_id;
@@ -11,12 +15,11 @@ public class Game {
     private int score_player1;
     private int score_player2;
 
-    public Game(int player1, int player2, Map [] already_played) {
+    public Game(int player1, int player2, int score_player1, int score_player2) {
         this.player1_id = player1;
         this.player2_id = player2;
-        this.score_player1 = 0;
-        this.score_player2 = 0;
-        this.already_played = already_played;
+        this.score_player1 = score_player1;
+        this.score_player2 = score_player2;
     }
 
     public Game(int player1, int player2) {
@@ -30,6 +33,10 @@ public class Game {
      * Declaració getters i setters dels atributs de la classe.
      *
      */
+    public int getGameId() {
+        return game_id;
+    }
+
     public int getPlayer1Id() {
         return player1_id;
     }
@@ -40,6 +47,10 @@ public class Game {
 
     public int getPlayer2Id() {
         return player2_id;
+    }
+
+    public void setGameId(int game_id) {
+        this.game_id = game_id;
     }
 
     public void setPlayer2(int player2) {

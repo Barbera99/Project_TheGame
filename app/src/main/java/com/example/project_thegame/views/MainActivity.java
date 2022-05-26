@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onClick(View v) {
                     Intent gameActivity = new Intent(getApplicationContext(), GameActivity.class);
                     gameActivity.putExtra("DiffS",diffSelected);
-                    gameViewModel.start_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
                     startActivity(gameActivity);
             }
 

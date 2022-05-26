@@ -3,11 +3,13 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.service.DeckService;
 import com.example.project_thegame.service.DeckServiceImpl;
 import com.example.project_thegame.viewModels.DeckViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
