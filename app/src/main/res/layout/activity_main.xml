@@ -111,8 +111,8 @@
 
             <ImageButton
                 android:id="@+id/deck"
-                android:layout_width="159dp"
-                android:layout_height="89dp"
+                android:layout_width="158dp"
+                android:layout_height="91dp"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:background="@drawable/button_gradient"
@@ -120,8 +120,8 @@
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/deck"
-                tools:layout_editor_absoluteY="0dp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="0dp" />
 
             <ImageButton
                 android:id="@+id/home"
