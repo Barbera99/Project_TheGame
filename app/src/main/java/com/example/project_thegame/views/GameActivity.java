@@ -70,6 +70,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
+        initDataBinding();
         Bundle extras = getIntent().getExtras();
         diffSelected = extras.getString("DiffS");
         deckViewModel = new DeckViewModel();
@@ -78,8 +79,6 @@ public class GameActivity extends AppCompatActivity {
         gameViewModel.setIADifficult(diffSelected);
         gameViewModel.setGameActivity(this);
         player1 = new User();
-        initDataBinding();
-
 
         gameViewModel.isGameEnded.observe(this, new Observer<Boolean>() {
             @Override
