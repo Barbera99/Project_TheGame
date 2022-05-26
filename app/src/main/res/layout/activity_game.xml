@@ -53,7 +53,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@={gameViewModel.player1_username}"
-                    android:textColor="#0E0E0E" />
+                    android:textColor="#0E0E0E"
+                    android:textColorHint="#050505" />
 
                 <TextView
                     android:id="@+id/scorePlayer1"

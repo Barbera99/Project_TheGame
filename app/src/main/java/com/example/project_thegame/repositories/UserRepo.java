@@ -35,6 +35,7 @@ public class UserRepo {
                 new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
+                        Log.d(TAG, "" + response.code());
                         int code = response.code();
                         if (code == 200) {
                             User u = response.body();
