@@ -11,20 +11,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.project_thegame.utils.PreferencesProvider;
 import com.example.project_thegame.views.GameActivity;
 import com.example.project_thegame.repositories.GameRepo;
+import com.example.project_thegame.repositories.DeckRepo;
 import com.example.project_thegame.repositories.UserRepo;
 import com.example.project_thegame.models.Card;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.User;
-import com.example.project_thegame.utils.PreferencesProvider;
 import com.example.project_thegame.views.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameViewModel extends ViewModel {
+    private static String TAG = "GameViewModel";
     public MutableLiveData<Boolean> isGameStarted;
     public MutableLiveData<Boolean> isGameEnded;
     public MutableLiveData<String> player1_username;
@@ -36,6 +38,7 @@ public class GameViewModel extends ViewModel {
     int player2_score;
     int player1_id;
     private  UserRepo userRepo;
+    private  DeckRepo deckRepo;
     private  GameRepo gameRepo;
     private GameActivity gameActivity;
     private MainActivity mainActivity;
@@ -45,11 +48,6 @@ public class GameViewModel extends ViewModel {
     public void setMainActivity(MainActivity mainActivity){
         this.mainActivity = mainActivity;
     }
-
-    public void getUserByUsername(String username){
-        this.userRepo.getUserByUsername(username);
-    }
-
 
     private Game game;
     private int roundNumber;
@@ -79,15 +77,32 @@ public class GameViewModel extends ViewModel {
 
     public GameViewModel(){
         this.gameRepo = new GameRepo();
+        this.deckRepo = new DeckRepo();
         this.userRepo = new UserRepo();
-        this.isGameEnded = new MutableLiveData<Boolean>();
-        this.isGameStarted = new MutableLiveData<Boolean>();
-        this.player1_scoreLiveData = new MutableLiveData<String>();
-        this.player2_username = new MutableLiveData<String>();
-        this.player2_scoreLiveData = new MutableLiveData<String>();
-        this.player2_username = new MutableLiveData<String>();
-        this.round_number = new MutableLiveData<String>();
+        this.isGameEnded = new MutableLiveData<>();
+        this.isGameStarted = new MutableLiveData<>();
+        this.player1_scoreLiveData = new MutableLiveData<>();
+        this.player2_username = new MutableLiveData<>("");
+        this.player2_scoreLiveData = new MutableLiveData<>();
+        this.player2_username = new MutableLiveData<>();
+        this.round_number = new MutableLiveData<>();
+        this.gameRepo.setGameViewModel(this);
+        this.userRepo.setGameViewModel(this);
     }
+
+    public void play(){
+        Log.d(TAG, this.player1_username.getValue());
+        this.player1_username.setValue("IA Bot");
+        this.userRepo.getUserById(PreferencesProvider.providePreferences().getInt("user_id", 0));
+        player2_username.postValue(this.userRepo.mplayer.getValue().getUsername());
+        player1_scoreLiveData.setValue("0");
+        player1_scoreLiveData.setValue("0");
+
+    }
+
+
+
+
     public void setPlayer(int user) {
         this.game.setPlayer1Id(user);
     }
@@ -115,6 +130,12 @@ public class GameViewModel extends ViewModel {
         }
         deckForIA.setArrayDeck(newC);
     }
+    public ArrayList<Card> getUserDeck() {
+        ArrayList<Card> pDeck = new ArrayList<Card>();
+        this.deckRepo.getDeck(1);
+        return pDeck;
+    }
+
     public int getPositionCard(){return positionCard;}
     public void setPositionCard(int pC){this.positionCard = pC;}
     public int getRoundNumber() {
@@ -168,11 +189,12 @@ public class GameViewModel extends ViewModel {
         //TODO
     }
     /**
-     * Començem la partida.
+     * Guardem la partida.
      */
-    public void start_game(int id_player1){
+    public void save_game(int id_player1){
         this.player1_id = id_player1;
-        this.gameRepo.createGame(id_player1);
+        Game game = new Game(1, id_player1, player1_score, player2_score);
+        this.gameRepo.createGame(id_player1, game);
     }
 
     /**
@@ -182,7 +204,6 @@ public class GameViewModel extends ViewModel {
         if(check_winner()){
             player1_score = Integer.parseInt(player1_scoreLiveData.getValue());
             player2_score = Integer.parseInt(player2_scoreLiveData.getValue());
-            this.gameRepo.endGame(this.player1_id);
         }
 
     }
