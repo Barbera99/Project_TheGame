@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.project_thegame.R;
-import com.example.project_thegame.models.Deck;
 
 public class ShopActivity extends AppCompatActivity {
     private static final String TAG = "ShopActivity";
