@@ -3,6 +3,7 @@ package com.example.project_thegame.views;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -72,12 +73,22 @@ public class GameActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
+
+        // @Jordi: Bind the xml with the activity (ActivityLevelsBinding is auto generated).
+        activityGameBinding = ActivityGameBinding.inflate(getLayoutInflater());
+
+        // Set the Content of the xml to the view
+        setContentView(activityGameBinding.getRoot());
+
+        // Set the viewModel
+        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
+
         initDataBinding();
         Bundle extras = getIntent().getExtras();
         diffSelected = extras.getString("DiffS");
         deckViewModel = new DeckViewModel();
         deckViewModel.setGameActivity(this);
-        gameViewModel = new GameViewModel();
+        //gameViewModel = new GameViewModel();
         gameViewModel.setIADifficult(diffSelected);
         gameViewModel.setGameActivity(this);
         player1 = new User();
@@ -128,8 +139,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initDataBinding() {
-        activityGameBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_game);
         activityGameBinding.setGameViewModel(gameViewModel);
         activityGameBinding.setLifecycleOwner(this);
     }
