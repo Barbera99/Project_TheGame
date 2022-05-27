@@ -6,11 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.project_thegame.R;
 import com.example.project_thegame.utils.PreferencesProvider;
 import com.example.project_thegame.views.GameActivity;
 import com.example.project_thegame.repositories.GameRepo;
@@ -34,6 +36,12 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> player1_scoreLiveData;
     public MutableLiveData<String> player2_scoreLiveData;
     public MutableLiveData<String> round_number;
+    public MutableLiveData<Card> card_1;
+    public MutableLiveData<Card> card_2;
+    public MutableLiveData<Card> card_3;
+    public MutableLiveData<Card> card_4;
+    public MutableLiveData<Card> card_5;
+
     int player1_score;
     int player2_score;
     int player1_id;
@@ -91,7 +99,7 @@ public class GameViewModel extends ViewModel {
         this.userRepo.getUserById(PreferencesProvider.providePreferences().getInt("user_id", 0));
         this.player1_scoreLiveData.setValue("0");
         this.player1_scoreLiveData.setValue("0");
-        Log.d(TAG, player2_username.getValue());
+        Log.d(TAG, "Username" + player2_username.getValue());
     }
 
     public void setIADifficult(String diffSelected){
@@ -165,16 +173,14 @@ public class GameViewModel extends ViewModel {
         return newImage;
     }
 
-    public LiveData<User> isUsernameLoaded(){
-        return this.userRepo.mplayer;
-    }
-
     /**
      * Passem a la següent ronda.
      */
     public void next_round(){
         //TODO
     }
+
+
     /**
      * Guardem la partida.
      */
@@ -206,12 +212,6 @@ public class GameViewModel extends ViewModel {
         }
     }
 
-    /**
-     * Escollirem un dels diferents mapes per cada ronda.
-     */
-    public void choose_map(){
-        //TODO
-    }
     public void check_round_score(){
 
         /*round.getPlayer1();
@@ -319,4 +319,37 @@ public class GameViewModel extends ViewModel {
         }
 
     }
+
+
+    public void onclickedAt(){
+
+    }
+/**
+ * TIMERS
+ *
+
+    //CONTROLADOR DEL TEMPS MAXIM PER RONDA
+    //DISPLAY DEL TEMPS MAXIM PER RONDA
+    textV = (TextView) findViewById(R.id.textTimer);
+    mCountD = new CountDownTimer(60000, 1000) {
+
+        public void onTick(long millisUntilFinished) {
+            textV.setText("Tria la carta abans que s'acabi el temps: " + millisUntilFinished / 1000);
+        }
+
+        public void onFinish() {
+            if (gameViewModel.getRoundNumber() < 5) {
+                nextRound();
+            } else {
+                if (gameViewModel.getPlayerScore() < gameViewModel.getiAScore()) {
+                    showToast("¡Ha ganado IA!");
+                } else if (gameViewModel.getiAScore() > gameViewModel.getPlayerScore()) {
+                    showToast("¡Ha ganado Player!");
+                }
+                finish();
+            }
+            gameViewModel.save_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
+        }
+    };
+ */
 }

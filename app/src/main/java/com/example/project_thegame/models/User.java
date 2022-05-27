@@ -16,7 +16,6 @@ public class User implements Parcelable {
     private int id;
     @SerializedName("username")
     private String username;
-    private Date created_at;
     @SerializedName("email")
     private String email;
     @SerializedName("name")
@@ -25,6 +24,8 @@ public class User implements Parcelable {
     private String surname;
     @SerializedName("password")
     private String password;
+
+    private Date created_at;
     private Date birthdate;
     private String genere;
     private int phone;
