@@ -34,13 +34,11 @@ public class UserRepo {
         userService.getUserById(user_id).enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        Log.d(TAG, "figa " + response.code());
                         int code = response.code();
                         if (code == 200) {
                             User u = response.body();
                             assert u != null;
                             gameViewModel.player2_username.setValue(u.getUsername());
-                            Log.d(TAG, "" + gameViewModel.player2_username.getValue().toString());
                         }
                     }
                     @Override

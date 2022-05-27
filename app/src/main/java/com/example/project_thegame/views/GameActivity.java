@@ -106,24 +106,12 @@ public class GameActivity extends AppCompatActivity {
 
 
         player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
-        listAttributes = findViewById(R.id.listCard);
-        imgBlank = findViewById(R.id.idImgBlank);
-        imgC1 = findViewById(R.id.imgCard1);
-        imgC2 = findViewById(R.id.imgCard2);
-        imgC3 = findViewById(R.id.imgCard3);
-        imgC4 = findViewById(R.id.imgCard4);
-        imgC5 = findViewById(R.id.imgCard5);
-        scorePlayerText = findViewById(R.id.scorePlayer1);
-        scoreIAText = findViewById(R.id.scorePlayer2);
-        txtViewRounds = findViewById(R.id.roundNumber);
-        txtViewRounds.setText("Round " + gameViewModel.getRoundNumber());
-        gameViewModel.randomAttribute();
 
     }
 
-    protected void nextRound() {
+    public void nextRound() {
         ArrayList<String> result = gameViewModel.nextRound();
-        txtViewRounds.setText("Round " + gameViewModel.getRoundNumber());
+
 
         if (result.get(0).equals("empate")) {
             showToast("Ha quedado en empate con el valor" + result.get(1));

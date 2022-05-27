@@ -29,6 +29,8 @@ import java.util.Random;
 
 public class GameViewModel extends ViewModel {
     private static String TAG = "GameViewModel";
+
+
     public MutableLiveData<Boolean> isGameStarted;
     public MutableLiveData<Boolean> isGameEnded;
     public MutableLiveData<String> player1_username;
@@ -36,18 +38,13 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> player1_scoreLiveData;
     public MutableLiveData<String> player2_scoreLiveData;
     public MutableLiveData<String> round_number;
-    public MutableLiveData<Card> card_1;
-    public MutableLiveData<Card> card_2;
-    public MutableLiveData<Card> card_3;
-    public MutableLiveData<Card> card_4;
-    public MutableLiveData<Card> card_5;
-
     int player1_score;
     int player2_score;
     int player1_id;
     private  UserRepo userRepo;
     private  DeckRepo deckRepo;
     private  GameRepo gameRepo;
+
     private GameActivity gameActivity;
     private MainActivity mainActivity;
     public void setGameActivity(GameActivity gameActivity){
@@ -57,8 +54,8 @@ public class GameViewModel extends ViewModel {
         this.mainActivity = mainActivity;
     }
 
-    private int roundNumber;
-    private int playerScore;
+    int roundNumber;
+    int playerScore;
     Card iACard;
     Card cardSelected;
     Deck deckForIA = new Deck();
@@ -68,6 +65,10 @@ public class GameViewModel extends ViewModel {
     Deck easyDeck;
     Deck mediumDeck;
     Deck hardDeck;
+
+    /**
+     * Cartes baralla IA
+      */
     public static Card easy1 = new Card(1, "Easy1", 30, 30, 10, 20, 10, false, 3);
     public static Card easy2 = new Card(2, "Easy2", 20, 20, 30, 10, 20, false, 1);
     public static Card easy3 = new Card(3, "Easy3", 10, 10, 20, 30, 30, false, 3);
@@ -78,6 +79,16 @@ public class GameViewModel extends ViewModel {
     public static Card hard2 = new Card(8, "Hard2", 70, 60, 80, 70, 70, false, 2);
     public static Card hard3 = new Card(9, "Hard3", 80, 70, 60, 90, 80, false, 2);
     public static Card c = new Card(-1, "test", -1, -1, -1, -1, -1, false, 1);
+
+    /**
+     * Cartes baralla usuari
+     */
+    public static Card card_1 = new Card(1, "Ninja", 35, 75, 90, 20, 65, false, 3);
+    public static Card card_2 = new Card(2, "Dummy", 30, 30, 10, 95, 0, false, 1);
+    public static Card card_3 = new Card(3, "Sonic", 10, 99, 85, 95, 20, false, 3);
+    public static Card card_4 = new Card(4, "Linda", 75, 40, 40, 40, 30, false, 3);
+    public static Card card_5 = new Card(5, "Paco", 40, 60, 50, 10, 10, false, 3);
+    ArrayList<Card> user_deck = new ArrayList<>();
 
     public GameViewModel(){
         this.gameRepo = new GameRepo();
@@ -95,11 +106,15 @@ public class GameViewModel extends ViewModel {
     }
 
     public void play(){
+        user_deck.add(card_1);
+        user_deck.add(card_2);
+        user_deck.add(card_3);
+        user_deck.add(card_4);
+        user_deck.add(card_5);
         this.player1_username.setValue("IA Bot");
         this.userRepo.getUserById(PreferencesProvider.providePreferences().getInt("user_id", 0));
         this.player1_scoreLiveData.setValue("0");
         this.player1_scoreLiveData.setValue("0");
-        Log.d(TAG, "Username" + player2_username.getValue());
     }
 
     public void setIADifficult(String diffSelected){
@@ -174,14 +189,6 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
-     * Passem a la següent ronda.
-     */
-    public void next_round(){
-        //TODO
-    }
-
-
-    /**
      * Guardem la partida.
      */
     public void save_game(int id_player1){
@@ -194,44 +201,12 @@ public class GameViewModel extends ViewModel {
      * Finalitzem la partida i guardem la puntuació dels jugadors.
      */
     public void endGame(){
-        if(check_winner()){
-            player1_score = Integer.parseInt(player1_scoreLiveData.getValue());
-            player2_score = Integer.parseInt(player2_scoreLiveData.getValue());
-        }
 
     }
+
     /**
-     * Comprovem si algun dels jugadors a assolit el nombre de victories mínimes per a guanyar la partia.
+     * Comprovem qui guanya la ronda.
      */
-    public boolean check_winner(){
-        if(game.getScore_player1() >= 3 || game.getScore_player2() >= 3) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public void check_round_score(){
-
-        /*round.getPlayer1();
-        if(player1card.getSpeed() > player2card.getSpeed()) {
-            System.out.println("Ha guanyat el jugador 1");
-            player1score++;
-        } else if(player1card.getSpeed() < player2card.getSpeed()) {
-            System.out.println("Ha guanyat el jugador 2");
-            player2score++;
-        }*/
-    }
-
-    public int getPlayerScore() {
-        return playerScore;
-    }
-
-    public int getiAScore() {
-        return player2_score;
-    }
-
     protected ArrayList<String> checkWinner(int attributePlayer, int attributeIA){
         ArrayList<String> result = new ArrayList<>();
         if(attributeIA > attributePlayer){
@@ -246,6 +221,10 @@ public class GameViewModel extends ViewModel {
         return result;
     }
 
+    /**
+     * Pasem a la següent ronda, comprovant el guanyador d'aquesta.
+     * @return result String
+     */
     public ArrayList<String> nextRound(){
         roundNumber++;
         IAIntell();
@@ -270,6 +249,7 @@ public class GameViewModel extends ViewModel {
         cardSelected = c;
         return result;
     }
+
 
     protected void IAIntell(){
         if(attributeActualRound.equals("Fuerza")){
@@ -320,14 +300,17 @@ public class GameViewModel extends ViewModel {
 
     }
 
-
-    public void onclickedAt(){
-
+    public void onclickedAt(int card_id){
+        Log.d(TAG, "" + card_id);
+        cardSelected = user_deck.get(card_id);
+        gameActivity.nextRound();
+        round_number.setValue(Integer.toString(roundNumber));
     }
+
+
 /**
  * TIMERS
  *
-
     //CONTROLADOR DEL TEMPS MAXIM PER RONDA
     //DISPLAY DEL TEMPS MAXIM PER RONDA
     textV = (TextView) findViewById(R.id.textTimer);

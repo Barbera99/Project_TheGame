@@ -34,7 +34,6 @@ public class Deck implements Parcelable {
         } else {
             arrayDeck.set(i-1,c);
         }
-        //TODO
     }
     /**
      * Comprovem si la carta a afegir ja forma part de la baralla.
