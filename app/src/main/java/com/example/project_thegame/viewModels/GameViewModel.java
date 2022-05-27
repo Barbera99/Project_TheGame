@@ -82,7 +82,7 @@ public class GameViewModel extends ViewModel {
         this.isGameEnded = new MutableLiveData<>();
         this.isGameStarted = new MutableLiveData<>();
         this.player1_scoreLiveData = new MutableLiveData<>();
-        this.player2_username = new MutableLiveData<>("");
+        this.player1_username = new MutableLiveData<>("");
         this.player2_scoreLiveData = new MutableLiveData<>();
         this.player2_username = new MutableLiveData<>();
         this.round_number = new MutableLiveData<>();
