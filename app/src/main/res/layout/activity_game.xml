@@ -12,124 +12,137 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.GameActivity">
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/button_gradient"
+        tools:context=".views.GameActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/roundNumber"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@={gameViewModel.round_number}"
-                android:textAlignment="center"
-            />
+                android:orientation="vertical">
 
-            <LinearLayout
+                <TextView
+                    android:id="@+id/roundNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@={gameViewModel.round_number}"
+                    android:textAlignment="center" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textPlayer1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@={gameViewModel.player1_username}"
+                        android:textColor="#0E0E0E"
+                        android:textColorHint="#050505" />
+
+                    <TextView
+                        android:id="@+id/scorePlayer1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@={gameViewModel.player1_scoreLiveData}" />
+
+                    <TextView
+                        android:id="@+id/textPlayer2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@={gameViewModel.player2_username}" />
+
+                    <TextView
+                        android:id="@+id/scorePlayer2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@={gameViewModel.player2_scoreLiveData}" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout6"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textPlayer1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@={gameViewModel.player1_username}"
-                    android:textColor="#0E0E0E"
-                    android:textColorHint="#050505" />
-
-                <TextView
-                    android:id="@+id/scorePlayer1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@={gameViewModel.player1_scoreLiveData}" />
-
-                <TextView
-                    android:id="@+id/textPlayer2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@={gameViewModel.player2_username}" />
-
-                <TextView
-                    android:id="@+id/scorePlayer2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@={gameViewModel.player2_scoreLiveData}" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            >
+                android:layout_weight="5">
 
 
-            <!--on below line we are creating a new image view-->
+                <!--on below line we are creating a new image view-->
 
-            <!--on below line we are displaying
+                <!--on below line we are displaying
                     the type of image in text view-->
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout5"
-                android:layout_width="479dp"
-                android:layout_height="237dp"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout5"
+                    android:layout_width="479dp"
+                    android:layout_height="237dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout7"
-                android:layout_width="478dp"
-                android:layout_height="209dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTimer"
-                app:layout_constraintVertical_bias="0.0">
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
+                    android:layout_width="478dp"
+                    android:layout_height="209dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textTimer"
+                    app:layout_constraintVertical_bias="0.0">
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textTimer"
+                    android:layout_width="408dp"
+                    android:layout_height="37dp"
+                    android:gravity="center"
+                    android:text="HOLA"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="2dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutDeck90"
+                    android:id="@+id/layoutDeck1"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv"
-                    tools:layout_editor_absoluteX="0dp">
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutDeck2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <ImageView
-                        android:id="@+id/card_1"
-                        android:layout_width="145dp"
-                        android:layout_height="200dp"
+                        android:id="@+id/deck1"
+                        android:layout_width="117dp"
+                        android:layout_height="177dp"
                         android:layout_marginEnd="10dp"
                         android:onClick="@{() -> gameViewModel.onclickedAt(0)}"
                         app:layout_constraintEnd_toStartOf="@+id/card_2"
@@ -137,98 +150,63 @@
                         app:srcCompat="@drawable/card_1" />
 
                     <ImageView
-                        android:id="@+id/card_2"
-                        android:layout_width="145dp"
-                        android:layout_height="200dp"
-                        android:onClick="@{() -> gameViewModel.onclickedAt(1)}"
+                        android:id="@+id/deck2"
+                        android:layout_width="117dp"
+                        android:layout_height="177dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/card_2"
-
+                        app:srcCompat="@drawable/card_1"
+                        android:onClick="@{() -> gameViewModel.onclickedAt(1)}"
                         />
 
                     <ImageView
-                        android:id="@+id/card_3"
-                        android:layout_width="145dp"
-                        android:layout_height="200dp"
+                        android:id="@+id/deck3"
+                        android:layout_width="117dp"
+                        android:layout_height="177dp"
                         android:layout_marginStart="10dp"
-                        android:onClick="@{() -> gameViewModel.onclickedAt(2)}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/card_2"
+                        app:layout_constraintStart_toEndOf="@+id/deck2"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/card_3" />
+                        app:srcCompat="@drawable/card_1"
+                        android:onClick="@{() -> gameViewModel.onclickedAt(2)}"
+                        />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout20"
-                android:layout_width="470dp"
-                android:layout_height="229dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/layoutDeck1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTimer"
-                app:layout_constraintVertical_bias="0.689">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutDeck2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="-1dp">
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/deck4"
+                        android:layout_width="117dp"
+                        android:layout_height="177dp"
+                        android:layout_marginStart="64dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/card_1"
+                        android:onClick="@{() -> gameViewModel.onclickedAt(3)}"
+                        />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layoutDeck1"
-                android:layout_width="480dp"
-                android:layout_height="244dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.181"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
-                app:layout_constraintVertical_bias="0.931">
+                    <ImageView
+                        android:id="@+id/deck5"
+                        android:layout_width="117dp"
+                        android:layout_height="177dp"
+                        android:layout_marginEnd="64dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/card_1"
+                        android:onClick="@{() -> gameViewModel.onclickedAt(4)}"
+                         />
 
-                <ImageView
-                    android:id="@+id/card_4"
-                    android:layout_width="145dp"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="28dp"
-                    android:onClick="@{() -> gameViewModel.onclickedAt(3)}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/card_4"
-                    tools:ignore="MissingConstraints" />
-
-                <ImageView
-                    android:id="@+id/card_5"
-                    android:layout_width="145dp"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="32dp"
-                    android:onClick="@{() -> gameViewModel.onclickedAt(4)}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/card_4"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/card_5"
-                    tools:ignore="MissingConstraints" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textTimer"
-                android:layout_width="479dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:text="@={gameViewModel.contador}"
-                android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="7dp" />
+        </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
