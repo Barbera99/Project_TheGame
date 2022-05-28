@@ -118,19 +118,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textTimer"
                 app:layout_constraintVertical_bias="0.0">
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout20"
-                android:layout_width="487dp"
-                android:layout_height="252dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/layoutDeck1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTimer">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutDeck90"
                     android:layout_width="match_parent"
@@ -144,7 +131,7 @@
                         android:layout_width="145dp"
                         android:layout_height="200dp"
                         android:layout_marginEnd="10dp"
-                        android:onClick="@{() -> gameViewModel.onclickedAt(1)}"
+                        android:onClick="@{() -> gameViewModel.onclickedAt(0)}"
                         app:layout_constraintEnd_toStartOf="@+id/card_2"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/card_1" />
@@ -153,7 +140,7 @@
                         android:id="@+id/card_2"
                         android:layout_width="145dp"
                         android:layout_height="200dp"
-                        android:onClick="@{() -> gameViewModel.onclickedAt(2)}"
+                        android:onClick="@{() -> gameViewModel.onclickedAt(1)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -166,7 +153,9 @@
                         android:layout_width="145dp"
                         android:layout_height="200dp"
                         android:layout_marginStart="10dp"
-                        android:onClick="@{() -> gameViewModel.onclickedAt(3)}"
+                        android:onClick="@{() -> gameViewModel.onclickedAt(2)}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/card_2"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/card_3" />
@@ -174,21 +163,24 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textTimer"
-                android:layout_width="486dp"
-                android:layout_height="33dp"
-                android:gravity="center"
-                android:text="HOLA"
-                android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-                tools:layout_editor_absoluteX="2dp"
-                tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:id="@+id/linearLayout20"
+                android:layout_width="470dp"
+                android:layout_height="229dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/layoutDeck1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTimer"
+                app:layout_constraintVertical_bias="0.689">
+
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutDeck1"
-                android:layout_width="475dp"
-                android:layout_height="264dp"
+                android:layout_width="480dp"
+                android:layout_height="244dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.181"
@@ -200,25 +192,39 @@
                     android:id="@+id/card_4"
                     android:layout_width="145dp"
                     android:layout_height="200dp"
-                    android:layout_marginTop="32dp"
-                    android:onClick="@{() -> gameViewModel.onclickedAt(4)}"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="28dp"
+                    android:onClick="@{() -> gameViewModel.onclickedAt(3)}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/card_4"
-                    tools:layout_editor_absoluteX="59dp"
                     tools:ignore="MissingConstraints" />
 
                 <ImageView
                     android:id="@+id/card_5"
                     android:layout_width="145dp"
                     android:layout_height="200dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="32dp"
-                    android:onClick="@{() -> gameViewModel.onclickedAt(5)}"
+                    android:onClick="@{() -> gameViewModel.onclickedAt(4)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/card_4"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/card_5"
-                    tools:layout_editor_absoluteX="268dp"
                     tools:ignore="MissingConstraints" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textTimer"
+                android:layout_width="479dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="@={gameViewModel.contador}"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="7dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

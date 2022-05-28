@@ -47,20 +47,6 @@ public class GameActivity extends AppCompatActivity {
     private DeckViewModel deckViewModel;
     private GameViewModel gameViewModel;
     private ActivityGameBinding activityGameBinding;
-    User player1;
-    Deck pDeck;
-    TextView txtViewRounds;
-    TextView scorePlayerText;
-    TextView scoreIAText;
-    TextView textV;
-    ImageView imgBlank;
-    ImageView imgC1;
-    ImageView imgC2;
-    ImageView imgC3;
-    ImageView imgC4;
-    ImageView imgC5;
-    ListView listAttributes;
-    ArrayList<ImageView> imgList = new ArrayList<>();
     CountDownTimer mCountD;
     String diffSelected;
 
@@ -72,21 +58,20 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_round);
+        setContentView(R.layout.activity_game);
         // @Jordi: Bind the xml with the activity (ActivityLevelsBinding is auto generated).
         activityGameBinding = ActivityGameBinding.inflate(getLayoutInflater());
         // Set the Content of the xml to the view
         setContentView(activityGameBinding.getRoot());
         // Set the viewModel
         gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
-
         initDataBinding();
         Bundle extras = getIntent().getExtras();
         diffSelected = extras.getString("DiffS");
         gameViewModel.setIADifficult(diffSelected);
         gameViewModel.setGameActivity(this);
         gameViewModel.play();
-
+        gameViewModel.randomAttribute();
 
         gameViewModel.isGameSaved.observe(this, new Observer<Boolean>() {
             @Override
@@ -101,6 +86,28 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
+
+         //CONTROLADOR DEL TEMPS MAXIM PER RONDA
+         //DISPLAY DEL TEMPS MAXIM PER RONDA
+         mCountD = new CountDownTimer(3000, 1000) {
+         public void onTick(long millisUntilFinished) {
+             gameViewModel.contador.setValue("Tria la carta abans que s'acabi el temps: " + millisUntilFinished / 1000);
+         }
+         public void onFinish() {
+            int ifEndGame = gameViewModel.ifendGame();
+            if(ifEndGame == 0){
+                nextRound();
+            }else{
+             if(ifEndGame == 1){
+                showToast("Ha guanyat la IA");
+            }else{
+                showToast("Ha guanyat " + gameViewModel.player2_username.getValue());
+            }
+             finish();
+            }
+         }
+        };
+        mCountD.start();
     }
 
     public void nextRound() {

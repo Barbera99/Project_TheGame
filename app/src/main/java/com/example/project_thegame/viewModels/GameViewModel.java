@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> player1_scoreLiveData;
     public MutableLiveData<String> player2_scoreLiveData;
     public MutableLiveData<String> round_number;
+    public MutableLiveData<String> contador;
     int player1_score;
     int player2_score;
     int player1_id;
@@ -52,6 +54,7 @@ public class GameViewModel extends ViewModel {
     public void setMainActivity(MainActivity mainActivity){
         this.mainActivity = mainActivity;
     }
+    boolean ifEndGame = false;
 
     int roundNumber;
     int playerScore;
@@ -87,6 +90,7 @@ public class GameViewModel extends ViewModel {
     public static Card card_3 = new Card(3, "Sonic", 10, 99, 85, 95, 20, false, 3);
     public static Card card_4 = new Card(4, "Linda", 75, 40, 40, 40, 30, false, 3);
     public static Card card_5 = new Card(5, "Paco", 40, 60, 50, 10, 10, false, 3);
+
     ArrayList<Card> user_deck = new ArrayList<>();
 
     public GameViewModel(){
@@ -100,6 +104,9 @@ public class GameViewModel extends ViewModel {
         this.round_number = new MutableLiveData<>();
         this.gameRepo.setGameViewModel(this);
         this.userRepo.setGameViewModel(this);
+        this.contador = new MutableLiveData<>();
+        iACard = c;
+        cardSelected = c;
     }
 
     public void play(){
@@ -111,7 +118,8 @@ public class GameViewModel extends ViewModel {
         this.player1_username.setValue("IA Bot");
         this.userRepo.getUserById(PreferencesProvider.providePreferences().getInt("user_id", 0));
         this.player1_scoreLiveData.setValue("0");
-        this.player1_scoreLiveData.setValue("0");
+        this.player2_scoreLiveData.setValue("0");
+        this.round_number.setValue("0");
     }
 
     public void setIADifficult(String diffSelected){
@@ -174,8 +182,6 @@ public class GameViewModel extends ViewModel {
         Bitmap newImage = Bitmap.createBitmap(width, height, config);
         Canvas c = new Canvas(newImage);
         c.drawBitmap(bm, 0, 0, null);
-
-
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
@@ -195,10 +201,20 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
-     * Finalitzem la partida i guardem la puntuació dels jugadors.
+     * Comprovem si s'acaba la partida.
      */
-    public void endGame(){
-
+    public int ifendGame(){
+        if (roundNumber < 5) {
+            return 0;
+        } else {
+            if (player1_score < player2_score) {
+                return 1;
+            } else if (player1_score > player2_score) {
+                return 2;
+            } else{
+                return -1;
+            }
+        }
     }
 
     /**
@@ -310,34 +326,11 @@ public class GameViewModel extends ViewModel {
         cardSelected = user_deck.get(card_id);
         gameActivity.nextRound();
         round_number.setValue(Integer.toString(roundNumber));
+        player1_scoreLiveData.setValue(Integer.toString(player1_score));
+        player2_scoreLiveData.setValue(Integer.toString(player2_score));
     }
 
-
-/**
- * TIMERS
- *
-    //CONTROLADOR DEL TEMPS MAXIM PER RONDA
-    //DISPLAY DEL TEMPS MAXIM PER RONDA
-    textV = (TextView) findViewById(R.id.textTimer);
-    mCountD = new CountDownTimer(60000, 1000) {
-
-        public void onTick(long millisUntilFinished) {
-            textV.setText("Tria la carta abans que s'acabi el temps: " + millisUntilFinished / 1000);
-        }
-
-        public void onFinish() {
-            if (gameViewModel.getRoundNumber() < 5) {
-                nextRound();
-            } else {
-                if (gameViewModel.getPlayerScore() < gameViewModel.getiAScore()) {
-                    showToast("¡Ha ganado IA!");
-                } else if (gameViewModel.getiAScore() > gameViewModel.getPlayerScore()) {
-                    showToast("¡Ha ganado Player!");
-                }
-                finish();
-            }
-            gameViewModel.save_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
-        }
-    };
- */
+    public void setContador(MutableLiveData<String> contador) {
+        this.contador = contador;
+    }
 }
