@@ -8,6 +8,7 @@ import com.example.project_thegame.helpers.ApiCallBack;
 import com.example.project_thegame.models.Deck;
 import com.example.project_thegame.models.Game;
 import com.example.project_thegame.models.Result;
+import com.example.project_thegame.models.User;
 import com.example.project_thegame.service.DeckService;
 import com.example.project_thegame.service.GameService;
 import com.example.project_thegame.service.GameServiceImpl;
@@ -22,42 +23,38 @@ import retrofit2.Response;
 public class GameRepo {
     private static String TAG = "GameRepo";
     private GameService gameService;
-    public MutableLiveData<Boolean> gameStarted;
-    public MutableLiveData<Boolean> gameEnded;
-    public MutableLiveData<Result<String>> createGameLiveData;
-    private Result<Integer> createGameResult;
-    private Result<Integer> endGameResult;
+    public MutableLiveData<Boolean> gameSaved;
+    public MutableLiveData<Result<String>> saveGameLiveData;
+    private Result<Integer> saveGameResult;
     private GameViewModel gameViewModel;
 
     public GameRepo(){
         this.gameService = new GameServiceImpl();
-        createGameLiveData = new MutableLiveData<>();
-
+        saveGameLiveData = new MutableLiveData<>();
     }
 
-    public void createGame(int user_id, Game game){
-        this.gameService.createGame(user_id, game).enqueue(new ApiCallBack<Game>() {
+    public void saveGame(int user_id, Game game){
+        this.gameService.saveGame(user_id, game).enqueue(new ApiCallBack<Game>() {
             @Override
             public void onFailure(Call call, Throwable t) {
-                createGameResult = Result.error(t);
-                gameStarted.setValue(false);
-                Log.d(TAG, "createGame() -> onFailure -> " + t.getMessage());
+                saveGameResult = Result.error(t);
+                gameSaved.setValue(false);
+                Log.d(TAG, "saveGame() -> onFailure -> " + t.getMessage());
             }
 
             @Override
             public void onResponseSuccess(Call<Game> call, Response<Game> response) {
-                int game_id = response.body().getGameId();
-                Log.d(TAG, "createGame() -> game_id -> " + game_id);
-                PreferencesProvider.providePreferences().edit().putInt("game_id", game_id).commit();
-
-                Log.d(TAG, "createGame() -> onResponseSusccess -> " + response.code());
+                int code = response.code();
+                if (code == 200) {
+                    gameViewModel.isGameSaved.setValue(true);
+                }
             }
 
             @Override
             public void onResponseError(Call<Game> call, Throwable t) {
-                createGameResult = Result.error(t);
-                gameStarted.setValue(false);
-                Log.d(TAG, "createGame() -> onFailure -> " + t.getMessage());
+                saveGameResult = Result.error(t);
+                gameSaved.setValue(false);
+                Log.d(TAG, "saveGame() -> onFailure -> " + t.getMessage());
             }
         });
     }

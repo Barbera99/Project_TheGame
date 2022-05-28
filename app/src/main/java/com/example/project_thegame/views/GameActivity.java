@@ -73,40 +73,27 @@ public class GameActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
-
         // @Jordi: Bind the xml with the activity (ActivityLevelsBinding is auto generated).
         activityGameBinding = ActivityGameBinding.inflate(getLayoutInflater());
-
         // Set the Content of the xml to the view
         setContentView(activityGameBinding.getRoot());
-
         // Set the viewModel
         gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
         initDataBinding();
         Bundle extras = getIntent().getExtras();
         diffSelected = extras.getString("DiffS");
-        deckViewModel = new DeckViewModel();
-        deckViewModel.setGameActivity(this);
-        //gameViewModel = new GameViewModel();
         gameViewModel.setIADifficult(diffSelected);
         gameViewModel.setGameActivity(this);
-        player1 = new User();
-        pDeck = new Deck();
-        pDeck.setArrayDeck(gameViewModel.getUserDeck());
-
-        player1.setPlayerDeck(pDeck);
-
-
         gameViewModel.play();
 
 
-        gameViewModel.isGameEnded.observe(this, new Observer<Boolean>() {
+        gameViewModel.isGameSaved.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     Log.d(TAG, "Partida finalitzada i guardada correctament a la base de dades.");
-                    showToast("Usuari registrat correctament");
+                    showToast("Partida finalitzada");
                     goTo(MainActivity.class);
                 } else {
                     //Display Error
@@ -114,16 +101,10 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        player1.setId(PreferencesProvider.providePreferences().getInt("user_id", 0));
-
     }
 
     public void nextRound() {
         ArrayList<String> result = gameViewModel.nextRound();
-
-
         if (result.get(0).equals("empate")) {
             showToast("Ha quedado en empate con el valor" + result.get(1));
         } else {

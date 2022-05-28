@@ -31,8 +31,7 @@ public class GameViewModel extends ViewModel {
     private static String TAG = "GameViewModel";
 
 
-    public MutableLiveData<Boolean> isGameStarted;
-    public MutableLiveData<Boolean> isGameEnded;
+    public MutableLiveData<Boolean> isGameSaved;
     public MutableLiveData<String> player1_username;
     public MutableLiveData<String> player2_username;
     public MutableLiveData<String> player1_scoreLiveData;
@@ -92,10 +91,8 @@ public class GameViewModel extends ViewModel {
 
     public GameViewModel(){
         this.gameRepo = new GameRepo();
-        this.deckRepo = new DeckRepo();
         this.userRepo = new UserRepo();
-        this.isGameEnded = new MutableLiveData<>();
-        this.isGameStarted = new MutableLiveData<>();
+        this.isGameSaved = new MutableLiveData<>();
         this.player1_scoreLiveData = new MutableLiveData<>();
         this.player1_username = new MutableLiveData<>();
         this.player2_scoreLiveData = new MutableLiveData<>();
@@ -194,7 +191,7 @@ public class GameViewModel extends ViewModel {
     public void save_game(int id_player1){
         this.player1_id = id_player1;
         Game game = new Game(1, id_player1, player1_score, player2_score);
-        this.gameRepo.createGame(id_player1, game);
+        this.gameRepo.saveGame(id_player1, game);
     }
 
     /**
@@ -206,6 +203,7 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Comprovem qui guanya la ronda.
+     * @return result ArrayList Retorna el guanyador de la ronda.
      */
     protected ArrayList<String> checkWinner(int attributePlayer, int attributeIA){
         ArrayList<String> result = new ArrayList<>();
@@ -250,7 +248,9 @@ public class GameViewModel extends ViewModel {
         return result;
     }
 
-
+    /**
+     *
+     */
     protected void IAIntell(){
         if(attributeActualRound.equals("Fuerza")){
             for (int i = 0; i<deckForIA.getSIZE();i++){
@@ -284,6 +284,7 @@ public class GameViewModel extends ViewModel {
             }
         }
     }
+
     public void randomAttribute(){
         int random = new Random().nextInt((5-1)+1) + 1;
         if(random == 1){
@@ -300,6 +301,10 @@ public class GameViewModel extends ViewModel {
 
     }
 
+    /**
+     * Metode per a realitzar els onclick de les cartes, amb el databinding.
+     * @param card_id Indiquem la id de la carta escollida per l'usuari.
+     */
     public void onclickedAt(int card_id){
         Log.d(TAG, "" + card_id);
         cardSelected = user_deck.get(card_id);
