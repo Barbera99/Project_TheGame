@@ -125,7 +125,7 @@
                     android:layout_width="408dp"
                     android:layout_height="37dp"
                     android:gravity="center"
-                    android:text="HOLA"
+                    android:text=""
                     android:textAlignment="center"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
                     tools:ignore="MissingConstraints"
@@ -147,7 +147,8 @@
                         android:onClick="@{() -> gameViewModel.onclickedAt(0)}"
                         app:layout_constraintEnd_toStartOf="@+id/card_2"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/card_1" />
+                        app:srcCompat="@drawable/card_1"
+                        tools:ignore="UnknownIdInLayout" />
 
                     <ImageView
                         android:id="@+id/deck2"
@@ -156,7 +157,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/card_1"
+                        app:srcCompat="@drawable/card_2"
                         android:onClick="@{() -> gameViewModel.onclickedAt(1)}"
                         />
 
@@ -167,7 +168,7 @@
                         android:layout_marginStart="10dp"
                         app:layout_constraintStart_toEndOf="@+id/deck2"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/card_1"
+                        app:srcCompat="@drawable/card_3"
                         android:onClick="@{() -> gameViewModel.onclickedAt(2)}"
                         />
 
@@ -187,7 +188,7 @@
                         android:layout_marginStart="64dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/card_1"
+                        app:srcCompat="@drawable/card_4"
                         android:onClick="@{() -> gameViewModel.onclickedAt(3)}"
                         />
 
@@ -198,7 +199,7 @@
                         android:layout_marginEnd="64dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/card_1"
+                        app:srcCompat="@drawable/card_5"
                         android:onClick="@{() -> gameViewModel.onclickedAt(4)}"
                          />
 

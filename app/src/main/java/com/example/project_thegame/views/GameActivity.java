@@ -89,7 +89,7 @@ public class GameActivity extends AppCompatActivity {
 
          //CONTROLADOR DEL TEMPS MAXIM PER RONDA
          //DISPLAY DEL TEMPS MAXIM PER RONDA
-         mCountD = new CountDownTimer(3000, 1000) {
+         mCountD = new CountDownTimer(30000, 1000) {
          public void onTick(long millisUntilFinished) {
              gameViewModel.contador.setValue("Tria la carta abans que s'acabi el temps: " + millisUntilFinished / 1000);
          }

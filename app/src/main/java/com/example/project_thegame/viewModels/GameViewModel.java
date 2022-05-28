@@ -324,10 +324,11 @@ public class GameViewModel extends ViewModel {
     public void onclickedAt(int card_id){
         Log.d(TAG, "" + card_id);
         cardSelected = user_deck.get(card_id);
-        gameActivity.nextRound();
         round_number.setValue(Integer.toString(roundNumber));
         player1_scoreLiveData.setValue(Integer.toString(player1_score));
         player2_scoreLiveData.setValue(Integer.toString(player2_score));
+        gameActivity.nextRound();
+
     }
 
     public void setContador(MutableLiveData<String> contador) {
