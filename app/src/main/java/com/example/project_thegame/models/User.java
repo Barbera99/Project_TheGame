@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User implements Parcelable {
+public class User {
     /**
      * Declaració dels atributs de classe.
      */
@@ -189,46 +189,6 @@ public class User implements Parcelable {
         this.listOfCardsOwned = listOfCardsOwned;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.name);
-        dest.writeParcelable(this.playerDeck, flags);
-        dest.writeList(this.listOfCardsOwned);
-    }
-
-    public void readFromParcel(Parcel source) {
-        this.id = source.readInt();
-        this.name = source.readString();
-        this.playerDeck = source.readParcelable(Deck.class.getClassLoader());
-        this.listOfCardsOwned = new ArrayList<Card>();
-        source.readList(this.listOfCardsOwned, Card.class.getClassLoader());
-    }
-
-    protected User(Parcel in) {
-        this.id = in.readInt();
-        this.name = in.readString();
-        this.playerDeck = in.readParcelable(Deck.class.getClassLoader());
-        this.listOfCardsOwned = new ArrayList<Card>();
-        in.readList(this.listOfCardsOwned, Card.class.getClassLoader());
-    }
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel source) {
-            return new User(source);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
 
 
 }

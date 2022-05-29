@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class Deck implements Parcelable {
+public class Deck{
     /**
      * Declaració dels atributs de classe.
      */
@@ -62,37 +62,4 @@ public class Deck implements Parcelable {
         this.arrayDeck = arrayDeck;
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.SIZE);
-        dest.writeTypedList(this.arrayDeck);
-    }
-
-    public void readFromParcel(Parcel source) {
-        this.SIZE = source.readInt();
-        this.arrayDeck = source.createTypedArrayList(Card.CREATOR);
-    }
-
-    protected Deck(Parcel in) {
-        this.SIZE = in.readInt();
-        this.arrayDeck = in.createTypedArrayList(Card.CREATOR);
-    }
-
-    public static final Creator<Deck> CREATOR = new Creator<Deck>() {
-        @Override
-        public Deck createFromParcel(Parcel source) {
-            return new Deck(source);
-        }
-
-        @Override
-        public Deck[] newArray(int size) {
-            return new Deck[size];
-        }
-    };
 }

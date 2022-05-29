@@ -44,7 +44,6 @@ import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     private static final String TAG = "GameActivity";
-    private DeckViewModel deckViewModel;
     private GameViewModel gameViewModel;
     private ActivityGameBinding activityGameBinding;
     CountDownTimer mCountD;
@@ -70,15 +69,22 @@ public class GameActivity extends AppCompatActivity {
         diffSelected = extras.getString("DiffS");
         gameViewModel.setIADifficult(diffSelected);
         gameViewModel.setGameActivity(this);
-        gameViewModel.play();
         gameViewModel.randomAttribute();
+        gameViewModel.play();
 
-        gameViewModel.isGameSaved.observe(this, new Observer<Boolean>() {
+        gameViewModel.isGameEnded.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     Log.d(TAG, "Partida finalitzada i guardada correctament a la base de dades.");
                     showToast("Partida finalitzada");
+                    if (gameViewModel.getEndGame() == 1){
+                        showToast("Guanyador de la partida IA");
+                    }
+                    else{
+                        showToast("Guanyador de la partida" + gameViewModel.player2_username.getValue());
+                    }
+                    finish();
                     goTo(MainActivity.class);
                 } else {
                     //Display Error
@@ -100,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
             }else{
              if(ifEndGame == 1){
                 showToast("Ha guanyat la IA");
-            }else{
+            }else if (ifEndGame == 2){
                 showToast("Ha guanyat " + gameViewModel.player2_username.getValue());
             }
              finish();

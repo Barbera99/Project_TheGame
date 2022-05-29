@@ -32,37 +32,33 @@ public class GameViewModel extends ViewModel {
     private static String TAG = "GameViewModel";
 
 
-    public MutableLiveData<Boolean> isGameSaved;
+    public MutableLiveData<Boolean> isGameEnded;
     public MutableLiveData<String> player1_username;
     public MutableLiveData<String> player2_username;
     public MutableLiveData<String> player1_scoreLiveData;
     public MutableLiveData<String> player2_scoreLiveData;
     public MutableLiveData<String> round_number;
     public MutableLiveData<String> contador;
+    public MutableLiveData<String> roundAttribute;
     int player1_score;
     int player2_score;
     int player1_id;
     private  UserRepo userRepo;
     private  DeckRepo deckRepo;
     private  GameRepo gameRepo;
-
     private GameActivity gameActivity;
     private MainActivity mainActivity;
-    public void setGameActivity(GameActivity gameActivity){
-        this.gameActivity = gameActivity;
-    }
-    public void setMainActivity(MainActivity mainActivity){
-        this.mainActivity = mainActivity;
-    }
+    ArrayList <Integer> alreadySelectedAttribute = new ArrayList<>();
+    ArrayList <Card> alreadySelectedCard = new ArrayList<>();
     boolean ifEndGame = false;
-
     int roundNumber;
-    int playerScore;
+    int endGame;
     Card iACard;
     Card cardSelected;
     Deck deckForIA = new Deck();
     int positionCard;
     String attributeActualRound;
+    ArrayList<Card> user_deck = new ArrayList<>();
     Game game;
     Deck easyDeck;
     Deck mediumDeck;
@@ -91,12 +87,11 @@ public class GameViewModel extends ViewModel {
     public static Card card_4 = new Card(4, "Linda", 75, 40, 40, 40, 30, false, 3);
     public static Card card_5 = new Card(5, "Paco", 40, 60, 50, 10, 10, false, 3);
 
-    ArrayList<Card> user_deck = new ArrayList<>();
 
     public GameViewModel(){
         this.gameRepo = new GameRepo();
         this.userRepo = new UserRepo();
-        this.isGameSaved = new MutableLiveData<>();
+        this.isGameEnded = new MutableLiveData<>();
         this.player1_scoreLiveData = new MutableLiveData<>();
         this.player1_username = new MutableLiveData<>();
         this.player2_scoreLiveData = new MutableLiveData<>();
@@ -107,6 +102,10 @@ public class GameViewModel extends ViewModel {
         this.contador = new MutableLiveData<>();
         iACard = c;
         cardSelected = c;
+        this.roundAttribute = new MutableLiveData<>();
+        player1_score = 0;
+        player2_score = 0;
+        roundNumber = 1;
     }
 
     public void play(){
@@ -117,9 +116,10 @@ public class GameViewModel extends ViewModel {
         user_deck.add(card_5);
         this.player1_username.setValue("IA Bot");
         this.userRepo.getUserById(PreferencesProvider.providePreferences().getInt("user_id", 0));
-        this.player1_scoreLiveData.setValue("0");
-        this.player2_scoreLiveData.setValue("0");
-        this.round_number.setValue("0");
+        this.player1_scoreLiveData.setValue(Integer.toString(player1_score));
+        this.player2_scoreLiveData.setValue(Integer.toString(player2_score));
+        this.round_number.setValue(Integer.toString(roundNumber));
+        this.roundAttribute.setValue(attributeActualRound);
     }
 
     public void setIADifficult(String diffSelected){
@@ -144,21 +144,6 @@ public class GameViewModel extends ViewModel {
             newC.add(hard2);
         }
         deckForIA.setArrayDeck(newC);
-    }
-    public ArrayList<Card> getUserDeck() {
-        ArrayList<Card> pDeck = new ArrayList<Card>();
-        this.deckRepo.getDeck(1);
-        return pDeck;
-    }
-
-    public int getPositionCard(){return positionCard;}
-    public void setPositionCard(int pC){this.positionCard = pC;}
-    public int getRoundNumber() {
-        return roundNumber;
-    }
-    public void setRoundNumber(int rN){this.roundNumber = rN;}
-    public String getAttributeActualRound() {
-        return attributeActualRound;
     }
 
     public ArrayList<String> arrayListText(Card c, int i){
@@ -204,31 +189,27 @@ public class GameViewModel extends ViewModel {
      * Comprovem si s'acaba la partida.
      */
     public int ifendGame(){
-        if (roundNumber < 5) {
-            return 0;
-        } else {
-            if (player1_score < player2_score) {
+        if (player1_score >= 3){
                 return 1;
-            } else if (player1_score > player2_score) {
-                return 2;
-            } else{
-                return -1;
-            }
         }
+        else if(player1_score >= 3){
+                return 2;
+        }
+        return 0;
     }
 
     /**
      * Comprovem qui guanya la ronda.
      * @return result ArrayList Retorna el guanyador de la ronda.
      */
-    protected ArrayList<String> checkWinner(int attributePlayer, int attributeIA){
+    protected ArrayList<String> checkRoundWinner(int attributePlayer, int attributeIA){
         ArrayList<String> result = new ArrayList<>();
         if(attributeIA > attributePlayer){
-            player2_score++;
+            player1_score++;
             result.add("IA");
             result.add(String.valueOf(attributeIA));
         } else {
-            playerScore++;
+            player2_score++;
             result.add("Player");
             result.add(String.valueOf(attributePlayer));
         }
@@ -244,19 +225,19 @@ public class GameViewModel extends ViewModel {
         IAIntell();
         ArrayList<String> result = null;
         if(attributeActualRound == "Fuerza"){
-            result = checkWinner(cardSelected.getStrenght(),iACard.getStrenght());
+            result = checkRoundWinner(cardSelected.getStrenght(),iACard.getStrenght());
             result.add("Fuerza");
         } else if(attributeActualRound == "Velocidad"){
-            result = checkWinner(cardSelected.getSpeed(),iACard.getSpeed());
+            result = checkRoundWinner(cardSelected.getSpeed(),iACard.getSpeed());
             result.add("Velocidad");
         } else if(attributeActualRound == "Agilidad"){
-            result = checkWinner(cardSelected.getAgility(),iACard.getAgility());
+            result = checkRoundWinner(cardSelected.getAgility(),iACard.getAgility());
             result.add("Agilidad");
         } else if(attributeActualRound == "Aguante"){
-            result = checkWinner(cardSelected.getEndurance(),iACard.getEndurance());
+            result = checkRoundWinner(cardSelected.getEndurance(),iACard.getEndurance());
             result.add("Aguante");
         } else if(attributeActualRound == "Inteligencia"){
-            result = checkWinner(cardSelected.getIntelligencie(),iACard.getIntelligencie());
+            result = checkRoundWinner(cardSelected.getIntelligencie(),iACard.getIntelligencie());
             result.add("Inteligencia");
         }
         randomAttribute();
@@ -301,20 +282,24 @@ public class GameViewModel extends ViewModel {
         }
     }
 
+    /**
+     * Metode per agafar un atribut de manera random per a la ronda.
+     */
     public void randomAttribute(){
         int random = new Random().nextInt((5-1)+1) + 1;
-        if(random == 1){
-            attributeActualRound = "Fuerza";
-        } else if(random == 2){
-            attributeActualRound = "Velocidad";
-        } else if(random == 3){
-            attributeActualRound = "Agilidad";
-        } else if(random == 4){
-            attributeActualRound = "Aguante";
-        } else if(random == 5){
-            attributeActualRound = "Inteligencia";
-        }
-
+            if(random == 1 && !alreadySelectedAttribute.contains(random)){
+                attributeActualRound = "Fuerza";
+            } else if(random == 2 && !alreadySelectedAttribute.contains(random)){
+                attributeActualRound = "Velocidad";
+            } else if(random == 3 && !alreadySelectedAttribute.contains(random)){
+                attributeActualRound = "Agilidad";
+            } else if(random == 4 && !alreadySelectedAttribute.contains(random)){
+                attributeActualRound = "Aguante";
+            } else if(random == 5 && !alreadySelectedAttribute.contains(random)){
+                attributeActualRound = "Inteligencia";
+            }
+            alreadySelectedAttribute.add(random);
+            this.roundAttribute.setValue(attributeActualRound);
     }
 
     /**
@@ -324,14 +309,38 @@ public class GameViewModel extends ViewModel {
     public void onclickedAt(int card_id){
         Log.d(TAG, "" + card_id);
         cardSelected = user_deck.get(card_id);
-        round_number.setValue(Integer.toString(roundNumber));
-        player1_scoreLiveData.setValue(Integer.toString(player1_score));
-        player2_scoreLiveData.setValue(Integer.toString(player2_score));
-        gameActivity.nextRound();
-
+        if(!alreadySelectedCard.contains(cardSelected)) {
+            alreadySelectedCard.add(cardSelected);
+            if(roundNumber >= 5){
+                endGame = ifendGame();
+            }
+            if (endGame == 1 || endGame == 2) {
+                isGameEnded.setValue(true);
+            }else{
+                gameActivity.nextRound();
+                round_number.setValue(Integer.toString(roundNumber));
+                player1_scoreLiveData.setValue(Integer.toString(player1_score));
+                player2_scoreLiveData.setValue(Integer.toString(player2_score));
+            }
+        }
     }
 
+
+    /**
+     *
+     * GETTERS I SETTERS
+     */
+    public int getPositionCard(){return positionCard;}
+    public void setPositionCard(int pC){this.positionCard = pC;}
+    public int getRoundNumber() {return roundNumber;}
+    public void setRoundNumber(int rN){this.roundNumber = rN;}
+    public String getAttributeActualRound() {return attributeActualRound;}
+    public void setGameActivity(GameActivity gameActivity){this.gameActivity = gameActivity;}
+    public void setMainActivity(MainActivity mainActivity){this.mainActivity = mainActivity;}
     public void setContador(MutableLiveData<String> contador) {
         this.contador = contador;
+    }
+    public int getEndGame(){
+        return endGame;
     }
 }

@@ -46,7 +46,7 @@ public class GameRepo {
             public void onResponseSuccess(Call<Game> call, Response<Game> response) {
                 int code = response.code();
                 if (code == 200) {
-                    gameViewModel.isGameSaved.setValue(true);
+                    gameViewModel.isGameEnded.setValue(true);
                 }
             }
 
