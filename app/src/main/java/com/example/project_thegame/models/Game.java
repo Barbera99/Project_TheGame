@@ -8,12 +8,18 @@ public class Game {
      */
     @SerializedName("game_id")
     private int game_id;
-
+    @SerializedName("user1_id")
     private int player1_id;
+    @SerializedName("user2_id")
     private int player2_id;
-    private Map []already_played;
+    @SerializedName("user1_score")
     private int score_player1;
+    @SerializedName("user2_score")
     private int score_player2;
+
+
+    private Map []already_played;
+
 
     public Game(int player1, int player2, int score_player1, int score_player2) {
         this.player1_id = player1;

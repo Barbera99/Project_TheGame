@@ -179,10 +179,10 @@ public class GameViewModel extends ViewModel {
     /**
      * Guardem la partida.
      */
-    public void save_game(int id_player1){
-        this.player1_id = id_player1;
-        Game game = new Game(1, id_player1, player1_score, player2_score);
-        this.gameRepo.saveGame(id_player1, game);
+    public void save_game(int id_player2){
+        this.player1_id = id_player2;
+        Game game = new Game(1, id_player2, player1_score, player2_score);
+        this.gameRepo.saveGame(id_player2, game);
     }
 
     /**
@@ -192,7 +192,7 @@ public class GameViewModel extends ViewModel {
         if (player1_score >= 3){
                 return 1;
         }
-        else if(player1_score >= 3){
+        else if(player2_score >= 3){
                 return 2;
         }
         return 0;

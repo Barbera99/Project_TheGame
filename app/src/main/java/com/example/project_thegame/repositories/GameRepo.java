@@ -31,6 +31,7 @@ public class GameRepo {
     public GameRepo(){
         this.gameService = new GameServiceImpl();
         saveGameLiveData = new MutableLiveData<>();
+        gameSaved = new MutableLiveData<>();
     }
 
     public void saveGame(int user_id, Game game){
@@ -44,10 +45,7 @@ public class GameRepo {
 
             @Override
             public void onResponseSuccess(Call<Game> call, Response<Game> response) {
-                int code = response.code();
-                if (code == 200) {
-                    gameViewModel.isGameEnded.setValue(true);
-                }
+                Log.d(TAG, "saveGame() -> Partida guardada correctament");
             }
 
             @Override

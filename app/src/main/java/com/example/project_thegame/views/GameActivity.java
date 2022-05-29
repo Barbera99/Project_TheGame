@@ -76,20 +76,18 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    Log.d(TAG, "Partida finalitzada i guardada correctament a la base de dades.");
                     showToast("Partida finalitzada");
                     if (gameViewModel.getEndGame() == 1){
                         showToast("Guanyador de la partida IA");
                     }
                     else{
-                        showToast("Guanyador de la partida" + gameViewModel.player2_username.getValue());
+                        showToast("Guanyador de la partida " + gameViewModel.player2_username.getValue());
                     }
+                    gameViewModel.save_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
                     finish();
                     goTo(MainActivity.class);
-                } else {
-                    //Display Error
-                    Log.d(TAG, "Partida finalitzada, però no guardada a la base de dades.");
                 }
+
             }
         });
 
@@ -109,7 +107,8 @@ public class GameActivity extends AppCompatActivity {
             }else if (ifEndGame == 2){
                 showToast("Ha guanyat " + gameViewModel.player2_username.getValue());
             }
-             finish();
+                gameViewModel.save_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
+                finish();
             }
          }
         };
