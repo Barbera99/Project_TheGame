@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     ImageButton shopButton;
     Button playButton;
+    Button aboutButton;
     ImageButton deckButton;
     ImageButton logoutButton;
     ArrayList<Card> lCard = new ArrayList<Card>();
@@ -114,6 +115,14 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         });
 
+        aboutButton = findViewById(R.id.aboutButton);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent aboutPageActivity = new Intent(getApplicationContext(), AboutPageActivity.class);
+                startActivity(aboutPageActivity);
+            }
+        });
         logoutButton = findViewById(R.id.LogOut);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

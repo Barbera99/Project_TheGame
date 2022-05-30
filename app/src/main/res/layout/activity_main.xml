@@ -38,18 +38,20 @@
             android:id="@+id/textLvl"
             android:layout_width="65dp"
             android:layout_height="25dp"
-            android:text="Difficult:"
+            android:text="Dificultat:"
+            android:textColor="@color/purple_700"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.112"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.667" />
+            app:layout_constraintVertical_bias="0.658" />
 
         <Spinner
             android:id="@+id/sLvl"
-            android:layout_width="196dp"
-            android:layout_height="57dp"
+            android:layout_width="199dp"
+            android:layout_height="26dp"
             android:layout_marginStart="34dp"
             android:layout_marginTop="453dp"
             android:layout_marginEnd="71dp"
@@ -60,17 +62,17 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textLvl"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageButton
             android:id="@+id/LogOut"
             android:layout_width="47dp"
             android:layout_height="42dp"
-            android:layout_marginStart="348dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="#00FFFFFF"
             android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logout"
             tools:ignore="MissingConstraints" />
@@ -138,6 +140,17 @@
                 tools:layout_editor_absoluteY="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/aboutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/purple_700"
+            android:text="About"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -10,7 +11,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -127,9 +130,34 @@ public class GameActivity extends AppCompatActivity {
         activityGameBinding.setLifecycleOwner(this);
     }
 
+    public ImageView getImageView(int card_id) {
+        ImageView iv = new ImageView(this);
+        switch (card_id) {
+            case 0:
+                iv = (ImageView) findViewById(R.id.card_1);
+                break;
+            case 1:
+                iv = (ImageView) findViewById(R.id.card_2);
+                break;
+            case 2:
+                iv = (ImageView) findViewById(R.id.card_3);
+                break;
+            case 3:
+                iv = (ImageView) findViewById(R.id.card_4);
+                break;
+            case 4:
+                iv = (ImageView) findViewById(R.id.card_5);
+                break;
+
+        }
+        return iv;
+    }
+
     public void goTo(Class _class) {
         Log.d(TAG, "IntGoto; ");
         Intent intent = new Intent(this, _class);
         startActivity(intent);
     }
+
+
 }
