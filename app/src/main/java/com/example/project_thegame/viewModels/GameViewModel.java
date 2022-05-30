@@ -41,11 +41,6 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> round_number;
     public MutableLiveData<String> contador;
     public MutableLiveData<String> roundAttribute;
-    public MutableLiveData<ImageView> card_1LiveData;
-    public MutableLiveData<ImageView> card_2LiveData;
-    public MutableLiveData<ImageView> card_3LiveData;
-    public MutableLiveData<ImageView> card_4LiveData;
-    public MutableLiveData<ImageView> card_5LiveData;
     int player1_score;
     int player2_score;
     int player1_id;
@@ -161,10 +156,10 @@ public class GameViewModel extends ViewModel {
     public ArrayList<String> arrayListText(Card c, int i){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(c.getName());
-        arrayList.add("Fuerza:"+c.getStrenght());
-        arrayList.add("Velocidad:"+c.getSpeed());
-        arrayList.add("Agilidad:"+c.getAgility());
-        arrayList.add("Aguante:"+c.getEndurance());
+        arrayList.add("Força:"+c.getStrenght());
+        arrayList.add("Velocitat:"+c.getSpeed());
+        arrayList.add("Agilitat:"+c.getAgility());
+        arrayList.add("Resistencia:"+c.getEndurance());
         arrayList.add("Inteligencia:"+c.getIntelligencie());
         arrayList.add("Categoria:"+c.getCategory());
         positionCard = i;
@@ -237,18 +232,18 @@ public class GameViewModel extends ViewModel {
         roundNumber++;
         IAIntell();
         ArrayList<String> result = null;
-        if(attributeActualRound == "Fuerza"){
+        if(attributeActualRound == "Força"){
             result = checkRoundWinner(cardSelected.getStrenght(),iACard.getStrenght());
-            result.add("Fuerza");
-        } else if(attributeActualRound == "Velocidad"){
+            result.add("Força");
+        } else if(attributeActualRound == "Velocitat"){
             result = checkRoundWinner(cardSelected.getSpeed(),iACard.getSpeed());
-            result.add("Velocidad");
-        } else if(attributeActualRound == "Agilidad"){
+            result.add("Velocitat");
+        } else if(attributeActualRound == "Agilitat"){
             result = checkRoundWinner(cardSelected.getAgility(),iACard.getAgility());
-            result.add("Agilidad");
-        } else if(attributeActualRound == "Aguante"){
+            result.add("Agilitat");
+        } else if(attributeActualRound == "Resistencia"){
             result = checkRoundWinner(cardSelected.getEndurance(),iACard.getEndurance());
-            result.add("Aguante");
+            result.add("Resistencia");
         } else if(attributeActualRound == "Inteligencia"){
             result = checkRoundWinner(cardSelected.getIntelligencie(),iACard.getIntelligencie());
             result.add("Inteligencia");
@@ -266,25 +261,25 @@ public class GameViewModel extends ViewModel {
      *
      */
     protected void IAIntell(){
-        if(attributeActualRound.equals("Fuerza")){
+        if(attributeActualRound.equals("Força")){
             for (int i = 0; i<deckForIA.getSIZE();i++){
                 if(deckForIA.getArrayDeck().get(i).getStrenght() > iACard.getStrenght()){
                     iACard = deckForIA.getArrayDeck().get(i);
                 }
             }
-        } else if(attributeActualRound.equals("Velocidad")){
+        } else if(attributeActualRound.equals("Velocitat")){
             for (int i = 0; i<deckForIA.getSIZE();i++){
                 if(deckForIA.getArrayDeck().get(i).getSpeed() > iACard.getSpeed()){
                     iACard = deckForIA.getArrayDeck().get(i);
                 }
             }
-        } else if(attributeActualRound.equals("Agilidad")){
+        } else if(attributeActualRound.equals("Agilitat")){
             for (int i = 0; i<deckForIA.getSIZE();i++){
                 if(deckForIA.getArrayDeck().get(i).getAgility() > iACard.getAgility()){
                     iACard = deckForIA.getArrayDeck().get(i);
                 }
             }
-        } else if(attributeActualRound.equals("Aguante")){
+        } else if(attributeActualRound.equals("Resistencia")){
             for (int i = 0; i<deckForIA.getSIZE();i++){
                 if(deckForIA.getArrayDeck().get(i).getEndurance() > iACard.getEndurance()){
                     iACard = deckForIA.getArrayDeck().get(i);
@@ -312,11 +307,11 @@ public class GameViewModel extends ViewModel {
         if(random == 1 ){
             attributeActualRound = "Fuerza";
         } else if(random == 2 ){
-            attributeActualRound = "Velocidad";
+            attributeActualRound = "Velocitat";
         } else if(random == 3 ){
-            attributeActualRound = "Agilidad";
+            attributeActualRound = "Agilitat";
         } else if(random == 4){
-            attributeActualRound = "Aguante";
+            attributeActualRound = "Resistencia";
         } else if(random == 5){
             attributeActualRound = "Inteligencia";
         }
@@ -333,6 +328,13 @@ public class GameViewModel extends ViewModel {
         cardSelected = user_deck.get(card_id);
         if(!alreadySelectedCard.contains(cardSelected)) {
             alreadySelectedCard.add(cardSelected);
+
+            ImageView imageview = gameActivity.getImageView(card_id);
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            imageview.setColorFilter(filter);
+
             gameActivity.nextRound();
             round_number.setValue(Integer.toString(roundNumber));
             player1_scoreLiveData.setValue(Integer.toString(player1_score));

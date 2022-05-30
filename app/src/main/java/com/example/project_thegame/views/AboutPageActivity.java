@@ -23,15 +23,19 @@ public class AboutPageActivity extends AppCompatActivity {
         Element adsElement = new Element();
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
-                .setDescription(" Add descrition about your app")
+                .setDescription("Som una empresa formada per progmadors i dissenyadors enfocada en el desenvolupament de videojocs innovadors en la indústria.\nVam sorgir arrel de la manca de generes de videjocs nous en la industria.\n" +
+                        "\n" +
+                        "Venim a crear aplicacions mai vistes, amb mecàniques innovadores. Som l’empresa que crea nous generes de videojocs.\n" +
+                        "\n" +
+                        "Som la millor opció a l’hora de presentar al mercat aplicacions que no s’han vist abans.")
                 .setImage(R.drawable.logo)
-                .addItem(new Element().setTitle("Version 1.0"))
-                .addGroup("CONNECT WITH US!")
-                .addEmail("Your mail id ")
-                .addWebsite("Your website/")
-                .addYoutube("UCbekhhidkzkGryM7mi5Ys_w")   //Enter your youtube link here (replace with my channel link)
-                .addPlayStore("com.example.yourprojectname")   //Replace all this with your package name
-                .addInstagram("jarves.usaram")    //Your instagram id
+                .addItem(new Element().setTitle("Versió 1.0"))
+                .addGroup("Troba'ns a:")
+                .addEmail("ecgbgames@contacte.com", "Contacta'ns")
+                .addWebsite("https://ecgbgames.wordpress.com/", "Visita'ns'")
+                .addYoutube("UdLUniversitatdeLleida", "Mira'ns")   //Enter your youtube link here (replace with my channel link)
+                //.addPlayStore("com.example.yourprojectname")   //Replace all this with your package name
+                .addInstagram("campusigualadaudl", "Segueix'nos")    //Your instagram id
                 .addItem(createCopyright())
                 .create();
         setContentView(aboutPage);
@@ -39,7 +43,7 @@ public class AboutPageActivity extends AppCompatActivity {
     private Element createCopyright()
     {
         Element copyright = new Element();
-        @SuppressLint("DefaultLocale") final String copyrightString = String.format("Copyright %d by Your Name", Calendar.getInstance().get(Calendar.YEAR));
+        @SuppressLint("DefaultLocale") final String copyrightString = String.format("Copyright %d ECGB Games", Calendar.getInstance().get(Calendar.YEAR));
         copyright.setTitle(copyrightString);
         copyright.setGravity(Gravity.CENTER);
         copyright.setOnClickListener(new View.OnClickListener() {
