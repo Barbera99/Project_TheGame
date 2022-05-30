@@ -52,7 +52,6 @@ public class GameViewModel extends ViewModel {
     int player2_score;
     int player1_id;
     private  UserRepo userRepo;
-    private  DeckRepo deckRepo;
     private  GameRepo gameRepo;
     private GameActivity gameActivity;
     private MainActivity mainActivity;
@@ -61,6 +60,7 @@ public class GameViewModel extends ViewModel {
     boolean ifEndGame = false;
     int roundNumber;
     int endGame;
+    int random;
     Card iACard;
     Card cardSelected;
     Deck deckForIA = new Deck();
@@ -99,7 +99,7 @@ public class GameViewModel extends ViewModel {
     public GameViewModel(){
         this.gameRepo = new GameRepo();
         this.userRepo = new UserRepo();
-        this.isGameEnded = new MutableLiveData<>();
+        this.isGameEnded = new MutableLiveData<>(false);
         this.player1_scoreLiveData = new MutableLiveData<>();
         this.player1_username = new MutableLiveData<>();
         this.player2_scoreLiveData = new MutableLiveData<>();
@@ -119,6 +119,7 @@ public class GameViewModel extends ViewModel {
         player1_score = 0;
         player2_score = 0;
         roundNumber = 1;
+        random = 0;
     }
 
     public void play(){
@@ -199,13 +200,14 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
-     * Comprovem si s'acaba la partida.
+     * Comprovem si s'acaba la partida quan un dels jugadors assoleix 3 victories.
+     * @return
      */
     public int ifendGame(){
-        if (player1_score >= 3){
+        if (player1_score == 3){
                 return 1;
         }
-        else if(player2_score >= 3){
+        else if(player2_score == 3){
                 return 2;
         }
         return 0;
@@ -253,6 +255,10 @@ public class GameViewModel extends ViewModel {
             result = checkRoundWinner(cardSelected.getIntelligencie(),iACard.getIntelligencie());
             result.add("Inteligencia");
         }
+        if(player1_score == 3 || player2_score == 3){
+            endGame = ifendGame();
+            isGameEnded.setValue(true);
+        }
         randomAttribute();
         cardSelected = c;
         return result;
@@ -299,20 +305,25 @@ public class GameViewModel extends ViewModel {
      * Metode per agafar un atribut de manera random per a la ronda.
      */
     public void randomAttribute(){
-        int random = new Random().nextInt((5-1)+1) + 1;
-            if(random == 1 && !alreadySelectedAttribute.contains(random)){
-                attributeActualRound = "Fuerza";
-            } else if(random == 2 && !alreadySelectedAttribute.contains(random)){
-                attributeActualRound = "Velocidad";
-            } else if(random == 3 && !alreadySelectedAttribute.contains(random)){
-                attributeActualRound = "Agilidad";
-            } else if(random == 4 && !alreadySelectedAttribute.contains(random)){
-                attributeActualRound = "Aguante";
-            } else if(random == 5 && !alreadySelectedAttribute.contains(random)){
-                attributeActualRound = "Inteligencia";
+        random = new Random().nextInt((5-1)+1) + 1;
+        if(!alreadySelectedAttribute.isEmpty()){
+            while(alreadySelectedAttribute.contains(random)){
+                random = new Random().nextInt((5-1)+1) + 1;
             }
-            alreadySelectedAttribute.add(random);
-            this.roundAttribute.setValue(attributeActualRound);
+        }
+        if(random == 1 ){
+            attributeActualRound = "Fuerza";
+        } else if(random == 2 ){
+            attributeActualRound = "Velocidad";
+        } else if(random == 3 ){
+            attributeActualRound = "Agilidad";
+        } else if(random == 4){
+            attributeActualRound = "Aguante";
+        } else if(random == 5){
+            attributeActualRound = "Inteligencia";
+        }
+        alreadySelectedAttribute.add(random);
+        this.roundAttribute.setValue(attributeActualRound);
     }
 
     /**
@@ -324,22 +335,10 @@ public class GameViewModel extends ViewModel {
         cardSelected = user_deck.get(card_id);
         if(!alreadySelectedCard.contains(cardSelected)) {
             alreadySelectedCard.add(cardSelected);
-            ImageView imageview = (ImageView) card_1LiveData.getValue();
-            ColorMatrix matrix = new ColorMatrix();
-            matrix.setSaturation(0);
-            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
-            imageview.setColorFilter(filter);
-            if(roundNumber >= 5){
-                endGame = ifendGame();
-            }
-            if (endGame == 1 || endGame == 2) {
-                isGameEnded.setValue(true);
-            }else{
-                gameActivity.nextRound();
-                round_number.setValue(Integer.toString(roundNumber));
-                player1_scoreLiveData.setValue(Integer.toString(player1_score));
-                player2_scoreLiveData.setValue(Integer.toString(player2_score));
-            }
+            gameActivity.nextRound();
+            round_number.setValue(Integer.toString(roundNumber));
+            player1_scoreLiveData.setValue(Integer.toString(player1_score));
+            player2_scoreLiveData.setValue(Integer.toString(player2_score));
         }
     }
 
