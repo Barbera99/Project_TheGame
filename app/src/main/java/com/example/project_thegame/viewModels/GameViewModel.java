@@ -33,8 +33,6 @@ import java.util.Random;
 
 public class GameViewModel extends ViewModel {
     private static String TAG = "GameViewModel";
-
-
     public MutableLiveData<Boolean> isGameEnded;
     public MutableLiveData<String> player1_username;
     public MutableLiveData<String> player2_username;
@@ -113,9 +111,9 @@ public class GameViewModel extends ViewModel {
         this.card_3LiveData = new MutableLiveData<>();
         this.card_4LiveData = new MutableLiveData<>();
         this.card_5LiveData = new MutableLiveData<>();
+        this.roundAttribute = new MutableLiveData<>();
         iACard = c;
         cardSelected = c;
-        this.roundAttribute = new MutableLiveData<>();
         player1_score = 0;
         player2_score = 0;
         roundNumber = 1;
@@ -341,7 +339,6 @@ public class GameViewModel extends ViewModel {
             player2_scoreLiveData.setValue(Integer.toString(player2_score));
         }
     }
-
 
     /**
      *

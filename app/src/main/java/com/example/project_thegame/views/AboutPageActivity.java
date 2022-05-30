@@ -41,7 +41,6 @@ public class AboutPageActivity extends AppCompatActivity {
         Element copyright = new Element();
         @SuppressLint("DefaultLocale") final String copyrightString = String.format("Copyright %d by Your Name", Calendar.getInstance().get(Calendar.YEAR));
         copyright.setTitle(copyrightString);
-        // copyright.setIcon(R.mipmap.ic_launcher);
         copyright.setGravity(Gravity.CENTER);
         copyright.setOnClickListener(new View.OnClickListener() {
             @Override
