@@ -17,7 +17,6 @@ public class Game {
     @SerializedName("user2_score")
     private int score_player2;
 
-
     private Map []already_played;
 
 

@@ -84,6 +84,7 @@ public class GameActivity extends AppCompatActivity {
                         showToast("Guanyador de la partida " + gameViewModel.player2_username.getValue());
                     }
                     gameViewModel.save_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
+                    mCountD.cancel();
                     finish();
                     goTo(MainActivity.class);
                 }
@@ -98,18 +99,7 @@ public class GameActivity extends AppCompatActivity {
              gameViewModel.contador.setValue("Tria la carta abans que s'acabi el temps: " + millisUntilFinished / 1000);
          }
          public void onFinish() {
-            int ifEndGame = gameViewModel.ifendGame();
-            if(ifEndGame == 0){
                 nextRound();
-            }else{
-             if(ifEndGame == 1){
-                showToast("Ha guanyat la IA");
-            }else if (ifEndGame == 2){
-                showToast("Ha guanyat " + gameViewModel.player2_username.getValue());
-            }
-                gameViewModel.save_game(PreferencesProvider.providePreferences().getInt("user_id", 0));
-                finish();
-            }
          }
         };
         mCountD.start();
@@ -117,6 +107,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void nextRound() {
         ArrayList<String> result = gameViewModel.nextRound();
+        mCountD.cancel();
         if (result.get(0).equals("empate")) {
             showToast("Ha quedado en empate con el valor" + result.get(1));
         } else {

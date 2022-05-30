@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.project_thegame.R;
 
 public class SplashScreenActivity extends Activity {
+    private static final String TAG = "SplashScreenActivity";
     public static final int FIRST_REQUEST = 1;
     public static int SPLASH_TIME_OUT = 2000;
     public final int REQUEST_CODE_B = 1;
@@ -21,45 +23,21 @@ public class SplashScreenActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreenactivity);
-
-
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 prefs = getSharedPreferences("prefs", MODE_PRIVATE);
                 boolean agreed = prefs.getBoolean("FirstTimeInstall", true);
                 if (!agreed) {
-
                     Intent termsCond = new Intent(SplashScreenActivity.this, TestActivity.class);
                     startActivityForResult(termsCond, FIRST_REQUEST);
                     finish();
-
                 } else {
-                    Intent mainActivity = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    SplashScreenActivity.this.startActivity(mainActivity);
                     finish();
+                    goTo(TermConditionActivity.class);
                 }
             }
-
-
         },SPLASH_TIME_OUT);
-
-
-
-        /*System.out.println("asdfasdfasdfsadf");
-        Timer temps = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        };
-        temps.schedule(task, 5000);*/
     }
 
     @Override
@@ -67,11 +45,16 @@ public class SplashScreenActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             prefs.edit().putBoolean("FirstTimeInstall", true);
-            Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
-            startActivity(intent);
             finish();
+            goTo(TermConditionActivity.class);
         } else {
             System.exit(0);
         }
+    }
+
+    public void goTo(Class _class) {
+        Log.d(TAG, "IntGoto; ");
+        Intent intent = new Intent(this, _class);
+        startActivity(intent);
     }
 }
