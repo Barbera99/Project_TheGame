@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.project_thegame.utils.AccountUtils;
 import com.example.project_thegame.utils.PreferencesProvider;
+import com.example.project_thegame.views.LoginActivity;
 import com.example.project_thegame.views.MainActivity;
 import com.example.project_thegame.repositories.AccountRepo;
 

@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onClick(View view) {
                 String deleteToken = PreferencesProvider.providePreferences().getString("token","");
                 logOutViewModel.logOut(deleteToken);
+                goTo(LoginActivity.class);
             }
         });
 
