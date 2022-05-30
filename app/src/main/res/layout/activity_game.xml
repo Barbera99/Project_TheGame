@@ -139,7 +139,7 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                     <ImageView
-                        android:id="@+id/deck1"
+                        android:id="@+id/card_1"
                         android:layout_width="117dp"
                         android:layout_height="177dp"
                         android:layout_marginStart="16dp"
@@ -152,7 +152,7 @@
                         tools:ignore="UnknownIdInLayout" />
 
                     <ImageView
-                        android:id="@+id/deck2"
+                        android:id="@+id/card_2"
                         android:layout_width="117dp"
                         android:layout_height="177dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -163,11 +163,11 @@
                         />
 
                     <ImageView
-                        android:id="@+id/deck3"
+                        android:id="@+id/card_3"
                         android:layout_width="117dp"
                         android:layout_height="177dp"
                         android:layout_marginStart="10dp"
-                        app:layout_constraintStart_toEndOf="@+id/deck2"
+                        app:layout_constraintStart_toEndOf="@+id/card_2"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/card_3"
                         android:onClick="@{() -> gameViewModel.onclickedAt(2)}"
@@ -183,7 +183,7 @@
                     tools:layout_editor_absoluteX="-1dp">
 
                     <ImageView
-                        android:id="@+id/deck4"
+                        android:id="@+id/card_4"
                         android:layout_width="117dp"
                         android:layout_height="177dp"
                         android:layout_marginStart="64dp"
@@ -194,7 +194,7 @@
                         />
 
                     <ImageView
-                        android:id="@+id/deck5"
+                        android:id="@+id/card_5"
                         android:layout_width="117dp"
                         android:layout_height="177dp"
                         android:layout_marginEnd="64dp"

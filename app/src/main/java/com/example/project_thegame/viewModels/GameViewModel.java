@@ -4,9 +4,12 @@ package com.example.project_thegame.viewModels;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
@@ -40,6 +43,11 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> round_number;
     public MutableLiveData<String> contador;
     public MutableLiveData<String> roundAttribute;
+    public MutableLiveData<ImageView> card_1LiveData;
+    public MutableLiveData<ImageView> card_2LiveData;
+    public MutableLiveData<ImageView> card_3LiveData;
+    public MutableLiveData<ImageView> card_4LiveData;
+    public MutableLiveData<ImageView> card_5LiveData;
     int player1_score;
     int player2_score;
     int player1_id;
@@ -100,6 +108,11 @@ public class GameViewModel extends ViewModel {
         this.gameRepo.setGameViewModel(this);
         this.userRepo.setGameViewModel(this);
         this.contador = new MutableLiveData<>();
+        this.card_1LiveData = new MutableLiveData<>();
+        this.card_2LiveData = new MutableLiveData<>();
+        this.card_3LiveData = new MutableLiveData<>();
+        this.card_4LiveData = new MutableLiveData<>();
+        this.card_5LiveData = new MutableLiveData<>();
         iACard = c;
         cardSelected = c;
         this.roundAttribute = new MutableLiveData<>();
@@ -311,6 +324,11 @@ public class GameViewModel extends ViewModel {
         cardSelected = user_deck.get(card_id);
         if(!alreadySelectedCard.contains(cardSelected)) {
             alreadySelectedCard.add(cardSelected);
+            ImageView imageview = (ImageView) card_1LiveData.getValue();
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            imageview.setColorFilter(filter);
             if(roundNumber >= 5){
                 endGame = ifendGame();
             }
