@@ -22,7 +22,7 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splashscreenactivity);
+        setContentView(R.layout.activity_splashscreen);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

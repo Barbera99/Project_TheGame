@@ -17,18 +17,20 @@
       app:layout_constraintTop_toTopOf="parent">
 
     <TextView
-        android:textSize="30dp"
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="@string/termsCondit" />
+        android:background="@drawable/button_gradient"
+        android:text="@string/termsCondit"
+        android:textSize="30dp" />
 
     <TextView
-        android:textSize="20dp"
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="@string/lastUpdate" />
+        android:background="@drawable/button_gradient"
+        android:text="@string/lastUpdate"
+        android:textSize="20dp" />
   </LinearLayout>
 
   <androidx.core.widget.NestedScrollView
@@ -50,6 +52,7 @@
           android:id="@+id/textView3"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@drawable/bg_gradient"
           android:text="@string/textTerms" />
     </LinearLayout>
   </androidx.core.widget.NestedScrollView>
@@ -63,17 +66,19 @@
       app:layout_constraintStart_toStartOf="parent">
 
     <Button
-        android:text="@string/accept"
         android:id="@+id/asd"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="@color/background"
+        android:text="@string/accept" />
 
     <Button
         android:id="@+id/asdf"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@color/background"
         android:text="@string/deny" />
   </LinearLayout>
 
