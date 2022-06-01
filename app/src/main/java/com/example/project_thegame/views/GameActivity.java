@@ -111,6 +111,7 @@ public class GameActivity extends AppCompatActivity {
     public void nextRound() {
         ArrayList<String> result = gameViewModel.nextRound();
         mCountD.cancel();
+        Log.d(TAG, "" + result);
         if (result.get(0).equals("empate")) {
             showToast("Ha quedado en empate con el valor" + result.get(1));
         } else {

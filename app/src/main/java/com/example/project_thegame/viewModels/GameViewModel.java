@@ -257,8 +257,9 @@ public class GameViewModel extends ViewModel {
         if(player1_score == 3 || player2_score == 3){
             endGame = ifendGame();
             isGameEnded.setValue(true);
+        }else{
+            randomAttribute();
         }
-        randomAttribute();
         cardSelected = c;
         return result;
     }
@@ -311,7 +312,7 @@ public class GameViewModel extends ViewModel {
             }
         }
         if(random == 1 ){
-            attributeActualRound = "Fuerza";
+            attributeActualRound = "Força";
         } else if(random == 2 ){
             attributeActualRound = "Velocitat";
         } else if(random == 3 ){
@@ -330,17 +331,14 @@ public class GameViewModel extends ViewModel {
      * @param card_id Indiquem la id de la carta escollida per l'usuari.
      */
     public void onclickedAt(int card_id){
-        Log.d(TAG, "" + card_id);
         cardSelected = user_deck.get(card_id);
         if(!alreadySelectedCard.contains(cardSelected)) {
             alreadySelectedCard.add(cardSelected);
-
             ImageView imageview = gameActivity.getImageView(card_id);
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
             ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
             imageview.setColorFilter(filter);
-
             gameActivity.nextRound();
             round_number.setValue(Integer.toString(roundNumber));
             player1_scoreLiveData.setValue(Integer.toString(player1_score));
