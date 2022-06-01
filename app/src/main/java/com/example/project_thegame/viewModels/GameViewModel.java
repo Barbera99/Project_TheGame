@@ -41,6 +41,12 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> round_number;
     public MutableLiveData<String> contador;
     public MutableLiveData<String> roundAttribute;
+    public MutableLiveData<ImageView> card_1LiveData;
+    public MutableLiveData<ImageView> card_2LiveData;
+    public MutableLiveData<ImageView> card_3LiveData;
+    public MutableLiveData<ImageView> card_4LiveData;
+    public MutableLiveData<ImageView> card_5LiveData;
+
     int player1_score;
     int player2_score;
     int player1_id;
