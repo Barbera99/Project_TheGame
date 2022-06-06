@@ -41,9 +41,6 @@
             android:name=".views.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".views.ShowWinnerActivity"
-            android:exported="false" />
-        <activity
             android:name=".views.GameActivity"
             android:exported="false" />
         <activity
