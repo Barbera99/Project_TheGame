@@ -71,6 +71,7 @@ public class UserRepo {
      this.registerViewModel = registerViewModel;
     }
 
-    public void setGameViewModel(GameViewModel gameViewModel){this.gameViewModel = gameViewModel;
+    public void setGameViewModel(GameViewModel gameViewModel){
+        this.gameViewModel = gameViewModel;
     }
 }
