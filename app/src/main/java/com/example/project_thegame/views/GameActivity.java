@@ -1,49 +1,21 @@
 package com.example.project_thegame.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.BindingAdapter;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.project_thegame.R;
-import com.example.project_thegame.controllers.GameController;
 import com.example.project_thegame.databinding.ActivityGameBinding;
-import com.example.project_thegame.models.Card;
-import com.example.project_thegame.models.Deck;
-import com.example.project_thegame.models.Game;
-import com.example.project_thegame.models.Map;
-import com.example.project_thegame.models.User;
 import com.example.project_thegame.utils.PreferencesProvider;
-import com.example.project_thegame.viewModels.DeckViewModel;
 import com.example.project_thegame.viewModels.GameViewModel;
-
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 public class GameActivity extends AppCompatActivity {
     private static final String TAG = "GameActivity";

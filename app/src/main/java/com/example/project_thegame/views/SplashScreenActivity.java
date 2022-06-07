@@ -27,14 +27,14 @@ public class SplashScreenActivity extends Activity {
             @Override
             public void run() {
                 prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                boolean agreed = prefs.getBoolean("FirstTimeInstall", true);
+                boolean agreed = prefs.getBoolean("FirstTimeInstall", false);
                 if (!agreed) {
-                    Intent termsCond = new Intent(SplashScreenActivity.this, TestActivity.class);
+                    Intent termsCond = new Intent(SplashScreenActivity.this, TermConditionActivity.class);
                     startActivityForResult(termsCond, FIRST_REQUEST);
                     finish();
                 } else {
                     finish();
-                    goTo(TermConditionActivity.class);
+                    goTo(LoginActivity.class);
                 }
             }
         },SPLASH_TIME_OUT);
@@ -44,7 +44,7 @@ public class SplashScreenActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            prefs.edit().putBoolean("FirstTimeInstall", true);
+            prefs.edit().putBoolean("FirstTimeInstall", true).commit();
             finish();
             goTo(TermConditionActivity.class);
         } else {
@@ -57,4 +57,5 @@ public class SplashScreenActivity extends Activity {
         Intent intent = new Intent(this, _class);
         startActivity(intent);
     }
+
 }

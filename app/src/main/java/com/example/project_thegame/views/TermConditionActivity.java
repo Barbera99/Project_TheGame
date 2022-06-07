@@ -29,7 +29,7 @@ public class TermConditionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("agreed", true);
+                editor.putBoolean("FirstTimeInstall", true);
                 editor.apply();
                 resultInt.putExtra("datBol",true);
                 setResult(Activity.RESULT_OK, resultInt);
@@ -41,7 +41,7 @@ public class TermConditionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 resultInt.putExtra("datBol",false);
-                setResult(Activity.RESULT_OK, resultInt);
+                setResult(Activity.RESULT_CANCELED, resultInt);
                 finish();
             }
         });
